@@ -42,3 +42,18 @@ nothing to commit, working tree clean
 
 Jangan membuat repository public. Pemilihan layanan dan pembuatan remote privat dilakukan pada
 Tahap 7B2 setelah Tahap 7B1 dinyatakan lulus.
+
+## Tahap 7B2 — continuous integration
+
+Workflow `.github/workflows/ci.yml` menjalankan pemeriksaan berikut pada setiap push dan pull request
+ke `main`:
+
+1. dependency production dapat diinstal pada Ubuntu 24.04;
+2. release hygiene berstatus `OK`;
+3. seluruh Django test lulus;
+4. Django system check bersih;
+5. konfigurasi Gunicorn valid;
+6. seluruh source Python dapat dikompilasi.
+
+Workflow hanya diberi izin `contents: read`. Workflow tidak mempunyai credential VPS, database,
+atau hak deployment. Deployment otomatis belum diaktifkan.
