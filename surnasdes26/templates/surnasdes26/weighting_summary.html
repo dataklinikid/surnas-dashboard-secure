@@ -1,0 +1,9 @@
+{% if weighting.mode == 'weighted' %}
+<div class="metric-grid">
+  <div class="metric"><span>Versi bobot</span><strong>{{ weighting.version }}</strong></div>
+  <div class="metric"><span>Coverage</span><strong>{{ weighting.coverage|floatformat:4 }}%</strong></div>
+  <div class="metric"><span>Weighted base</span><strong>{{ weighting.weight_sum|floatformat:3 }}</strong></div>
+  <div class="metric"><span>Effective sample size</span><strong>{{ weighting.effective_sample_size|floatformat:3 }}</strong></div>
+</div>
+<p class="muted">Metode: {{ weighting.method }}. Frekuensi berbobot dapat berbentuk desimal; n tetap menunjukkan jumlah responden aktual.</p>
+{% endif %}

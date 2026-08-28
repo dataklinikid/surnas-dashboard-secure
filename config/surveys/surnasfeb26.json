@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "code": "surnasfeb26",
+  "name": "Survei Nasional PDAT Februari 2026",
+  "enabled": true,
+  "database": {
+    "alias": "surnasdes26_db",
+    "env_prefix": "SURNAS_DB",
+    "table": "h0",
+    "legacy_source": true
+  },
+  "metadata": {
+    "path": "survey_metadata/surnasfeb26/metadata.json"
+  },
+  "dataset": {
+    "identity_column": "Q_AC",
+    "latest_id_column": "H0_ID",
+    "target_n": 1260
+  },
+  "privacy": {
+    "aggregate_only": true
+  },
+  "dashboard": {
+    "monitoring_group_variable": "Q_F",
+    "monitoring_group_label": "Distribusi per provinsi"
+  }
+}

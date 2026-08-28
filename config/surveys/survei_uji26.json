@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "code":  "survei_uji26",
+    "name":  "Simulasi Survei Kedua",
+    "enabled":  true,
+    "database":  {
+                     "alias":  "survey_survei_uji26_db",
+                     "env_prefix":  "SURVEI_UJI26_DB",
+                     "table":  "h0",
+                     "legacy_source":  true
+                 },
+    "metadata":  {
+                     "path":  "survey_metadata/survei_uji26/metadata.json"
+                 },
+    "dataset":  {
+                    "identity_column":  "Q_AC",
+                    "latest_id_column":  "H0_ID",
+                    "target_n":  1260
+                },
+    "privacy":  {
+                    "aggregate_only":  true
+                },
+    "dashboard":  {
+                      "monitoring_group_variable":  "Q_F",
+                      "monitoring_group_label":  "Distribusi per provinsi"
+                  }
+}

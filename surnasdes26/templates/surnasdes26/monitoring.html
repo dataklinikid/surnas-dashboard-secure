@@ -1,0 +1,24 @@
+{% extends "aggregate/base.html" %}
+{% block title %}Monitoring {{ survey.name }}{% endblock %}
+{% block content %}
+{% include "surnasdes26/navigation.html" %}
+<h1>Monitoring {{ survey.name }}</h1>
+<div class="metric-grid">
+  <section class="metric"><span>Kuesioner unik</span><strong>{{ n }}</strong></section>
+  <section class="metric"><span>Target</span><strong>{{ target }}</strong></section>
+  <section class="metric"><span>Progres</span><strong>{{ progress }}%</strong></section>
+</div>
+<section class="card">
+  <h2>{{ monitoring_group_label }}</h2>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Kode</th><th>Provinsi</th><th>Jumlah</th><th>%</th></tr></thead>
+      <tbody>
+      {% for row in province_rows %}
+        <tr><td>{{ row.code }}</td><td>{{ row.label }}</td><td>{{ row.count }}</td><td>{{ row.percentage }}</td></tr>
+      {% empty %}<tr><td colspan="4">Variabel monitoring belum tersedia.</td></tr>{% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

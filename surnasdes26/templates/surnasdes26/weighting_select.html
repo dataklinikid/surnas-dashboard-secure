@@ -1,0 +1,10 @@
+<label for="weighting">Mode analisis</label>
+<select id="weighting" name="weighting">
+  <option value="unweighted"{% if weighting.mode == 'unweighted' %} selected{% endif %}>Tanpa bobot</option>
+  {% if weighting.available and weighting.valid %}
+    <option value="weighted"{% if weighting.mode == 'weighted' %} selected{% endif %}>Berbobot — {{ weighting.version }}</option>
+  {% endif %}
+</select>
+{% if weighting.available and not weighting.valid %}
+  <small>Bobot {{ weighting.version }} tidak tersedia: {{ weighting.message }}</small>
+{% endif %}

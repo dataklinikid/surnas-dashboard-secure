@@ -1,0 +1,28 @@
+:root { color-scheme: light; --ink: #17202a; --muted: #667085; --line: #d9e0e7; --brand: #14532d; --brand-2: #eaf5ee; --paper: #fff; --page: #f5f7f8; --danger: #a61b1b; }
+* { box-sizing: border-box; }
+body { margin: 0; color: var(--ink); background: var(--page); font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+a { color: var(--brand); }
+.topbar { min-height: 64px; padding: 0 5vw; display: flex; align-items: center; gap: 1rem; background: var(--paper); border-bottom: 1px solid var(--line); }
+.brand { margin-right: auto; color: var(--ink); font-weight: 750; text-decoration: none; }
+.container { width: min(1120px, 92vw); margin: 2rem auto 4rem; }
+.card-grid, .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+.card, .metric, .login-card, .empty-state, .error { padding: 1.25rem; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; }
+.metric span { display: block; color: var(--muted); }
+.metric strong { display: block; margin-top: .25rem; font-size: 2rem; }
+.eyebrow { margin: 0; color: var(--muted); font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.actions, .subnav { display: flex; flex-wrap: wrap; gap: .75rem; }
+.subnav { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
+.button, button { display: inline-block; padding: .65rem 1rem; border: 0; border-radius: 8px; color: white; background: var(--brand); font: inherit; font-weight: 650; text-decoration: none; cursor: pointer; }
+.button-secondary { color: var(--brand); background: var(--brand-2); }
+.link-button { padding: 0; color: var(--brand); background: transparent; }
+.filter-form { margin: 1rem 0; padding: 1rem; display: flex; align-items: end; flex-wrap: wrap; gap: .75rem; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; }
+.filter-form label { font-weight: 650; }
+.filter-form select, .login-card input { min-height: 42px; padding: .5rem; border: 1px solid #aeb8c2; border-radius: 7px; background: white; }
+.login-card { width: min(420px, 100%); margin: 4rem auto; }
+.login-card label, .login-card input { display: block; width: 100%; margin-bottom: .75rem; }
+.table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; background: var(--paper); }
+th, td { padding: .65rem; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+thead th { background: #eef2f4; }
+.error { color: var(--danger); }
+@media (max-width: 640px) { .topbar { padding: .75rem 4vw; flex-wrap: wrap; } .container { margin-top: 1rem; } }

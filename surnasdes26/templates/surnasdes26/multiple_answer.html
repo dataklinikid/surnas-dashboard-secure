@@ -1,0 +1,38 @@
+{% extends "aggregate/base.html" %}
+{% block title %}Jawaban Majemuk {{ survey.name }}{% endblock %}
+{% block content %}
+{% include "surnasdes26/navigation.html" %}
+<h1>Distribusi Jawaban Majemuk</h1>
+<form class="filter-form" method="get">
+  <label for="group">Pertanyaan</label>
+  <select id="group" name="group">
+    {% for value, label in choices %}
+      <option value="{{ value }}"{% if value == selected %} selected{% endif %}>{{ label }}</option>
+    {% endfor %}
+  </select>
+  {% include "surnasdes26/weighting_select.html" %}
+  <button class="button" type="submit">Tampilkan</button>
+</form>
+{% if result %}
+<section class="card">
+  <h2>{{ result.label }}</h2>
+  {% include "surnasdes26/weighting_summary.html" %}
+  <p>Responden eligible: {{ result.n_eligible }} dari {{ result.n_total }}</p>
+  {% if result.weighted %}<p>Weighted eligible: {{ result.weighted_eligible }} · Weighted total pilihan: {{ result.weighted_selection_total }}</p>{% endif %}
+  <p>Total pilihan aktual: {{ result.selection_total }} · Rata-rata pilihan{% if result.weighted %} berbobot{% endif %}: {{ result.mean_selections }}</p>
+  <p>Persentase dihitung terhadap responden eligible. Karena boleh memilih lebih dari satu, jumlah persentase tidak harus 100%.</p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Kode</th><th>Pilihan</th><th>{% if result.weighted %}Dipilih berbobot{% else %}Dipilih{% endif %}</th>{% if result.weighted %}<th>n</th>{% endif %}<th>% eligible</th></tr></thead>
+      <tbody>
+      {% for row in result.rows %}
+        <tr><td>{{ row.code }}</td><td>{{ row.label }}</td><td>{% if result.weighted %}{{ row.weighted_count }}{% else %}{{ row.count }}{% endif %}</td>{% if result.weighted %}<td>{{ row.count }}</td>{% endif %}<td>{{ row.percentage }}%</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% else %}
+<div class="empty-state">Metadata jawaban majemuk belum tersedia.</div>
+{% endif %}
+{% endblock %}

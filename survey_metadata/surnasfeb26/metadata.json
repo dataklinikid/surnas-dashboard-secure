@@ -1,0 +1,3783 @@
+{
+  "metadata_schema_version": 1,
+  "survey": {
+    "code": "surnasfeb26",
+    "name": "Survei Nasional PDAT Februari 2026",
+    "dictionary_name": "SURVEI_NASIONAL_PDAT_FEB26_DICT",
+    "dictionary_label": "survei_nasional_PDAT_feb26",
+    "dictionary_version": "CSPro 7.7",
+    "source_table": "h0",
+    "aggregate_only": true
+  },
+  "variables": {
+    "Q_B": {
+      "label": "Q_B. Gender",
+      "section": "Demografi dan karakteristik responden",
+      "values": {
+        "1": "Laki-laki",
+        "2": "Perempuan"
+      }
+    },
+    "Q_C": {
+      "label": "Q_C. Kategori Desa-Kelurahan",
+      "section": "Demografi dan karakteristik responden",
+      "values": {
+        "1": "Desa",
+        "2": "Kelurahan"
+      }
+    },
+    "Q_F": {
+      "label": "Q_F. PROVINSI",
+      "section": "Demografi dan karakteristik responden",
+      "values": {
+        "1": "Aceh",
+        "2": "Sumatera Utara",
+        "3": "Sumatera Barat",
+        "4": "Riau",
+        "5": "Jambi",
+        "6": "Sumatera Selatan",
+        "7": "Bengkulu",
+        "8": "Lampung",
+        "9": "Kep. Bangka Belitung",
+        "10": "Kepulauan Riau",
+        "11": "DKI Jakarta",
+        "12": "Jawa Barat",
+        "13": "Jawa Tengah",
+        "14": "DI Yogyakarta",
+        "15": "Jawa Timur",
+        "16": "Banten",
+        "17": "Bali",
+        "18": "Nusa Tenggara Barat",
+        "19": "Nusa Tenggara Timur",
+        "20": "Kalimantan Barat",
+        "21": "Kalimantan Tengah",
+        "22": "Kalimantan Selatan",
+        "23": "Kalimantan Timur",
+        "24": "Kalimantan Utara",
+        "25": "Sulawesi Utara",
+        "26": "Sulawesi Tengah",
+        "27": "Sulawesi Selatan",
+        "28": "Sulawesi Tenggara",
+        "29": "Gorontalo",
+        "30": "Sulawesi Barat",
+        "31": "Maluku",
+        "32": "Maluku Utara",
+        "33": "Papua Barat",
+        "34": "Papua",
+        "35": "Papua Barat Daya",
+        "36": "Papua Tengah",
+        "37": "Papua Selatan",
+        "38": "Papua Pegunungan"
+      }
+    },
+    "Q_L": {
+      "label": "Q_L. Status responden",
+      "section": "Kontrol mutu wawancara",
+      "values": {
+        "1": "Asli",
+        "2": "Pengganti"
+      }
+    },
+    "Q_L0": {
+      "label": "Q_L0. Alasan penggantian",
+      "section": "Kontrol mutu wawancara",
+      "values": {
+        "1": "MENOLAK WAWANCARA",
+        "2": "SAKIT",
+        "3": "TIDAK ADA RESPONDEN LAKI-LAKI",
+        "4": "TIDAK ADA RESPONDEN PEREMPUAN",
+        "5": "LAINNYA"
+      }
+    },
+    "Q_2": {
+      "label": "Q_2. Selain sebagai warga negara Indonesia, Ibu/Bapak termasuk ke dalam suku-bangsa apa?",
+      "section": "Demografi dan karakteristik responden",
+      "values": {
+        "1": "Jawa",
+        "2": "Sunda",
+        "3": "Melayu",
+        "4": "Madura",
+        "5": "Bugis",
+        "6": "Betawi",
+        "7": "Batak",
+        "8": "Minang",
+        "9": "Lainnya"
+      }
+    },
+    "Q_3": {
+      "label": "Q_3. Apa agama yang Ibu/Bapak anut?",
+      "section": "Demografi dan karakteristik responden",
+      "values": {
+        "1": "Islam",
+        "2": "Protestan",
+        "3": "Katolik",
+        "4": "Hindu",
+        "5": "Budha",
+        "6": "Kong Huchu",
+        "7": "Lain-lain"
+      }
+    },
+    "Q_4": {
+      "label": "Q_4. Bagaimana Ibu/Bapak melihat keadaan ekonomi nasional sekarang? sangat baik, baik, sedang, buruk, atau sangat buruk?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Sangat Buruk",
+        "2": "Buruk",
+        "3": "Sedang",
+        "4": "Baik",
+        "5": "Sangat Baik",
+        "8": "Tidak Tahu/Tidak Jawab"
+      }
+    },
+    "Q_5": {
+      "label": "Q_5. Bagaimana Ibu/Bapak melihat keadaan politik nasional sekarang? sangat baik, baik, sedang, buruk atau sangat buruk?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Sangat Buruk",
+        "2": "Buruk",
+        "3": "Sedang",
+        "4": "Baik",
+        "5": "Sangat Baik",
+        "8": "Tidak Tahu/Tidak Jawab"
+      }
+    },
+    "Q_6": {
+      "label": "Q_6. Bagaimana Ibu/Bapak melihat keadaan keamanan di negara kita sekarang? sangat baik, baik, sedang, buruk, atau sangat buruk?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Sangat Buruk",
+        "2": "Buruk",
+        "3": "Sedang",
+        "4": "Baik",
+        "5": "Sangat Baik",
+        "8": "Tidak Tahu/Tidak Jawab"
+      }
+    },
+    "Q_7": {
+      "label": "Q_7. Bagaimana Ibu/Bapak melihat keadaan penegakan hukum di negara kita sekarang? sangat baik, baik, sedang, buruk, atau sangat buruk?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Sangat Buruk",
+        "2": "Buruk",
+        "3": "Sedang",
+        "4": "Baik",
+        "5": "Sangat Baik",
+        "8": "Tidak Tahu/Tidak Jawab"
+      }
+    },
+    "Q_8": {
+      "label": "Q_8. Bagaimana Ibu/Bapak melihat keadaan Pemberantasan Korupsi di negara kita sekarang? sangat baik, baik, sedang, buruk, atau sangat buruk?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Sangat Buruk",
+        "2": "Buruk",
+        "3": "Sedang",
+        "4": "Baik",
+        "5": "Sangat Baik",
+        "8": "Tidak Tahu/Tidak Jawab"
+      }
+    },
+    "Q_9": {
+      "label": "Q_9. Menurut bapak/ibu, apakah hukum di Indonesia berlaku adil untuk semua kalangan?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Ya, berlaku adil",
+        "2": "Tidak berlaku",
+        "8": "Tidak Tahu/Tidak jawab"
+      }
+    },
+    "Q_10": {
+      "label": "Q_10. Bagaimana penilaian Ibu/Bapak terhadap kinerja pemerintah dalam bidang pelayanan kesehatan?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Cukup",
+        "4": "Kurang baik",
+        "5": "Tidak baik sama sekali",
+        "8": "Tidak tahu / Tidak jawab"
+      }
+    },
+    "Q_11": {
+      "label": "Q_11. Bagaimana penilaian Ibu/Bapak terhadap kinerja pemerintah dalam bidang pendidikan?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Cukup",
+        "4": "Kurang baik",
+        "5": "Tidak baik sama sekali",
+        "8": "Tidak tahu / Tidak jawab"
+      }
+    },
+    "Q_12": {
+      "label": "Q_12. Apakah Ibu/Bapak melihat keadaan ekonomi RUMAH TANGGA Ibu/Bapak sendiri SEKARANG INI, apakah menjadi jauh lebih buruk, lebih buruk, tidak ada perubahan, lebih baik, atau jauh lebih baik dibanding TAHUN LALU?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Jauh lebih buruk",
+        "2": "Lebih Buruk",
+        "3": "Tidak ada perubahan",
+        "4": "Lebih Baik",
+        "5": "Jauh lebih baik",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_13": {
+      "label": "Q_13. Apakah keadaan ekonomi rumah tangga Ibu/Bapak dalam SETAHUN KE DEPAN menjadi jauh lebih buruk, lebih buruk, tidak ada perubahan, lebih baik, atau jauh lebih baik dibanding SEKARANG INI?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Jauh lebih buruk",
+        "2": "Lebih buruk",
+        "3": "Tidak ada perubahan",
+        "4": "Lebih Baik",
+        "5": "Jauh lebih baik",
+        "8": "Tidak Tahu/Tidak Jawab"
+      }
+    },
+    "Q_14": {
+      "label": "Q_14. Apakah Ibu/Bapak melihat keadaan ekonomi NASIONAL pada umumnya SEKARANG INI menjadi jauh lebih buruk, lebih buruk, tidak ada perubahan, lebih baik, atau jauh lebih baik ini dibanding TAHUN LALU?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Jauh lebih buruk",
+        "2": "Lebih buruk",
+        "3": "Tidak ada perubahan",
+        "4": "Lebih baik",
+        "5": "Jauh lebih baik",
+        "8": "Tidak Tahu/Tidak Jawab"
+      }
+    },
+    "Q_15": {
+      "label": "Q_15. Apakah Ibu/Bapak melihat keadaan ekonomi NASIONAL pada umumnya dalam SETAHUN KE DEPAN akan menjadi jauh lebih buruk, lebih buruk, tidak ada perubahan, lebih baik, atau jauh lebih baik dibanding keadaan SEKARANG INI?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Jauh lebih buruk",
+        "2": "Lebih buruk",
+        "3": "Tidak ada perubahan",
+        "4": "Lebih baik",
+        "5": "Jauh lebih baik",
+        "8": "Tidak Tahu/Tidak Jawab"
+      }
+    },
+    "Q_16": {
+      "label": "Q_16. Apakah Ibu/Bapak melihat permasalahan pengangguran SEKARANG INI menjadi jauh semakin meningkat, semakin berkurang, atau sama saja dibanding TAHUN LALU?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Semakin meningkat",
+        "3": "Sama saja",
+        "2": "Semakin berkurang",
+        "8": "Tidak Tahu/Tidak Jawab"
+      }
+    },
+    "Q_17": {
+      "label": "Q_17. Apakah Ibu/Bapak melihat permasalahan kemiskinan SEKARANG INI menjadi jauh semakin meningkat, semakin menurun, atau sama saja dibanding TAHUN LALU?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Semakin meningkat",
+        "3": "Sama saja",
+        "2": "Semakin berkurang",
+        "8": "Tidak Tahu/Tidak Jawab"
+      }
+    },
+    "Q_18": {
+      "label": "Q_18. Apakah Ibu/Bapak melihat akses untuk mendapatkan pendidikan SEKARANG INI menjadi jauh semakin mudah, semakin sulit, atau sama saja dibanding TAHUN LALU?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Semakin mudah",
+        "3": "Sama saja",
+        "2": "Semakin sulit",
+        "8": "Tidak Tahu/Tidak Jawab"
+      }
+    },
+    "Q_19": {
+      "label": "Q_19. Apakah Ibu/Bapak melihat kebutuhan pokok SEKARANG INI menjadi jauh semakin mudah, semakin sulit, atau sama saja dibanding TAHUN LALU?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Semakin mudah",
+        "3": "Sama saja",
+        "2": "Semakin sulit",
+        "8": "Tidak Tahu/Tidak Jawab"
+      }
+    },
+    "Q_20": {
+      "label": "Q_20. Apakah Ibu/Bapak melihat permasalahan lapangan pekerjaan SEKARANG INI menjadi semakin mudah didapat, semakin sulit, atau sama saja dibanding TAHUN LALU?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Semakin mudah",
+        "3": "Sama saja",
+        "2": "Semakin sulit",
+        "8": "Tidak Tahu/Tidak Jawab"
+      }
+    },
+    "Q_21": {
+      "label": "Q_21. Apakah Ibu/Bapak melihat kebutuhan berobat SEKARANG INI menjadi jauh semakin mudah, semakin sulit, atau sama saja dibanding TAHUN LALU?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Semakin mudah",
+        "3": "Sama saja",
+        "2": "Semakin sulit",
+        "8": "Tidak Tahu/Tidak Jawab"
+      }
+    },
+    "Q_22": {
+      "label": "Q_22. Apakah Ibu/Bapak melihat pemerataan kesejahteraan SEKARANG INI menjadi jauh semakin merata, semakin tidak merata, atau sama saja dibanding TAHUN LALU?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Semakin merata",
+        "3": "Sama saja",
+        "2": "Semakin tidak merata",
+        "8": "Tidak Tahu/Tidak Jawab"
+      }
+    },
+    "Q_23": {
+      "label": "Q_23. Secara umum, apakah sejauh ini Ibu/Bapak sangat puas, cukup puas, kurang puas, atau tidak puas sama sekali dengan kerja Presiden Prabowo Subianto di tahun 2025 ini ?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Sangat puas",
+        "2": "Cukup Puas",
+        "3": "Kurang puas",
+        "4": "Tidak puas sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_25": {
+      "label": "Q_25. Secara umum, apakah sejauh ini Ibu/Bapak sangat puas, cukup puas, kurang puas, atau tidak puas sama sekali dengan kinerja Wakil Presiden Gibran Rakabuming Raka di tahun 2025 ini ?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Sangat puas",
+        "2": "Cukup Puas",
+        "3": "Kurang puas",
+        "4": "Tidak puas sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_27": {
+      "label": "Q_27. Bagaimana penilaian Bapak/Ibu/Saudara terhadap kinerja pemerintahan Presiden Prabowo Subianto - Wakil Presiden Gibran Rakabuming Raka saat ini?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Sangat puas",
+        "2": "Cukup Puas",
+        "3": "Kurang puas",
+        "4": "Tidak puas sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_30_1": {
+      "label": "Q_30_1. Apakah kinerja pemerintahan Presiden Prabowo Subianto - Wakil Presiden Gibran Rakabuming Raka saat ini berhasil atau tidak berhasil dalam menangani: Mengatasi Masalah Listrik yang Sering Padam?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Ya berhasil",
+        "2": "Tidak berhasil",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_30_2": {
+      "label": "Q_30_2. Apakah kinerja pemerintahan Presiden Prabowo Subianto - Wakil Presiden Gibran Rakabuming Raka saat ini berhasil atau tidak berhasil dalam menangani: Mengendalikan Harga Kebutuhan Pokok?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Ya berhasil",
+        "2": "Tidak berhasil",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_30_3": {
+      "label": "Q_30_3. Apakah kinerja pemerintahan Presiden Prabowo Subianto - Wakil Presiden Gibran Rakabuming Raka saat ini berhasil atau tidak berhasil dalam menangani: Menjaga Keamanan?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Ya berhasil",
+        "2": "Tidak berhasil",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_30_4": {
+      "label": "Q_30_4. Apakah kinerja pemerintahan Presiden Prabowo Subianto - Wakil Presiden Gibran Rakabuming Raka saat ini berhasil atau tidak berhasil dalam menangani: Menjaga Kerukunan Antar Umat Beragama?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Ya berhasil",
+        "2": "Tidak berhasil",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_30_5": {
+      "label": "Q_30_5. Apakah kinerja pemerintahan Presiden Prabowo Subianto - Wakil Presiden Gibran Rakabuming Raka saat ini berhasil atau tidak berhasil dalam menangani: Menjaga Persatuan dan Kesatuan bangsa?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Ya berhasil",
+        "2": "Tidak berhasil",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_30_6": {
+      "label": "Q_30_6. Apakah kinerja pemerintahan Presiden Prabowo Subianto - Wakil Presiden Gibran Rakabuming Raka saat ini berhasil atau tidak berhasil dalam menangani: Menurunkan Angka Pengangguran?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Ya berhasil",
+        "2": "Tidak berhasil",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_30_7": {
+      "label": "Q_30_7. Apakah kinerja pemerintahan Presiden Prabowo Subianto - Wakil Presiden Gibran Rakabuming Raka saat ini berhasil atau tidak berhasil dalam menangani: Pelayanan Kesehatan yang Terjangkau?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Ya berhasil",
+        "2": "Tidak berhasil",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_30_8": {
+      "label": "Q_30_8. Apakah kinerja pemerintahan Presiden Prabowo Subianto - Wakil Presiden Gibran Rakabuming Raka saat ini berhasil atau tidak berhasil dalam menangani: Pelayanan Publik Administratif (Persuratan dan Izin)?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Ya berhasil",
+        "2": "Tidak berhasil",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_30_9": {
+      "label": "Q_30_9. Apakah kinerja pemerintahan Presiden Prabowo Subianto - Wakil Presiden Gibran Rakabuming Raka saat ini berhasil atau tidak berhasil dalam menangani: Pembangunan Infrastruktur Jalan dan Jembatan?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Ya berhasil",
+        "2": "Tidak berhasil",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_30_10": {
+      "label": "Q_30_10. Apakah kinerja pemerintahan Presiden Prabowo Subianto - Wakil Presiden Gibran Rakabuming Raka saat ini berhasil atau tidak berhasil dalam menangani: Pemberantasan Korupsi?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Ya berhasil",
+        "2": "Tidak berhasil",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_30_11": {
+      "label": "Q_30_11. Apakah kinerja pemerintahan Presiden Prabowo Subianto - Wakil Presiden Gibran Rakabuming Raka saat ini berhasil atau tidak berhasil dalam menangani: Penanganan bencana dan kerusakan lingkungan?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Ya berhasil",
+        "2": "Tidak berhasil",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_30_12": {
+      "label": "Q_30_12. Apakah kinerja pemerintahan Presiden Prabowo Subianto - Wakil Presiden Gibran Rakabuming Raka saat ini berhasil atau tidak berhasil dalam menangani: Penataan Pertambangan?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Ya berhasil",
+        "2": "Tidak berhasil",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_30_13": {
+      "label": "Q_30_13. Apakah kinerja pemerintahan Presiden Prabowo Subianto - Wakil Presiden Gibran Rakabuming Raka saat ini berhasil atau tidak berhasil dalam menangani: Pendidikan yang Terjangkau?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Ya berhasil",
+        "2": "Tidak berhasil",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_30_14": {
+      "label": "Q_30_14. Apakah kinerja pemerintahan Presiden Prabowo Subianto - Wakil Presiden Gibran Rakabuming Raka saat ini berhasil atau tidak berhasil dalam menangani: Pengembangan Pariwisata?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Ya berhasil",
+        "2": "Tidak berhasil",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_30_15": {
+      "label": "Q_30_15. Apakah kinerja pemerintahan Presiden Prabowo Subianto - Wakil Presiden Gibran Rakabuming Raka saat ini berhasil atau tidak berhasil dalam menangani: Perikanan, Perairan, dan Kelautan?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Ya berhasil",
+        "2": "Tidak berhasil",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_30_16": {
+      "label": "Q_30_16. Apakah kinerja pemerintahan Presiden Prabowo Subianto - Wakil Presiden Gibran Rakabuming Raka saat ini berhasil atau tidak berhasil dalam menangani: Pertanian dan Perkebunan?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Ya berhasil",
+        "2": "Tidak berhasil",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_31_1": {
+      "label": "Q_31_1. Bagaimana penilaian Bapak/Ibu terhadap kinerja pemerintah dalam menjalankan program: Program swasembada pangan, khususnya produksi beras dan jagung?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Cukup",
+        "4": "Kurang Baik",
+        "5": "Tidak baik Sama sekali",
+        "8": "Tidak tahu/Tidak Jawab"
+      }
+    },
+    "Q_31_2": {
+      "label": "Q_31_2. Bagaimana penilaian Bapak/Ibu terhadap kinerja pemerintah dalam menjalankan program: Menangani bencana banjir dan longsor?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Cukup",
+        "4": "Kurang Baik",
+        "5": "Tidak baik Sama sekali",
+        "8": "Tidak tahu/Tidak Jawab"
+      }
+    },
+    "Q_31_3": {
+      "label": "Q_31_3. Bagaimana penilaian Bapak/Ibu terhadap kinerja pemerintah dalam menjalankan program: Bidang Kesehatan?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Cukup",
+        "4": "Kurang Baik",
+        "5": "Tidak baik Sama sekali",
+        "8": "Tidak tahu/Tidak Jawab"
+      }
+    },
+    "Q_31_4": {
+      "label": "Q_31_4. Bagaimana penilaian Bapak/Ibu terhadap kinerja pemerintah dalam menjalankan program: Bidang Pendidikan?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Cukup",
+        "4": "Kurang Baik",
+        "5": "Tidak baik Sama sekali",
+        "8": "Tidak tahu/Tidak Jawab"
+      }
+    },
+    "Q_31_5": {
+      "label": "Q_31_5. Bagaimana penilaian Bapak/Ibu terhadap kinerja pemerintah dalam menjalankan program: Ketersediaan lapangan pekerjaan?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Cukup",
+        "4": "Kurang Baik",
+        "5": "Tidak baik Sama sekali",
+        "8": "Tidak tahu/Tidak Jawab"
+      }
+    },
+    "Q_31_6": {
+      "label": "Q_31_6. Bagaimana penilaian Bapak/Ibu terhadap kinerja pemerintah dalam menjalankan program: Meningkatkan kesejahteraan buruh?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Cukup",
+        "4": "Kurang Baik",
+        "5": "Tidak baik Sama sekali",
+        "8": "Tidak tahu/Tidak Jawab"
+      }
+    },
+    "Q_32_1": {
+      "label": "Q_32_1. Apakah bapak/ibu pernah mendengar program: Memastikan penetapan upah minimum berjalan melalui mekanisme dialog antara pemerintah daerah, pengusaha, dan perwakilan buruh?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_32_2": {
+      "label": "Q_32_2. Apakah Ibu/Bapak suka atau tidak: Memastikan penetapan upah minimum berjalan melalui mekanisme dialog antara pemerintah daerah, pengusaha, dan perwakilan buruh?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_32_3": {
+      "label": "Q_32_3. Apakah bapak/ibu pernah mendengar program: Penyediaan hunian layak dan terjangkau di sekitar kawasan industri?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_32_4": {
+      "label": "Q_32_4. Apakah Ibu/Bapak suka atau tidak: Penyediaan hunian layak dan terjangkau di sekitar kawasan industri?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_32_5": {
+      "label": "Q_32_5. Apakah bapak/ibu pernah mendengar program: Penguatan jaminan sosial ketenagakerjaan dan kesehatan, termasuk pengawasan terhadap kepatuhan perusahaan?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_32_6": {
+      "label": "Q_32_6. Apakah Ibu/Bapak suka atau tidak: Penguatan jaminan sosial ketenagakerjaan dan kesehatan, termasuk pengawasan terhadap kepatuhan perusahaan?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_32_7": {
+      "label": "Q_32_7. Apakah bapak/ibu pernah mendengar program: Membuka ruang dialog yang lebih luas dengan serikat pekerja sebagai mitra strategis?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_32_8": {
+      "label": "Q_32_8. Apakah Ibu/Bapak suka atau tidak: Membuka ruang dialog yang lebih luas dengan serikat pekerja sebagai mitra strategis?",
+      "section": "Kondisi nasional dan kinerja pemerintah",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_33": {
+      "label": "Q_33. Apakah Bapak/Ibu mengetahui tentang kebijakan pembentukan Badan Pengelola Investasi Daya Anagata Nusantara (Danantara) oleh pemerintah?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "ya, tahu dengan baik",
+        "2": "Pernah dengar sekilas",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_35": {
+      "label": "Q_35. Seberapa paham bapak/ibu dengan Danantara?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Sangat paham",
+        "2": "Cukup paham",
+        "3": "Kurang paham",
+        "4": "Tidak paham sama sekali",
+        "8": "Tidak tahu/ Tidak jawab"
+      }
+    },
+    "Q_36": {
+      "label": "Q_36. Menurut bapak ibu, sejauh ini apakah informasi pemerintah terkait Danantara? Apakah ....",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Sangat jelas",
+        "2": "Cukup jelas",
+        "3": "Kurang jelas",
+        "4": "Tidak jelas sama sekali",
+        "6": "Tidak tahu / Tidak jawab"
+      }
+    },
+    "Q_37": {
+      "label": "Q_37. Bagaimana pendapat Bapak/Ibu tentang kebijakan pembentukan Danantara tersebut?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Sangat setuju",
+        "2": "Setuju",
+        "3": "Biasa saja",
+        "4": "Tidak setuju",
+        "5": "Sangat tidak setuju",
+        "6": "Tidak tahu / Tidak jawab"
+      }
+    },
+    "Q_38": {
+      "label": "Q_38. Apakah Ibu/Bapak tahu atau pernah dengar program Makan Bergizi Gratis (MBG) yang sudah mulai dijalankan oleh pemerintahan Prabowo - Gibran sejak 6 Januari 2025 lalu?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Ya, tahu",
+        "2": "Tidak tahu"
+      }
+    },
+    "Q_39": {
+      "label": "Q_39. Apakah ada anggota keluarga Ibu/Bapak di rumah ini (anak sekolah, wanita hamil/menyusui), yang menerima MBG tersebut?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Ya, menerima",
+        "2": "Tidak menerima"
+      }
+    },
+    "Q_40": {
+      "label": "Q_40. Apakah Ibu/Bapak sangat puas, cukup puas, kurang puas atau tidak puas sama sekali dengan program makan bergizi gratis tersebut?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Sangat puas",
+        "2": "Cukup Puas",
+        "3": "Kurang puas",
+        "4": "Tidak puas sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_40_A": {
+      "label": "Q_40_A. Menurut Bapak/Ibu, apakah program MBG bermanfaat bagi penerima?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Sangat bermanfaat",
+        "2": "Cukup bermanfaat",
+        "3": "Kurang bermanfaat",
+        "4": "Tidak bermanfaat sama sekali",
+        "8": "Tidak tahu/Tidak jawab"
+      }
+    },
+    "Q_40_C": {
+      "label": "Q_40_C. Bagaimana penilaian Bapak/Ibu terhadap kualitas makanan yang diberikan?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Cukup",
+        "4": "Kurang baik.",
+        "5": "Tidak baik sama sekali",
+        "8": "Tidak tahu/Tidak jawab"
+      }
+    },
+    "Q_40_D": {
+      "label": "Q_40_D. Bagaimana penilaian Bapak/Ibu terhadap kecukupan porsi makanan?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Sangat cukup",
+        "2": "Cukup",
+        "3": "Kurang cukup",
+        "4": "Sangat kurang",
+        "8": "Tidak tahu/Tidak jawab"
+      }
+    },
+    "Q_40_E": {
+      "label": "Q_40_E. Sepengetahuan Bapak/Ibu, apakah pernah terjadi masalah dalam pelaksanaan MBG di wilayah ini (misalnya kualitas makanan, distribusi, atau keterlambatan)?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Pernah terjadi",
+        "2": "Tidak pernah",
+        "8": "Tidak tahu/Tidak jawab"
+      }
+    },
+    "Q_40_G": {
+      "label": "Q_40_G. Menurut Bapak/Ibu, apakah pelaksanaan MBG dilakukan secara transparan dan terbuka?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Sangat transparan",
+        "2": "Cukup transparan",
+        "3": "Kurang transparan",
+        "4": "Tidak transparan sama sekali",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_40_H": {
+      "label": "Q_40_H. Apakah menurut Bapak/Ibu pengawasan terhadap kualitas dan keamanan makanan sudah memadai?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Sangat memadai",
+        "2": "Cukup memadai",
+        "3": "Kurang memadai",
+        "4": "Tidak memadai",
+        "8": "Tidak tahu/Tidak jawab"
+      }
+    },
+    "Q_41": {
+      "label": "Q_41. Bagaimana pendapat Ibu/Bapak sendiri, apakah program MBG sebaiknya dilanjutkan atau dihentikan?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Program MBG sebaiknya dilanjutkan tanpa perbaikan",
+        "2": "Program MBG sebaiknya dilanjutkan dengan perbaikan",
+        "3": "Dievaluasi ulang secara menyeluruh",
+        "4": "Program MBG sebaiknya dihentikan",
+        "8": "Tidak Tahu/Tidak Jawab"
+      }
+    },
+    "Q_44": {
+      "label": "Q_44. Apakah Ibu/Bapak tahu atau pernah dengar Program Pemeriksaan Kesehatan Gratis?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Ya, tahu",
+        "2": "Tidak tahu"
+      }
+    },
+    "Q_45": {
+      "label": "Q_45. Apakah Ibu/Bapak sangat puas, cukup puas, kurang puas atau tidak puas sama sekali dengan program tersebut?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Sangat puas",
+        "2": "Cukup Puas",
+        "3": "Kurang puas",
+        "4": "Tidak puas sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_46": {
+      "label": "Q_46. Apakah Ibu/Bapak tahu atau pernah dengar Program Pembangunan Rumah Sakit (RS) lengkap berkualitas di daerah?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Ya, tahu",
+        "2": "Tidak tahu"
+      }
+    },
+    "Q_47": {
+      "label": "Q_47. Apakah Ibu/Bapak sangat puas, cukup puas, kurang puas atau tidak puas sama sekali dengan program tersebut?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Sangat puas",
+        "2": "Cukup Puas",
+        "3": "Kurang puas",
+        "4": "Tidak puas sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_48": {
+      "label": "Q_48. Apakah Ibu/Bapak tahu atau pernah dengar tentang program Sekolah Rakyat?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Ya, tahu",
+        "2": "Tidak tahu"
+      }
+    },
+    "Q_49": {
+      "label": "Q_49. Apakah Ibu/Bapak sangat puas, cukup puas, kurang puas atau tidak puas sama sekali dengan program tersebut?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Sangat puas",
+        "2": "Cukup Puas",
+        "3": "Kurang puas",
+        "4": "Tidak puas sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_50": {
+      "label": "Q_50. Apakah Ibu/Bapak tahu atau pernah dengar tentang program Sekolah Garuda?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Ya, tahu",
+        "2": "Tidak tahu"
+      }
+    },
+    "Q_51": {
+      "label": "Q_51. Apakah Ibu/Bapak sangat puas, cukup puas, kurang puas atau tidak puas sama sekali dengan program Sekolah Garuda tersebut?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Sangat puas",
+        "2": "Cukup Puas",
+        "3": "Kurang puas",
+        "4": "Tidak puas sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_52": {
+      "label": "Q_52. Apakah Ibu/Bapak tahu atau pernah dengar tentang pembentukan Koperasi Desa (Kopdes) Merah Putih?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Ya, tahu",
+        "2": "Tidak tahu"
+      }
+    },
+    "Q_53": {
+      "label": "Q_53. Apakah di desa/kelurahan bapak/ibu sudah didirikan koperasi merah putih?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Ya, sudah didirikan",
+        "2": "Tidak tahu"
+      }
+    },
+    "Q_54": {
+      "label": "Q_54. Apakah bapak/ibu/keluarga ada yang terlibat dalam koperasi merah putih?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Ya, ada yang terlibat",
+        "2": "Tidak tahu"
+      }
+    },
+    "Q_55": {
+      "label": "Q_55. Apakah Ibu/Bapak sangat puas, cukup puas, kurang puas atau tidak puas sama sekali dengan program Kopdes Merah Putih?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Sangat puas",
+        "2": "Cukup Puas",
+        "3": "Kurang puas",
+        "4": "Tidak puas sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_56": {
+      "label": "Q_56. Apakah Selama tahun 2025 ini, apakah Ibu/Bapak atau anggota keluarga di rumah ini pernah menerima bantuan sosial (bansos)?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Ya, pernah",
+        "2": "Tidak pernah"
+      }
+    },
+    "Q_58": {
+      "label": "Q_58. Apakah Ibu/Bapak sangat puas, cukup puas, kurang puas atau tidak puas sama sekali dengan program bantuan sosial (bansos) tersebut?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Sangat puas",
+        "2": "Cukup Puas",
+        "3": "Kurang puas",
+        "4": "Tidak puas sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_59": {
+      "label": "Q_59. Menurut Bapak/Ibu, apakah pemerintah saat ini terbuka dalam menerima kritik dan masukan dari masyarakat?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Sangat terbuka",
+        "2": "Cukup terbuka",
+        "3": "Kurang terbuka",
+        "4": "Tidak terbuka sama sekali",
+        "8": "Tidak tahu / Tidak jawab"
+      }
+    },
+    "Q_60": {
+      "label": "Q_60. Secara umum, seberapa aman bapak/ibu tinggal dilingkungan tempat tinggal saat ini?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Sangat aman",
+        "2": "Cukup aman",
+        "3": "Kurang aman",
+        "4": "Tidak aman sama sekali",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_61": {
+      "label": "Q_61. Apakah Bapak/Ibu merasa aman atau tidak aman berjalan sendirian di malam hari di wilayah tempat tinggal Bapak/Ibu?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Sangat aman",
+        "2": "Cukup aman",
+        "3": "Kurang aman",
+        "4": "Tidak aman sama sekali",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_62": {
+      "label": "Q_62. Dalam 12 bulan terakhir, Bapak/Ibu, keluarga atau tetangga dalam lingkungan RT pernah menjadi korban kejahatan yang berkaitan dengan harta benda atau properti?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Tidak",
+        "2": "Ya",
+        "8": "Tidak tahu / Tidak jawab"
+      }
+    },
+    "Q_64": {
+      "label": "Q_64. Jika Ya, apakah kejadian tersebut dilaporkan ke kepolisian?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Tidak",
+        "2": "Ya",
+        "8": "Tidak tahu / Tidak jawab"
+      }
+    },
+    "Q_65": {
+      "label": "Q_65. Jika tidak, Apa alasan tidak melapor?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Tidak percaya akan ditindaklanjuti",
+        "2": "Prosesnya rumit",
+        "3": "Takut/khawatir",
+        "4": "Kerugian kecil",
+        "5": "Lainnya",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_66": {
+      "label": "Q_66. Dalam 12 bulan terakhir, apakah Bapak/Ibu, keluarga atau tetangga dalam lingkungan RT pernah menjadi korban tindakan kejahatan disertai kekerasan?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Tidak",
+        "2": "Ya",
+        "8": "Tidak tahu / Tidak jawab"
+      }
+    },
+    "Q_67": {
+      "label": "Q_67. Jika Ya, Jenis kejahatan apa yang dialami?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Penganiayaan/pemukulan",
+        "2": "Perampasan dengan kekerasan",
+        "3": "Ancaman fisik",
+        "4": "Kekerasan dalam rumah tangga",
+        "5": "Konflik antar warga",
+        "6": "Lainnya",
+        "8": "Tidak tahu / Tidak jawab"
+      }
+    },
+    "Q_68": {
+      "label": "Q_68. Jika Ya, apakah kejadian tersebut dilaporkan ke kepolisian?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Tidak",
+        "2": "Ya",
+        "8": "Tidak tahu / Tidak jawab"
+      }
+    },
+    "Q_69": {
+      "label": "Q_69. Jika tidak, Apa alasan tidak melapor?",
+      "section": "Program dan kebijakan pemerintah",
+      "values": {
+        "1": "Tidak percaya akan ditindaklanjuti",
+        "2": "Prosesnya rumit",
+        "3": "Takut",
+        "4": "Kerugian kecil",
+        "5": "Lainnya",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_70": {
+      "label": "Q_70. Menurut bapak/ibu, bagaimana kinerja kepolisian dalam menjaga keamanan di wilayah sekitar tempat bapak/ibu tinggal?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Cukup baik",
+        "3": "Kurang baik",
+        "4": "Tidak baik sama sekali",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_71": {
+      "label": "Q_71. Apakah bapak/ibu mengetahui bahwa saat ini pemerintah menjalankan program SWASEMBADA PANGAN?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Ya, Tahu",
+        "2": "Tidak Tahu",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_72": {
+      "label": "Q_72. Jika ya, apakah bapak/ibu tahu bahwa ada peran kepolisian dalam program swasembada pangan?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Ya, Tahu",
+        "2": "Tidak Tahu",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_73": {
+      "label": "Q_73. Menurut Bapak/Ibu, bagaimana kinerja kepolisian dalam mendukung program swasembada pangan, khususnya pada produksi beras dan jagung?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Cukup",
+        "4": "Kurang baik",
+        "5": "Tidak baik sama sekali",
+        "8": "Tidak tahu/ tidak jawab"
+      }
+    },
+    "Q_74": {
+      "label": "Q_74. Dalam penanganan pangan, menurut bapak/ibu, apakah tepat/tidak tepat POLRI ikut menangani SWASEMBADA pangan khususnya pada produksi beras dan jagung?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat tepat",
+        "2": "tepat",
+        "3": "Cukup",
+        "4": "Kurang tepat",
+        "5": "Tidak tepat sama sekali",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_75": {
+      "label": "Q_75. Bagaimana penilaian Bapak/Ibu terhadap kinerja kepolisian dalam penanganan bencana banjir?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Cukup",
+        "4": "Kurang baik",
+        "5": "Tidak baik sama sekali",
+        "6": "Tidak tahu",
+        "7": "Tidak jawab"
+      }
+    },
+    "Q_76": {
+      "label": "Q_76. Apakah Bapak/Ibu mengetahui adanya peran kepolisian dalam mendukung program Makan Bergizi Gratis (MBG)?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Ya, mengetahui",
+        "2": "Pernah mendengar",
+        "3": "Tidak mengetahui",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_77": {
+      "label": "Q_77. Menurut Bapak/Ibu, bagaimana kinerja kepolisian dalam mendukung program Makan Bergizi Gratis (MBG)?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Cukup",
+        "4": "Kurang baik",
+        "5": "Tidak baik sama sekali",
+        "6": "Tidak tahu",
+        "7": "Tidak jawab"
+      }
+    },
+    "Q_78": {
+      "label": "Q_78. Apakah disekitar tempat tinggal bapak/ibu ada Satuan Pelayanan Pemenuhan Gizi (SPPG) Makanan Bergizi Gratis (MBG) yang dilayani oleh POLRI?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Ya, ada",
+        "2": "Tidak ada",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_79": {
+      "label": "Q_79. Secara umum, seberapa puas Bapak/Ibu terhadap kinerja kepolisian dalam mendukung program Makan Bergizi Gratis (MBG)?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat puas",
+        "2": "Puas",
+        "3": "Cukup puas",
+        "4": "Kurang puas",
+        "5": "Tidak puas sama sekali",
+        "8": "Tidak tahu/Tidak jawab"
+      }
+    },
+    "Q_80": {
+      "label": "Q_80. Menurut Bapak/Ibu, sejauh mana kepolisian terbuka dalam menerima kritik dan masukan dari masyarakat?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat terbuka",
+        "2": "Cukup terbuka",
+        "3": "Kurang terbuka",
+        "4": "Tidak terbuka sama sekali",
+        "5": "Tidak tahu",
+        "6": "Tidak jawab"
+      }
+    },
+    "Q_81": {
+      "label": "Q_81. Menurut Bapak/Ibu, apakah sikap dan perilaku anggota kepolisian dalam melayani masyarakat saat ini lebih baik, sama saja, atau lebih buruk dibandingkan 6 bulan lalu?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Lebih baik",
+        "2": "Sama saja",
+        "3": "Lebih Buruk",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_82": {
+      "label": "Q_82. Menurut pengamatan bapak/ibu, apakah dalam 6 bulan terakhir terdapat perubahan dalam perilaku anggota kepolisian di wilayah tempat tinggal bapak/ibu?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Lebih baik",
+        "2": "Sama saja",
+        "3": "Lebih buruk",
+        "4": "Tidak tahu",
+        "5": "Tidak jawab"
+      }
+    },
+    "Q_83_A": {
+      "label": "Q_83_A. Apakah Ibu/Bapak sangat setuju, setuju, kurang setuju, atau tidak setuju sama sekali bahwa secara umum anggota Kepolisian memiliki sikap dan perilaku: Bisa dipercaya?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat setuju",
+        "2": "Setuju",
+        "3": "Kurang setuju",
+        "4": "Tidak setuju sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_83_B": {
+      "label": "Q_83_B. Apakah Ibu/Bapak sangat setuju, setuju, kurang setuju, atau tidak setuju sama sekali bahwa secara umum anggota Kepolisian memiliki sikap dan perilaku: Berperilaku jujur dan adil?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat setuju",
+        "2": "Setuju",
+        "3": "Kurang setuju",
+        "4": "Tidak setuju sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_83_C": {
+      "label": "Q_83_C. Apakah Ibu/Bapak sangat setuju, setuju, kurang setuju, atau tidak setuju sama sekali bahwa secara umum anggota Kepolisian memiliki sikap dan perilaku: Tidak suka mencari-cari kesalahan?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat setuju",
+        "2": "Setuju",
+        "3": "Kurang setuju",
+        "4": "Tidak setuju sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_83_D": {
+      "label": "Q_83_D. Apakah Ibu/Bapak sangat setuju, setuju, kurang setuju, atau tidak setuju sama sekali bahwa secara umum anggota Kepolisian memiliki sikap dan perilaku: Berwibawa?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat setuju",
+        "2": "Setuju",
+        "3": "Kurang setuju",
+        "4": "Tidak setuju sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_83_E": {
+      "label": "Q_83_E. Apakah Ibu/Bapak sangat setuju, setuju, kurang setuju, atau tidak setuju sama sekali bahwa secara umum anggota Kepolisian memiliki sikap dan perilaku: Santun?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat setuju",
+        "2": "Setuju",
+        "3": "Kurang setuju",
+        "4": "Tidak setuju sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_83_F": {
+      "label": "Q_83_F. Apakah Ibu/Bapak sangat setuju, setuju, kurang setuju, atau tidak setuju sama sekali bahwa secara umum anggota Kepolisian memiliki sikap dan perilaku: Sederhana dan tidak bergaya hidup mewah?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat setuju",
+        "2": "Setuju",
+        "3": "Kurang setuju",
+        "4": "Tidak setuju sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_83_G": {
+      "label": "Q_83_G. Apakah Ibu/Bapak sangat setuju, setuju, kurang setuju, atau tidak setuju sama sekali bahwa secara umum anggota Kepolisian memiliki sikap dan perilaku: Berperilaku tidak mengharapkan imbalan?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat setuju",
+        "2": "Setuju",
+        "3": "Kurang setuju",
+        "4": "Tidak setuju sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_83_H": {
+      "label": "Q_83_H. Apakah Ibu/Bapak sangat setuju, setuju, kurang setuju, atau tidak setuju sama sekali bahwa secara umum anggota Kepolisian memiliki sikap dan perilaku: Berperilaku tidak memihak salah satu golongan atau orang?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat setuju",
+        "2": "Setuju",
+        "3": "Kurang setuju",
+        "4": "Tidak setuju sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_83_I": {
+      "label": "Q_83_I. Apakah Ibu/Bapak sangat setuju, setuju, kurang setuju, atau tidak setuju sama sekali bahwa secara umum anggota Kepolisian memiliki sikap dan perilaku: Tidak mengintimidasi (mengancam) pihak-pihak tertentu?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat setuju",
+        "2": "Setuju",
+        "3": "Kurang setuju",
+        "4": "Tidak setuju sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_83_J": {
+      "label": "Q_83_J. Apakah Ibu/Bapak sangat setuju, setuju, kurang setuju, atau tidak setuju sama sekali bahwa secara umum anggota Kepolisian memiliki sikap dan perilaku: Lebih melindungi kepentingan orang kecil ketimbang pengusaha?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat setuju",
+        "2": "Setuju",
+        "3": "Kurang setuju",
+        "4": "Tidak setuju sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_83_K": {
+      "label": "Q_83_K. Apakah Ibu/Bapak sangat setuju, setuju, kurang setuju, atau tidak setuju sama sekali bahwa secara umum anggota Kepolisian memiliki sikap dan perilaku: Mengutamakan pendekatan persuasif ketimbang kekerasan?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat setuju",
+        "2": "Setuju",
+        "3": "Kurang setuju",
+        "4": "Tidak setuju sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_83_L": {
+      "label": "Q_83_L. Apakah Ibu/Bapak sangat setuju, setuju, kurang setuju, atau tidak setuju sama sekali bahwa secara umum anggota Kepolisian memiliki sikap dan perilaku: Suka menolong atau membantu masyarakat?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat setuju",
+        "2": "Setuju",
+        "3": "Kurang setuju",
+        "4": "Tidak setuju sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_83_M": {
+      "label": "Q_83_M. Apakah Ibu/Bapak sangat setuju, setuju, kurang setuju, atau tidak setuju sama sekali bahwa secara umum anggota Kepolisian memiliki sikap dan perilaku: Bertanggung jawab dan profesional?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat setuju",
+        "2": "Setuju",
+        "3": "Kurang setuju",
+        "4": "Tidak setuju sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_83_N": {
+      "label": "Q_83_N. Apakah Ibu/Bapak sangat setuju, setuju, kurang setuju, atau tidak setuju sama sekali bahwa secara umum anggota Kepolisian memiliki sikap dan perilaku: Tidak menyalahgunakan jabatannya?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat setuju",
+        "2": "Setuju",
+        "3": "Kurang setuju",
+        "4": "Tidak setuju sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_83_O": {
+      "label": "Q_83_O. Apakah Ibu/Bapak sangat setuju, setuju, kurang setuju, atau tidak setuju sama sekali bahwa secara umum anggota Kepolisian memiliki sikap dan perilaku: Tidak tercela (tidak melanggar hukum, norma sosial, norma agama)?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat setuju",
+        "2": "Setuju",
+        "3": "Kurang setuju",
+        "4": "Tidak setuju sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_84": {
+      "label": "Q_84. Secara umum dalam beberapa tahun terakhir, menurut Ibu/Bapak seberapa banyak anggota Kepolisian melakukan pelanggaran-pelanggaran etik profesi. Apakah sangat banyak, cukup banyak, sedikit, atau sangat sedikit?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat banyak",
+        "2": "Cukup banyak",
+        "3": "Sedikit",
+        "4": "Sangat sedikit",
+        "8": "Tidak tahu/jawab"
+      }
+    },
+    "Q_85": {
+      "label": "Q_85. Menurut Ibu/Bapak hingga sejauh ini, bagaimana kinerja Kepolisian melakukan pencegahan terjadinya pelanggaran-pelanggaran etik profesi tersebut. Apakah sangat baik, baik, buruk, atau sangat buruk?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Buruk",
+        "4": "Sangat Buruk",
+        "8": "Tidak tahu/jawab"
+      }
+    },
+    "Q_86_A": {
+      "label": "Q_86_A. Bagaimana kinerja Kepolisian dalam melakukan pembinaan dan pengawasan terhadap personilnya: Perencanaan kebutuhan dan penempatan personil?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Buruk",
+        "4": "Sangat buruk",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_86_B": {
+      "label": "Q_86_B. Bagaimana kinerja Kepolisian dalam melakukan pembinaan dan pengawasan terhadap personilnya: Pembinaan standar etik profesi Kepolisian?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Buruk",
+        "4": "Sangat buruk",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_86_C": {
+      "label": "Q_86_C. Bagaimana kinerja Kepolisian dalam melakukan pembinaan dan pengawasan terhadap personilnya: Pengawasan terhadap sikap dan etik profesi personil?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Buruk",
+        "4": "Sangat buruk",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_86_D": {
+      "label": "Q_86_D. Bagaimana kinerja Kepolisian dalam melakukan pembinaan dan pengawasan terhadap personilnya: Penyelenggaraan fungsi aduan masyarakat terkait sikap dan perilaku personil?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Buruk",
+        "4": "Sangat buruk",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_86_E": {
+      "label": "Q_86_E. Bagaimana kinerja Kepolisian dalam melakukan pembinaan dan pengawasan terhadap personilnya: Penanganan aduan terkait sikap dan perilaku personil?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Buruk",
+        "4": "Sangat buruk",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_86_F": {
+      "label": "Q_86_F. Bagaimana kinerja Kepolisian dalam melakukan pembinaan dan pengawasan terhadap personilnya: Penindakan terhadap personil yang melakukan pelanggaran etik profesi?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Buruk",
+        "4": "Sangat buruk",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_87_A": {
+      "label": "Q_87_A. Tolong Ibu/Bapak berikan penilain terhadap kualitas kinerja Kepolisian wilayah sekitar tempat tinggal Ibu/Bapak (TANGIBLES): Menugaskan personil Polisi khusus wilayah Desa/Kelurahan (Bhabinkamtibmas)?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat buruk",
+        "2": "Buruk",
+        "3": "Baik",
+        "4": "Sangat baik",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_87_B": {
+      "label": "Q_87_B. Tolong Ibu/Bapak berikan penilain terhadap kualitas kinerja Kepolisian wilayah sekitar tempat tinggal Ibu/Bapak (TANGIBLES): Patroli rutin dilingkungan masyarakat?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat buruk",
+        "2": "Buruk",
+        "3": "Baik",
+        "4": "Sangat baik",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_87_C": {
+      "label": "Q_87_C. Tolong Ibu/Bapak berikan penilain terhadap kualitas kinerja Kepolisian wilayah sekitar tempat tinggal Ibu/Bapak (TANGIBLES): Layanan administrasi (SIM, SKCK, dll)?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat buruk",
+        "2": "Buruk",
+        "3": "Baik",
+        "4": "Sangat baik",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_87_D": {
+      "label": "Q_87_D. Tolong Ibu/Bapak berikan penilain terhadap kualitas kinerja Kepolisian wilayah sekitar tempat tinggal Ibu/Bapak (TANGIBLES): Menyediakan fasilitas pengaduan/laporan masyarakat?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat buruk",
+        "2": "Buruk",
+        "3": "Baik",
+        "4": "Sangat baik",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_88_A": {
+      "label": "Q_88_A. Tolong Ibu/Bapak berikan penilain terhadap kualitas kinerja Kepolisian wilayah sekitar tempat tinggal Ibu/Bapak (RELIABILITY): Menjaga keamanan lingkungan?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat buruk",
+        "2": "Buruk",
+        "3": "Baik",
+        "4": "Sangat baik",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_88_B": {
+      "label": "Q_88_B. Tolong Ibu/Bapak berikan penilain terhadap kualitas kinerja Kepolisian wilayah sekitar tempat tinggal Ibu/Bapak (RELIABILITY): Menangani laporan atau perkara secara tepat?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat buruk",
+        "2": "Buruk",
+        "3": "Baik",
+        "4": "Sangat baik",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_88_C": {
+      "label": "Q_88_C. Tolong Ibu/Bapak berikan penilain terhadap kualitas kinerja Kepolisian wilayah sekitar tempat tinggal Ibu/Bapak (RELIABILITY): Menyelesaikan konflik sosial?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat buruk",
+        "2": "Buruk",
+        "3": "Baik",
+        "4": "Sangat baik",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_88_D": {
+      "label": "Q_88_D. Tolong Ibu/Bapak berikan penilain terhadap kualitas kinerja Kepolisian wilayah sekitar tempat tinggal Ibu/Bapak (RELIABILITY): Tidak melakukan salah tangkap/kesalahan prosedur?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat buruk",
+        "2": "Buruk",
+        "3": "Baik",
+        "4": "Sangat baik",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_89_A": {
+      "label": "Q_89_A. Tolong Ibu/Bapak berikan penilain terhadap kualitas kinerja Kepolisian wilayah sekitar tempat tinggal Ibu/Bapak (RESPONSIVENESS): Kecepatan merespon laporan?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat buruk",
+        "2": "Buruk",
+        "3": "Baik",
+        "4": "Sangat baik",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_89_B": {
+      "label": "Q_89_B. Tolong Ibu/Bapak berikan penilain terhadap kualitas kinerja Kepolisian wilayah sekitar tempat tinggal Ibu/Bapak (RESPONSIVENESS): Kecepatan datang ke lokasi kejadian?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat buruk",
+        "2": "Buruk",
+        "3": "Baik",
+        "4": "Sangat baik",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_89_C": {
+      "label": "Q_89_C. Tolong Ibu/Bapak berikan penilain terhadap kualitas kinerja Kepolisian wilayah sekitar tempat tinggal Ibu/Bapak (RESPONSIVENESS): Ketanggapan dalam mencegah gangguan keamanan?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat buruk",
+        "2": "Buruk",
+        "3": "Baik",
+        "4": "Sangat baik",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_89_D": {
+      "label": "Q_89_D. Tolong Ibu/Bapak berikan penilain terhadap kualitas kinerja Kepolisian wilayah sekitar tempat tinggal Ibu/Bapak (RESPONSIVENESS): Respon dalam situasi darurat /bencana?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat buruk",
+        "2": "Buruk",
+        "3": "Baik",
+        "4": "Sangat baik",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_90_A": {
+      "label": "Q_90_A. Tolong Ibu/Bapak berikan penilain terhadap kualitas kinerja Kepolisian wilayah sekitar tempat tinggal Ibu/Bapak (INTEGRITY & ASSURANCE): Tidak meminta biaya di luar ketentuan?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat buruk",
+        "2": "Buruk",
+        "3": "Baik",
+        "4": "Sangat baik",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_90_B": {
+      "label": "Q_90_B. Tolong Ibu/Bapak berikan penilain terhadap kualitas kinerja Kepolisian wilayah sekitar tempat tinggal Ibu/Bapak (INTEGRITY & ASSURANCE): Bersikap sopan dan profesional?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat buruk",
+        "2": "Buruk",
+        "3": "Baik",
+        "4": "Sangat baik",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_90_C": {
+      "label": "Q_90_C. Tolong Ibu/Bapak berikan penilain terhadap kualitas kinerja Kepolisian wilayah sekitar tempat tinggal Ibu/Bapak (INTEGRITY & ASSURANCE): Tidak menyalahgunakan jabatan?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat buruk",
+        "2": "Buruk",
+        "3": "Baik",
+        "4": "Sangat baik",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_90_D": {
+      "label": "Q_90_D. Tolong Ibu/Bapak berikan penilain terhadap kualitas kinerja Kepolisian wilayah sekitar tempat tinggal Ibu/Bapak (INTEGRITY & ASSURANCE): Tidak menggunakan kekerasan dalam pemeriksaan?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat buruk",
+        "2": "Buruk",
+        "3": "Baik",
+        "4": "Sangat baik",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_90_E": {
+      "label": "Q_90_E. Tolong Ibu/Bapak berikan penilain terhadap kualitas kinerja Kepolisian wilayah sekitar tempat tinggal Ibu/Bapak (INTEGRITY & ASSURANCE): Transparan dalam penanganan perkara?",
+      "section": "Sosial, media, dan perilaku publik",
+      "values": {
+        "1": "Sangat buruk",
+        "2": "Buruk",
+        "3": "Baik",
+        "4": "Sangat baik",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_91": {
+      "label": "Q_91. Menurut Bapak/Ibu, bagaimana penanganan unjuk rasa atau demonstrasi oleh kepolisian saat ini?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Cukup",
+        "4": "Kurang baik",
+        "5": "Tidak baik sama sekali",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_92": {
+      "label": "Q_92. Jika dalam suatu unjuk rasa terjadi tindakan perusakan fasilitas umum atau kekerasan, menurut Bapak/Ibu bagaimana seharusnya polisi bertindak?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Bertindak tegas untuk menghentikan perusakan",
+        "2": "Mengedepankan komunikasi terlebih dahulu",
+        "3": "Kombinasi tegas dan komunikasi",
+        "4": "Membiarkan selama tidak membahayakan nyawa",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_94": {
+      "label": "Q_94. Menurut Bapak/Ibu, apakah dalam beberapa waktu terakhir terdapat perubahan dalam penanganan unjuk rasa oleh kepolisian dibandingkan sebelumnya?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Ada perubahan ke arah lebih baik",
+        "2": "Tidak ada perubahan",
+        "3": "Ada perubahan ke arah lebih buruk",
+        "4": "Tidak mengetahui kondisi sebelumnya",
+        "8": "Tidak tahu/Tidak Jawab"
+      }
+    },
+    "Q_95": {
+      "label": "Q_95. Menurut Bapak/Ibu, sejauh mana pengamanan aksi unjuk rasa oleh kepolisian saat ini memberikan rasa aman bagi masyarakat?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat aman",
+        "2": "Cukup aman",
+        "3": "Kurang aman",
+        "4": "Tidak aman sama sekali",
+        "5": "Tidak tahu",
+        "6": "Tidak jawab"
+      }
+    },
+    "Q_96": {
+      "label": "Q_96. Bagaimana penilaian Bapak/Ibu terhadap cara kepolisian menangani aksi unjuk rasa saat ini?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat tepat",
+        "2": "Cukup tepat",
+        "3": "Kurang tepat",
+        "4": "Tidak tepat sama sekali",
+        "5": "Tidak tahu",
+        "6": "Tidak jawab"
+      }
+    },
+    "Q_97": {
+      "label": "Q_97. Apakah bapak/ibu pernah mendengar adanya perubahan kebijakan dalam penanganan unjuk rasa oleh kepolisian dalam beberapa waktu terakhir?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Pernah mendengar",
+        "2": "Tidak pernah mendengar",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_98": {
+      "label": "Q_98. Menurut Bapak/Ibu, pendekatan kepolisian dalam menangani unjuk rasa saat ini lebih menekankan pada?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Pengamanan dan pengendalian situasi",
+        "2": "Seimbang antara pengamanan dan komunikasi",
+        "3": "Komunikasi dan Pelayanan kepada masyarakat",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_99": {
+      "label": "Q_99. Menurut Bapak/Ibu, apakah saat ini terdapat perubahan dalam pendekatan kepolisian dalam menangani unjuk rasa, misalnya dari fokus pada pengendalian keamanan menjadi lebih mengutamakan pelayanan kepada masyarakat?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Ya, ada perubahan",
+        "2": "Tidak ada perubahan",
+        "3": "Tidak mengetahui",
+        "4": "Tidak jawab"
+      }
+    },
+    "Q_100": {
+      "label": "Q_100. Bagaimana pendapat Bapak/Ibu mengenai pendekatan yang lebih mengutamakan pelayanan kepada masyarakat dalam penanganan unjuk rasa?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat setuju",
+        "2": "Setuju",
+        "3": "Kurang setuju",
+        "4": "Tidak setuju sama sekali",
+        "5": "Tidak tahu",
+        "6": "Tidak jawab"
+      }
+    },
+    "Q_101": {
+      "label": "Q_101. Menurut bapak/ibu, seberapa cepat polisi mersepon laporan masyarakat?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat cepat",
+        "2": "Cukup cepat",
+        "3": "Lambat",
+        "4": "Sangat lambat",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_102": {
+      "label": "Q_102. Apakah Ibu/Bapak tahu atau pernah dengar Hotline 110 untuk menerima pengaduan atau pelaporan masyarakat kepada Polisi?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Ya tahu, atau pernah dengar",
+        "2": "Tidak tahu atau tidak pernah dengar"
+      }
+    },
+    "Q_103": {
+      "label": "Q_103. Jika tahu atau pernah dengar, apakah Ibu/Bapak pernah melakukan pengaduan atau pelaporan melalui Hotline 110?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Ya, pernah",
+        "2": "Tidak pernah"
+      }
+    },
+    "Q_104": {
+      "label": "Q_104. Jika pernah menggunakan Layanan Hotline 110, seberapa puas Ibu/Bapak dengan respon dari Kepolisian terhadap pengaduan atau pelaporan Ibu/Bapak?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat puas",
+        "2": "Puas",
+        "3": "Tidak puas",
+        "4": "Sangat tidak puas",
+        "8": "Tidak tahu/jawab"
+      }
+    },
+    "Q_105": {
+      "label": "Q_105. Apakah Ibu/Bapak tahu atau pernah dengar bahwa Kepolisian menerima pengaduan atau pelaporan melalui media sosial?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Ya tahu, atau pernah dengar",
+        "2": "Tidak tahu atau tidak pernah dengar"
+      }
+    },
+    "Q_106": {
+      "label": "Q_106. Jika tahu atau pernah dengar, apakah Ibu/Bapak pernah melakukan pelaporan atau pengaduan kepada Kepolisian melalui media sosial?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Ya, pernah",
+        "2": "Tidak pernah"
+      }
+    },
+    "Q_107": {
+      "label": "Q_107. Jika pernah melakukan pelaporan atau pengaduan di media sosial, seberapa puas atau tidak puas Ibu/Bapak dengan respon Kepolisian atas pengaduan tersebut?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat puas",
+        "2": "Puas",
+        "3": "Tidak puas",
+        "4": "Sangat tidak puas.",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_108": {
+      "label": "Q_108. Apakah Ibu/Bapak pernah melakukan pelaporan atau pengaduan kepada Kepolisian terkait dengan dugaan pelanggaran etik profesi yang dilakukan oleh oknum anggota Kepolisian?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Ya, pernah",
+        "2": "Tidak pernah"
+      }
+    },
+    "Q_109": {
+      "label": "Q_109. Jika pernah, seberapa puas atau tidak puas Ibu/Bapak dengan respon Kepolisian atas pengaduan tersebut?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat puas",
+        "2": "Puas",
+        "3": "Tidak puas",
+        "4": "Sangat tidak puas",
+        "8": "Tidak tahu/jawab"
+      }
+    },
+    "Q_110": {
+      "label": "Q_110. Jika Ibu/Bapak ingin melaporkan dugaan kejadian pelanggaran etik profesi yang dilakukan oleh oknum anggota Kepolisian, bagaimana cara yang menurut Ibu/Bapak paling mudah untuk melaporkannya?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Scan barcode layanan pengaduan",
+        "2": "Melalui website layanan pengaduan",
+        "3": "Melalui nomor WhatsApp layanan pengaduan",
+        "4": "Datang langsung ke Pos Polisi terdekat",
+        "5": "Minta tolong kepada orang lain (kerabat, teman atau kenalan)",
+        "6": "Rekam (foto/video) kemudian viralkan di medsos",
+        "7": "Lainnya",
+        "8": "Tidak tahu harus lapor ke mana"
+      }
+    },
+    "Q_111": {
+      "label": "Q_111. Di antara saluran pengaduan yang disediakan berikut, menurut Ibu/Bapak mana yang paling mudah jika Ibu/Bapak ingin melaporkan dugaan kejadian pelanggaran etik profesi yang dilakukan oleh oknum anggota Kepolisian?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Scan barcode layanan pengaduan",
+        "2": "Melalui website layanan pengaduan",
+        "3": "Melalui nomor WhatsApp layanan pengaduan",
+        "4": "Sama mudahnya",
+        "5": "Sama sulitnya",
+        "8": "Tidak tahu/jawab"
+      }
+    },
+    "Q_112": {
+      "label": "Q_112. Dalam melakukan pelayanan, Bagaimana penilaian Bapak/Ibu terhadap kecepatan respons petugas dalam layanan tersebut?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat cepat",
+        "2": "Cukup cepat",
+        "3": "Kurang cepat",
+        "4": "Tidak cepat sama sekali",
+        "5": "Tidak tahu",
+        "6": "Tidak jawab"
+      }
+    },
+    "Q_113": {
+      "label": "Q_113. Bagaimana penilaian Bapak/Ibu terhadap kualitas komunikasi petugas saat memberikan layanan?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Kurang baik",
+        "4": "Tidak baik sama sekali",
+        "5": "Tidak tahu",
+        "6": "Tidak jawab"
+      }
+    },
+    "Q_114": {
+      "label": "Q_114. Menurut Bapak/Ibu, sejauh mana terdapat kejelasan dan kepastian tindak lanjut atas laporan masyarakat?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat jelas dan pasti",
+        "2": "Cukup jelas",
+        "3": "Kurang jelas",
+        "4": "Tidak jelas sama sekali",
+        "5": "Tidak tahu",
+        "6": "Tidak jawab"
+      }
+    },
+    "Q_115": {
+      "label": "Q_115. Sepengetahuan atau pengalaman Bapak/Ibu, apakah dalam proses pelaporan terdapat permintaan biaya di luar ketentuan resmi?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Ada",
+        "2": "Tidak ada",
+        "3": "Tidak mengetahui",
+        "4": "Tidak jawab"
+      }
+    },
+    "Q_116": {
+      "label": "Q_116. Apakah Bapak/Ibu pernah mendengar tentang mekanisme Restorative Justice dalam penyelesaian perkara?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Mengetahui dengan baik",
+        "2": "Pernah mendengar",
+        "3": "Tidak mengetahui",
+        "4": "Tidak jawab"
+      }
+    },
+    "Q_117": {
+      "label": "Q_117. Apakah Anda atau keluarga pernah terlibat dalam penyelesaian perkara melalui mekanisme tersebut?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Ya, pernah",
+        "2": "Tidak pernah"
+      }
+    },
+    "Q_118": {
+      "label": "Q_118. Jika pernah, menurut pengalaman bapak/ibu, apakah proses musyawarah dalam penyelesaian perkara melalui Restorative Justice dilakukan secara adil dan netral?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat adil",
+        "2": "Cukup adil",
+        "3": "Kurang adil",
+        "4": "Tidak adil sama sekali",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_119": {
+      "label": "Q_119. Jika pernah,apakah bapak/ibu puas atau tidak puas terhadap proses restorative justice tersebut?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat puas",
+        "2": "Puas",
+        "3": "Kurang puas",
+        "4": "Tidak puas",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_120": {
+      "label": "Q_120. Sepengetahuan atau pengalaman Bapak/Ibu, apakah dalam proses tersebut terdapat tekanan, arahan sepihak, atau biaya di luar ketentuan resmi?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Ada",
+        "2": "Tidak ada",
+        "3": "Tidak mengetahui",
+        "4": "Tidak jawab"
+      }
+    },
+    "Q_121": {
+      "label": "Q_121. Restorative Justice adalah pendekatan penyelesaian perkara tindak pidana yang menitikberatkan pada pemulihan kembali hubungan sosial, pemulihan korban, dan pertanggungjawaban pelaku. Menurut Bapak/Ibu, pendekatan seperti ini:",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat tepat diterapkan dalam perkara tertentu",
+        "2": "Cukup tepat",
+        "3": "Kurang tepat",
+        "4": "Tidak tepat sama sekali",
+        "8": "Tidak tahu/Tidak Jawab"
+      }
+    },
+    "Q_122": {
+      "label": "Q_122. Menurut Bapak/Ibu, sejauh mana proses penanganan perkara dilakukan secara transparan dan sesuai dengan prosedur resmi?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat transparan dan sesuai",
+        "2": "Cukup transparan",
+        "3": "Kurang transparan",
+        "4": "Tidak transparan sama sekali",
+        "5": "Tidak tahu",
+        "6": "Tidak jawab"
+      }
+    },
+    "Q_123": {
+      "label": "Q_123. Apakah informasi perkembangan perkara, seperti SP2HP atau informasi lainnya, disampaikan secara terbuka kepada pihak terkait?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Selalu disampaikan",
+        "2": "Kadang disampaikan",
+        "3": "Tidak disampaikan",
+        "4": "Tidak tahu",
+        "5": "Tidak jawab"
+      }
+    },
+    "Q_124": {
+      "label": "Q_124. Bagaimana penilaian Bapak/Ibu terhadap integritas dan profesionalitas penyidik dalam menangani perkara?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Kurang baik",
+        "4": "Tidak baik sama sekali",
+        "5": "Tidak tahu",
+        "6": "Tidak jawab"
+      }
+    },
+    "Q_125": {
+      "label": "Q_125. Sepengetahuan atau pengalaman Bapak/Ibu, apakah terdapat permintaan imbalan dalam proses penanganan perkara?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Ada",
+        "2": "Tidak ada",
+        "3": "Tidak mengetahui",
+        "4": "Tidak jawab"
+      }
+    },
+    "Q_126": {
+      "label": "Q_126. Menurut Bapak/Ibu, apakah sarana dan prasarana pelayanan, seperti ruang resmi, CCTV, dan papan informasi standar pelayanan, tersedia dengan memadai?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat memadai",
+        "2": "Cukup memadai",
+        "3": "Kurang memadai",
+        "4": "Tidak memadai sama sekali",
+        "5": "Tidak tahu",
+        "6": "Tidak jawab"
+      }
+    },
+    "Q_127": {
+      "label": "Q_127. Bagaimana penilaian Bapak/Ibu terhadap kualitas pelayanan petugas, termasuk sikap, kejelasan prosedur, standar waktu, dan efisiensi proses layanan?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat baik",
+        "2": "Baik",
+        "3": "Kurang baik",
+        "4": "Tidak baik sama sekali",
+        "5": "Tidak tahu",
+        "6": "Tidak jawab"
+      }
+    },
+    "Q_128": {
+      "label": "Q_128. Sepengetahuan atau pengalaman Bapak/Ibu, apakah dalam layanan kepolisian terdapat biaya di luar ketentuan resmi?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Ada",
+        "2": "Tidak ada",
+        "3": "Tidak mengetahui",
+        "4": "Tidak jawab"
+      }
+    },
+    "Q_129": {
+      "label": "Q_129. Menurut Bapak/Ibu, apakah saat ini masih membutuhkan keberadaan polisi?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat membutuhkan",
+        "2": "Membutuhkan",
+        "3": "Kurang membutuhkan",
+        "4": "Tidak membutuhkan",
+        "5": "Tidak tahu / tidak berpendapat"
+      }
+    },
+    "Q_131_A": {
+      "label": "Q_131_A. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga berikut: Kementerian Sosial?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_131_B": {
+      "label": "Q_131_B. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga berikut: Kepolisian Republik Indonesia (Polri)?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_131_C": {
+      "label": "Q_131_C. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga berikut: Dewan Perwakilan Rakyat (DPR)?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_131_D": {
+      "label": "Q_131_D. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga berikut: Wakil Presiden?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_131_E": {
+      "label": "Q_131_E. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga berikut: Komisi Pemberantasan Korupsi (KPK)?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_131_F": {
+      "label": "Q_131_F. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga berikut: Kejaksaan Agung?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_131_G": {
+      "label": "Q_131_G. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga berikut: Pengadilan?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_131_H": {
+      "label": "Q_131_H. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga berikut: Pemerintah Pusat?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_131_I": {
+      "label": "Q_131_I. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga berikut: Pemerintah Daerah (Provinsi/Kab/Kota)?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_131_J": {
+      "label": "Q_131_J. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga berikut: Partai Politik?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_131_K": {
+      "label": "Q_131_K. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga berikut: Tentara Nasional Indonesia (TNI)?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_131_L": {
+      "label": "Q_131_L. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga berikut: Majelis Permusyawaratan Rakyat (MPR)?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_131_M": {
+      "label": "Q_131_M. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga berikut: Presiden?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_131_N": {
+      "label": "Q_131_N. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga berikut: Mahkamah Konstitusi (MK)?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_131_O": {
+      "label": "Q_131_O. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga berikut: Komisi Pemilihan Umum (KPU)?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_131_P": {
+      "label": "Q_131_P. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga berikut: Badan Pengawasan Pemilihan Umum (Bawaslu)?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_131_Q": {
+      "label": "Q_131_Q. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga berikut: Lembaga Survei?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_131_R": {
+      "label": "Q_131_R. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga berikut: Kementerian Koordinator Politik, Hukum, dan Keamanan (Kemenko Polhukam)?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_131_S": {
+      "label": "Q_131_S. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga berikut: Dewan Perwakilan Daerah (DPD)?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_131_T": {
+      "label": "Q_131_T. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga berikut: Kementerian Keuangan?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_132_A": {
+      "label": "Q_132_A. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga penegakan hukum berikut: POLRI?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_132_B": {
+      "label": "Q_132_B. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga penegakan hukum berikut: KPK?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_132_C": {
+      "label": "Q_132_C. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga penegakan hukum berikut: Kejaksaan?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_132_D": {
+      "label": "Q_132_D. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga penegakan hukum berikut: Pengadilan?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_132_E": {
+      "label": "Q_132_E. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga penegakan hukum berikut: Mahkamah Agung?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_132_F": {
+      "label": "Q_132_F. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga penegakan hukum berikut: Mahkamah Konstitusi?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_133_A": {
+      "label": "Q_133_A. Tolong sebutkan tingkat kepuasan Ibu/Bapak terhadap kinerja masing-masing lembaga penegakan hukum berikut: POLRI?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat puas",
+        "2": "Cukup puas",
+        "3": "Kurang puas",
+        "4": "Tidak puas sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_133_B": {
+      "label": "Q_133_B. Tolong sebutkan tingkat kepuasan Ibu/Bapak terhadap kinerja masing-masing lembaga penegakan hukum berikut: KPK?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat puas",
+        "2": "Cukup puas",
+        "3": "Kurang puas",
+        "4": "Tidak puas sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_133_C": {
+      "label": "Q_133_C. Tolong sebutkan tingkat kepuasan Ibu/Bapak terhadap kinerja masing-masing lembaga penegakan hukum berikut: Kejaksaan?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat puas",
+        "2": "Cukup puas",
+        "3": "Kurang puas",
+        "4": "Tidak puas sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_133_D": {
+      "label": "Q_133_D. Tolong sebutkan tingkat kepuasan Ibu/Bapak terhadap kinerja masing-masing lembaga penegakan hukum berikut: Pengadilan?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat puas",
+        "2": "Cukup puas",
+        "3": "Kurang puas",
+        "4": "Tidak puas sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_133_E": {
+      "label": "Q_133_E. Tolong sebutkan tingkat kepuasan Ibu/Bapak terhadap kinerja masing-masing lembaga penegakan hukum berikut: Mahkamah Agung?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat puas",
+        "2": "Cukup puas",
+        "3": "Kurang puas",
+        "4": "Tidak puas sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_133_F": {
+      "label": "Q_133_F. Tolong sebutkan tingkat kepuasan Ibu/Bapak terhadap kinerja masing-masing lembaga penegakan hukum berikut: Mahkamah Konstitusi?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat puas",
+        "2": "Cukup puas",
+        "3": "Kurang puas",
+        "4": "Tidak puas sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_134_A": {
+      "label": "Q_134_A. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga penegakan hukum berikut dalam pemberantasan korupsi: POLRI?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_134_B": {
+      "label": "Q_134_B. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga penegakan hukum berikut dalam pemberantasan korupsi: KPK?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_134_C": {
+      "label": "Q_134_C. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga penegakan hukum berikut dalam pemberantasan korupsi: Kejaksaan?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_134_D": {
+      "label": "Q_134_D. Tolong sebutkan tingkat kepercayaan Ibu/Bapak terhadap masing-masing lembaga penegakan hukum berikut dalam pemberantasan korupsi: Pengadilan?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Sangat percaya",
+        "2": "Cukup percaya",
+        "3": "Kurang percaya",
+        "4": "Tidak percaya sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_135": {
+      "label": "Q_135. Ibu/Bapak pernah menggunakan internet (misalnya Facebook, Twitter, Tiktok, Instagram, Youtube, WhatsApp, browsing, email, situs berita, dll.)?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Ya, pernah",
+        "2": "Tidak pernah"
+      }
+    },
+    "Q_136": {
+      "label": "Q_136. Seberapa sering Ibu/Bapak menggunakan internet?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Beberapa jam dalam sehari",
+        "2": "Antara setengah jam sampai satu jam dalam sehari",
+        "3": "Setidaknya sekali dalam sehari",
+        "4": "Antara dua sampai empat kali dalam seminggu",
+        "5": "Setidaknya sekali dalam seminggu",
+        "6": "Antara satu sampai tiga kali dalam sebulan",
+        "7": "Setidaknya sekali dalam sebulan",
+        "8": "Kurang dari sebulan sekali",
+        "9": "Tidak tentu"
+      }
+    },
+    "Q_137_A": {
+      "label": "Q_137_A. Seberapa sering Ibu/Bapak membaca/mendengar/menggunakan media massa atau media sosial berikut: Facebook?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Tiap hari/ hampir tiap hari",
+        "2": "3-4 hari seminggu",
+        "3": "1-2 hari seminggu",
+        "4": "Jarang (tidak setiap minggu)",
+        "5": "Tidak pernah",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_137_B": {
+      "label": "Q_137_B. Seberapa sering Ibu/Bapak membaca/mendengar/menggunakan media massa atau media sosial berikut: Twitter (X)?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Tiap hari/ hampir tiap hari",
+        "2": "3-4 hari seminggu",
+        "3": "1-2 hari seminggu",
+        "4": "Jarang (tidak setiap minggu)",
+        "5": "Tidak pernah",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_137_C": {
+      "label": "Q_137_C. Seberapa sering Ibu/Bapak membaca/mendengar/menggunakan media massa atau media sosial berikut: Instagram?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Tiap hari/ hampir tiap hari",
+        "2": "3-4 hari seminggu",
+        "3": "1-2 hari seminggu",
+        "4": "Jarang (tidak setiap minggu)",
+        "5": "Tidak pernah",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_137_D": {
+      "label": "Q_137_D. Seberapa sering Ibu/Bapak membaca/mendengar/menggunakan media massa atau media sosial berikut: Youtube?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Tiap hari/ hampir tiap hari",
+        "2": "3-4 hari seminggu",
+        "3": "1-2 hari seminggu",
+        "4": "Jarang (tidak setiap minggu)",
+        "5": "Tidak pernah",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_137_E": {
+      "label": "Q_137_E. Seberapa sering Ibu/Bapak membaca/mendengar/menggunakan media massa atau media sosial berikut: WhatsApp (WA)?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Tiap hari/ hampir tiap hari",
+        "2": "3-4 hari seminggu",
+        "3": "1-2 hari seminggu",
+        "4": "Jarang (tidak setiap minggu)",
+        "5": "Tidak pernah",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_137_F": {
+      "label": "Q_137_F. Seberapa sering Ibu/Bapak membaca/mendengar/menggunakan media massa atau media sosial berikut: Tiktok?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Tiap hari/ hampir tiap hari",
+        "2": "3-4 hari seminggu",
+        "3": "1-2 hari seminggu",
+        "4": "Jarang (tidak setiap minggu)",
+        "5": "Tidak pernah",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_137_G": {
+      "label": "Q_137_G. Seberapa sering Ibu/Bapak membaca/mendengar/menggunakan media massa atau media sosial berikut: Podcast?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Tiap hari/ hampir tiap hari",
+        "2": "3-4 hari seminggu",
+        "3": "1-2 hari seminggu",
+        "4": "Jarang (tidak setiap minggu)",
+        "5": "Tidak pernah",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_137_H": {
+      "label": "Q_137_H. Seberapa sering Ibu/Bapak membaca/mendengar/menggunakan media massa atau media sosial berikut: Portal/Website berita online (misal: detik.com, kompas.com, dst.)?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Tiap hari/ hampir tiap hari",
+        "2": "3-4 hari seminggu",
+        "3": "1-2 hari seminggu",
+        "4": "Jarang (tidak setiap minggu)",
+        "5": "Tidak pernah",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_137_I": {
+      "label": "Q_137_I. Seberapa sering Ibu/Bapak membaca/mendengar/menggunakan media massa atau media sosial berikut: TV (Televisi konvensional)?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Tiap hari/ hampir tiap hari",
+        "2": "3-4 hari seminggu",
+        "3": "1-2 hari seminggu",
+        "4": "Jarang (tidak setiap minggu)",
+        "5": "Tidak pernah",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_138": {
+      "label": "Q_138. Apakah Ibu/Bapak ikut memilih partai politik dalam Pemilu 2024 lalu untuk memilih anggota DPR RI?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Ya",
+        "2": "Tidak",
+        "8": "Tidak Tahu/ Tidak Jawab"
+      }
+    },
+    "Q_139": {
+      "label": "Q_139. Partai politik mana yang Ibu / Bapak pilih dalam pemilu tersebut?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "PKB (Partai Kebangkitan Bangsa)",
+        "2": "Gerindra (Partai Gerakan Indonesia Raya)",
+        "3": "PDIP (Partai Demokrasi Indonesia Perjuangan)",
+        "4": "Golkar (Partai Golongan Karya)",
+        "5": "Partai Nasdem",
+        "6": "Partai Buruh",
+        "7": "Gelora (Partai Gelombang Rakyat Indonesia)",
+        "8": "PKS (Partai Keadilan Sejahtera)",
+        "9": "PKN (Partai Kebangkitan Nusantara)",
+        "10": "Hanura (Partai Hati Nurani Rakyat)",
+        "11": "Garuda (Partai Garda Perubahan Indonesia)",
+        "12": "PAN (Partai Amanat Nasional)",
+        "13": "PBB (Partai Bulan Bintang)",
+        "14": "Partai Demokrat",
+        "15": "PSI (Partai Solidaritas Indonesia)",
+        "16": "Perindo (Partai Persatuan Indonesia)",
+        "17": "PPP (Partai Persatuan Penting)",
+        "24": "Partai Ummat",
+        "88": "Tidak Tahu /Tidak Jawab/Rahasia"
+      }
+    },
+    "Q_140": {
+      "label": "Q_140. Apakah Ibu/Bapak ikut memilih Presiden dan Wakil Presiden dalam Pilpres tanggal 14 Februari tahun 2024 lalu?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Ya",
+        "2": "Tidak",
+        "8": "Tidak Tahu/ Tidak Jawab"
+      }
+    },
+    "Q_141": {
+      "label": "Q_141. Dari pasangan calon presiden dan wakil presiden berikut ini, mana yang ibu bapak pilih?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Anies Baswedan - Muhaimin Iskandar",
+        "2": "Prabowo Subianto - Gibran Rakabuming Raka",
+        "3": "Ganjar Pranowo - Prof. Moh Mahfud, MD",
+        "8": "Tidak tahu/Tidak jawab"
+      }
+    },
+    "Q_142": {
+      "label": "Q_142. Jika Pemilihan Umum Legislatif untuk memilih Partai Politik DAN ATAU nama Calon Anggota Legislatif/Caleg DPR RI dilakukan pada hari ini, PARTAI mana yang Ibu/Bapak pilih?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "PKB (Partai Kebangkitan Bangsa)",
+        "2": "Gerindra (Partai Gerakan Indonesia Raya)",
+        "3": "PDIP (Partai Demokrasi Indonesia Perjuangan)",
+        "4": "Golkar (Partai Golongan Karya)",
+        "5": "Partai Nasdem",
+        "6": "Partai Buruh",
+        "7": "Gelora (Partai Gelombang Rakyat Indonesia)",
+        "8": "PKS (Partai Keadilan Sejahtera)",
+        "9": "PKN (Partai Kebangkitan Nusantara)",
+        "10": "Hanura (Partai Hati Nurani Rakyat)",
+        "11": "Garuda (Partai Garda Perubahan Indonesia)",
+        "12": "PAN (Partai Amanat Nasional)",
+        "13": "PBB (Partai Bulan Bintang)",
+        "14": "Partai Demokrat",
+        "15": "PSI (Partai Solidaritas Indonesia)",
+        "16": "Perindo (Partai Persatuan Indonesia)",
+        "17": "PPP (Partai Persatuan Pembangunan)",
+        "24": "Partai Ummat",
+        "88": "Tidak Tahu /Tidak Jawab/Rahasia"
+      }
+    },
+    "Q_143": {
+      "label": "Q_143. Apa alasan Ibu/Bapak memilih partai tersebut?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Percaya kepada Ketua Umum partai tersebut yang mampu membawa perbaikan",
+        "2": "Karena di lingkungan tempat saya tinggal ramai ramai memilih partai tersebut",
+        "3": "Kenal dengan salah satu calon legislatif dari partai tersebut",
+        "4": "Sudah terbiasa memilih partai tersebut",
+        "5": "Visi misi dari partai tersebut",
+        "6": "Partai Islam",
+        "7": "Atas ajakan ketua RT/RW/ kepala desa/lurah",
+        "8": "Visi misi dari calon anggota legislatif",
+        "9": "Karena merasa dekat dengan partai tersebut",
+        "10": "Yakin partai tersebut mampu memperjuangkan kepentingan rakyat banyak",
+        "11": "Karena partai tersebut merupakan partai yang besar",
+        "12": "Karena ada pemberian dalam bentuk uang dari partai tersebut",
+        "13": "Karena ada pemberian sumbangan di tempat saya tinggal dari partai tersebut",
+        "77": "Lain-lain",
+        "88": "Tidak Tahu/Tidak Jawab"
+      }
+    },
+    "Q_144": {
+      "label": "Q_144. Ketika memilih PRESIDEN dalam Pemilu Presiden, pertimbangan apa yang Ibu/Bapak pakai?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Kemampuan calon presiden dalam memecahkan masalah",
+        "2": "Isu yang diangkat oleh calon presiden",
+        "3": "Pengalaman calon presiden dalam menyelesaikan masalah penting",
+        "4": "Kepribadian calon presiden (misalnya dekat dengan rakyat, tegas, pintar, dsb)",
+        "5": "Kedekatan calon presiden dengan rakyat",
+        "6": "Latar belakang calon presiden (misalnya agama, suku, daerah asal, dsb)",
+        "8": "Tidak Tahu/Tidak Jawab"
+      }
+    },
+    "Q_146_1": {
+      "label": "Q_146_1. Apakah Ibu/Bapak tahu/kenal nama Amran Sulaiman?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_2": {
+      "label": "Q_146_2. Apakah Ibu/Bapak suka atau tidak Amran Sulaiman?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_3": {
+      "label": "Q_146_3. Apakah Ibu/Bapak tahu/kenal nama Agus Harimukti Yudhoyono?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_4": {
+      "label": "Q_146_4. Apakah Ibu/Bapak suka atau tidak Agus Harimukti Yudhoyono?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_5": {
+      "label": "Q_146_5. Apakah Ibu/Bapak tahu/kenal nama Andika Perkasa?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_6": {
+      "label": "Q_146_6. Apakah Ibu/Bapak suka atau tidak Andika Perkasa?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_7": {
+      "label": "Q_146_7. Apakah Ibu/Bapak tahu/kenal nama Anies Baswedan?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_8": {
+      "label": "Q_146_8. Apakah Ibu/Bapak suka atau tidak Anies Baswedan?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_9": {
+      "label": "Q_146_9. Apakah Ibu/Bapak tahu/kenal nama Bahlil Lahadalia?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_10": {
+      "label": "Q_146_10. Apakah Ibu/Bapak suka atau tidak Bahlil Lahadalia?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_11": {
+      "label": "Q_146_11. Apakah Ibu/Bapak tahu/kenal nama Dedy Mulyadi?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_12": {
+      "label": "Q_146_12. Apakah Ibu/Bapak suka atau tidak Dedy Mulyadi?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_13": {
+      "label": "Q_146_13. Apakah Ibu/Bapak tahu/kenal nama Eric Thohir?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_14": {
+      "label": "Q_146_14. Apakah Ibu/Bapak suka atau tidak Eric Thohir?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_15": {
+      "label": "Q_146_15. Apakah Ibu/Bapak tahu/kenal nama Ganjar Pranowo?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_16": {
+      "label": "Q_146_16. Apakah Ibu/Bapak suka atau tidak Ganjar Pranowo?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_17": {
+      "label": "Q_146_17. Apakah Ibu/Bapak tahu/kenal nama Gibran Rakabuming Raka?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_18": {
+      "label": "Q_146_18. Apakah Ibu/Bapak suka atau tidak Gibran Rakabuming Raka?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_19": {
+      "label": "Q_146_19. Apakah Ibu/Bapak tahu/kenal nama Khofifah Indar Parawansa?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_20": {
+      "label": "Q_146_20. Apakah Ibu/Bapak suka atau tidak Khofifah Indar Parawansa?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_21": {
+      "label": "Q_146_21. Apakah Ibu/Bapak tahu/kenal nama Muhaimin Iskandar?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_22": {
+      "label": "Q_146_22. Apakah Ibu/Bapak suka atau tidak Muhaimin Iskandar?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_23": {
+      "label": "Q_146_23. Apakah Ibu/Bapak tahu/kenal nama Prabowo Subianto?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_24": {
+      "label": "Q_146_24. Apakah Ibu/Bapak suka atau tidak Prabowo Subianto?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_25": {
+      "label": "Q_146_25. Apakah Ibu/Bapak tahu/kenal nama Pramono Anung?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_26": {
+      "label": "Q_146_26. Apakah Ibu/Bapak suka atau tidak Pramono Anung?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_27": {
+      "label": "Q_146_27. Apakah Ibu/Bapak tahu/kenal nama Puan Maharani?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_28": {
+      "label": "Q_146_28. Apakah Ibu/Bapak suka atau tidak Puan Maharani?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_29": {
+      "label": "Q_146_29. Apakah Ibu/Bapak tahu/kenal nama Purbaya Yudhi Sadewa?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_30": {
+      "label": "Q_146_30. Apakah Ibu/Bapak suka atau tidak Purbaya Yudhi Sadewa?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_31": {
+      "label": "Q_146_31. Apakah Ibu/Bapak tahu/kenal nama Sherly Tjoanda?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_32": {
+      "label": "Q_146_32. Apakah Ibu/Bapak suka atau tidak Sherly Tjoanda?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_33": {
+      "label": "Q_146_33. Apakah Ibu/Bapak tahu/kenal nama Teddy Indra Wijaya?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_34": {
+      "label": "Q_146_34. Apakah Ibu/Bapak suka atau tidak Teddy Indra Wijaya?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_35": {
+      "label": "Q_146_35. Apakah Ibu/Bapak tahu/kenal nama Zulkifli Hasan?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_146_36": {
+      "label": "Q_146_36. Apakah Ibu/Bapak suka atau tidak Zulkifli Hasan?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "YA",
+        "2": "TIDAK",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_147": {
+      "label": "Q_147. Bila pemilihan Presiden diadakan sekarang ini, siapa yang akan Ibu/Bapak pilih sebagai Presiden di antara 11 nama-nama berikut?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Agus Harimukti Yudhoyono",
+        "2": "Andika Perkasa",
+        "3": "Anies Baswedan",
+        "4": "Dedi Mulyadi",
+        "5": "Ganjar Pranowo",
+        "6": "Gibran Rakabuming Raka",
+        "7": "Khofifah Indar Parawansa",
+        "8": "Muhaimin Iskandar",
+        "9": "Prabowo Subianto",
+        "10": "Pramono Anung",
+        "11": "Puan Maharani",
+        "77": "Belum Memutuskan",
+        "88": "Tidak tahu/Tidak jawab",
+        "99": "Rahasia"
+      }
+    },
+    "Q_148": {
+      "label": "Q_148. Jika Belum Memutuskan/Rahasia/Tidak Tahu/Tidak Jawab, di antara nama-nama berikut, siapa yang paling pantas sebagai Presiden?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Agus Harimukti Yudhoyono",
+        "2": "Andika Perkasa",
+        "3": "Anies Baswedan",
+        "4": "Dedi Mulyadi",
+        "5": "Ganjar Pranowo",
+        "6": "Gibran Rakabuming Raka",
+        "7": "Khofifah Indar Parawansa",
+        "8": "Muhaimin Iskandar",
+        "9": "Prabowo Subianto",
+        "10": "Pramono Anung",
+        "11": "Puan Maharani",
+        "77": "Belum Memutuskan",
+        "88": "Tidak tahu/Tidak jawab",
+        "99": "Rahasia"
+      }
+    },
+    "Q_149": {
+      "label": "Q_149. Apa alasan utama memilih nama diatas sebagai calon presiden?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Mampu menciptakan keamanan/ketertiban",
+        "2": "Orangnya perhatian pada rakyat",
+        "3": "Mampu mengatasi masalah ekonomi",
+        "4": "Berjiwa sosial",
+        "5": "Orangnya berwibawa",
+        "6": "Putra daerah",
+        "7": "Berasal dari keturunan tokoh politik",
+        "8": "Yakin ia akan menang",
+        "9": "Mampu memberantas korupsi/KKN",
+        "10": "Ikut orang lain",
+        "11": "Tokoh agama",
+        "12": "Lainnya",
+        "88": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_150": {
+      "label": "Q_150. Bila pemilihan Presiden dan Wakil Presiden diadakan sekarang ini, siapa yang akan Ibu/Bapak inginkan dipilih sebagai Wakil Presiden di antara 17 nama-nama berikut?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Amran Sulaiman",
+        "2": "Agus Harimukti Yudhoyono",
+        "3": "Andika Perkasa",
+        "4": "Anies Baswedan",
+        "5": "Bahlil Lahadalia",
+        "6": "Dedi Mulyadi",
+        "7": "Eric Thohir",
+        "8": "Ganjar Pranowo",
+        "9": "Gibran Rakabuming Raka",
+        "10": "Khofifah Indar Parawansa",
+        "11": "Muhaimin Iskandar",
+        "12": "Pramono Anung",
+        "13": "Puan Maharani",
+        "14": "Purbaya Yudhi Sadewa",
+        "15": "Sherly Tjoanda",
+        "16": "Teddy Indra Wijaya",
+        "17": "Zulkifli Hasan",
+        "77": "Belum Memutuskan",
+        "88": "Tidak tahu/Tidak jawab",
+        "99": "Rahasia"
+      }
+    },
+    "Q_151": {
+      "label": "Q_151. Jika Belum Memutuskan/Rahasia/Tidak Tahu/Tidak Jawab, di antara 17 nama-nama berikut, siapa yang paling pantas sebagai Wakil Presiden?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Amran Sulaiman",
+        "2": "Agus Harimukti Yudhoyono",
+        "3": "Andika Perkasa",
+        "4": "Anies Baswedan",
+        "5": "Bahlil Lahadalia",
+        "6": "Dedi Mulyadi",
+        "7": "Eric Thohir",
+        "8": "Ganjar Pranowo",
+        "9": "Gibran Rakabuming Raka",
+        "10": "Khofifah Indar Parawansa",
+        "11": "Muhaimin Iskandar",
+        "12": "Pramono Anung",
+        "13": "Puan Maharani",
+        "14": "Purbaya Yudhi Sadewa",
+        "15": "Sherly Tjoanda",
+        "16": "Teddy Indra Wijaya",
+        "17": "Zulkifli Hasan",
+        "77": "Belum Memutuskan",
+        "88": "Tidak tahu/Tidak jawab",
+        "99": "Rahasia"
+      }
+    },
+    "Q_152": {
+      "label": "Q_152. Apa alasan utama memilih nama diatas sebagai calon wakil presiden?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Mampu menciptakan keamanan/ketertiban",
+        "2": "Orangnya perhatian pada rakyat",
+        "3": "Mampu mengatasi masalah ekonomi",
+        "4": "Berjiwa sosial",
+        "5": "Orangnya berwibawa",
+        "6": "Putra daerah",
+        "7": "Berasal dari keturunan tokoh politik",
+        "8": "Yakin ia akan menang",
+        "9": "Mampu memberantas korupsi/KKN",
+        "10": "Ikut orang lain",
+        "11": "Tokoh agama",
+        "12": "Lainnya",
+        "88": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_153": {
+      "label": "Q_153. Jika ibu/bapak diminta memilih, antara partai lama dengan partai baru. Partai manakah yang ibu/bapak pilih?",
+      "section": "Politik dan elektoral",
+      "values": {
+        "1": "Memilih partai lama (partai yang sudah ikut pemilu sebelumnya)",
+        "2": "Memilih partai baru",
+        "8": "Tidak tahu/tidak jawab"
+      }
+    },
+    "Q_154": {
+      "label": "Q_154. Apa pendidikan terakhir Ibu/Bapak?",
+      "section": "Demografi dan karakteristik responden",
+      "values": {
+        "1": "Tidak pernah sekolah",
+        "2": "Tidak tamat SD/sederajat",
+        "3": "Tamat SD/sederajat",
+        "4": "Tidak tamat SLTP/sederajat",
+        "5": "Tamat SLTP/sederajat",
+        "6": "Tidak tamat SLTA/sederajat",
+        "7": "Tamat SLTA/sederajat",
+        "8": "Tidak tamat perguruan tinggi/ masih mahasiswa",
+        "9": "Tamat D3/diploma",
+        "10": "Tamat S-1 atau lebih tinggi"
+      }
+    },
+    "Q_155": {
+      "label": "Q_155. Apakah Ibu/Bapak bekerja ?",
+      "section": "Demografi dan karakteristik responden",
+      "values": {
+        "1": "Ya",
+        "2": "Tidak",
+        "8": "Sudah pensiun"
+      }
+    },
+    "Q_157": {
+      "label": "Q_157. Kelompokkan pekerjaan responden di atas ke dalam tabel daftar pekerjaan di bawah ini:",
+      "section": "Demografi dan karakteristik responden",
+      "values": {
+        "1": "Petani, lahan milik sendiri",
+        "2": "Buruh tani / nelayan",
+        "3": "Pegawai negeri",
+        "4": "Buruh, tidak terdidik (seperti pelayan, pembantu, buruh di pabrik dsb)",
+        "5": "Buruh, terdidik (seperti pekerja di perusahaan otomotif atau pekerjaan lain yang membutuhkan keahlian)",
+        "6": "Staf biasa di perusahaan swasta (adm./sekretaris dsb.)",
+        "7": "Klerikal (typist/operator/receptionist dsb.)",
+        "8": "Manajer di perusahaan swasta",
+        "9": "Pengusaha, dengan tenaga kerja (mempunyai staf / karyawan)",
+        "10": "Pengusaha, tanpa tenaga kerja",
+        "11": "Pedagang, dengan tenaga kerja",
+        "12": "Pedagang tanpa tenaga kerja (seperti pedagang kaki lima, pedagang warung)",
+        "13": "Profesional (dokter, dosen, konsultan, wartawan dsb)",
+        "14": "Sopir, tukang ojek"
+      }
+    },
+    "Q_158": {
+      "label": "Q_158. Rata-rata dalam sebulan, berapa rupiah kira-kira pendapatan kotor RUMAH TANGGA Ibu/Bapak?",
+      "section": "Demografi dan karakteristik responden",
+      "values": {
+        "1": "di bawah 1.000.000",
+        "2": "1.000.000 - 2. 500.000",
+        "3": "2.500.001 Ã¢Â€Â“ 5.000.000",
+        "4": "5.000.001 ATAU LEBIH"
+      }
+    },
+    "Q_159": {
+      "label": "Q_159. Bagaimana pendapatan kotor Ibu / Bapak itu diperoleh? Apakah harian, mingguan, bulanan atau tidak tentu?",
+      "section": "Demografi dan karakteristik responden",
+      "values": {
+        "1": "Harian (mendapatkan pendapatan per hari)",
+        "2": "Mingguan (mendapat gaji atau pendapatan tiap minggu sekali)",
+        "3": "Bulanan (mendapat gaji atau pendapatan tiap bulan sekali)",
+        "4": "Tidak tentu (mendapat penghasilan sesuai dengan ada atau tidaknya pekerjaan)",
+        "8": "Lainnya"
+      }
+    },
+    "Q_L1": {
+      "label": "Q_L1. Organisasi Sosial Keagamaan",
+      "section": "Demografi dan karakteristik responden",
+      "values": {
+        "1": "Nahdlatul Ulama (NU)",
+        "2": "Muhammadiyah",
+        "3": "Persatuan Islam (Persis)",
+        "4": "Dewan Dakwah Islamiyah Indonesia (DDII)",
+        "5": "Al-Wasliyah",
+        "6": "Al-Irsyad",
+        "7": "Nahdhatul Wathan",
+        "8": "Persatuan Tarbiyah Islamiyah (Perti)",
+        "9": "Syiah",
+        "10": "Lembaga Dakwah Islam Indonesia (LDII)",
+        "11": "Ahmadiyah",
+        "12": "MathlaÃ¢Â€Â™ul Anwar",
+        "13": "Al-Khairiyah",
+        "14": "Al-Khairat",
+        "15": "Darul Dakwah wal Irsyad (DDI)",
+        "16": "Front Pembela Islam (FPI)",
+        "17": "Hizbut Tahrir Indonesia (HTI)",
+        "18": "Majelis Mujahidin Indonesia (MMI)",
+        "19": "Jamaah Anshorut Tauhid (JAT)",
+        "20": "Jamaah Tarbiyah (Ormas PKS)",
+        "21": "Lainnya",
+        "22": "Bukan bagian organisasi Islam manapun juga",
+        "88": "TT/TJ"
+      }
+    },
+    "Q_L2": {
+      "label": "Q_L2. Seberapa tertarikkah Ibu/Bapak dengan masalah-masalah politik dan pemerintahan?",
+      "section": "Demografi dan karakteristik responden",
+      "values": {
+        "1": "Sangat tertarik",
+        "2": "Cukup tertarik",
+        "3": "Kurang tertarik",
+        "4": "Tidak tertarik sama sekali",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_L3": {
+      "label": "Q_L3. Seberapa sering Ibu/Bapak mempertimbangkan perintah atau nilai-nilai agama ketika membuat keputusan penting bagi hidup Ibu/Bapak sendiri?",
+      "section": "Demografi dan karakteristik responden",
+      "values": {
+        "1": "Selalu/sangat sering",
+        "2": "Cukup sering",
+        "3": "Jarang",
+        "4": "Tidak pernah",
+        "8": "TT/TJ"
+      }
+    },
+    "Q_N": {
+      "label": "Q_N. Apakah wawancara dilakukan dalam Bahasa Indonesia atau bahasa lain?",
+      "section": "Kontrol mutu wawancara",
+      "values": {
+        "1": "Bahasa Indonesia",
+        "2": "Bahasa lain",
+        "3": "Campuran ( Bahasa Indonesia & Bahasa lainnya)"
+      }
+    },
+    "Q_O": {
+      "label": "Q_O. Apakah ada orang lain dalam wawancara tersebut?",
+      "section": "Kontrol mutu wawancara",
+      "values": {
+        "1": "Tidak ada",
+        "2": "Ada"
+      }
+    },
+    "Q_P": {
+      "label": "Q_P. Apakah orang lain tersebut ikut campur dalam proses wawancara?",
+      "section": "Kontrol mutu wawancara",
+      "values": {
+        "1": "Tidak",
+        "2": "Ya, tapi sedikit",
+        "3": "Ya, banyak"
+      }
+    },
+    "Q_Q": {
+      "label": "Q_Q. Apakah responden terlihat mau bekerjasama dalam wawancara ini?",
+      "section": "Kontrol mutu wawancara",
+      "values": {
+        "1": "Sangat kurang",
+        "2": "Kurang mau",
+        "3": "Ya, cukup",
+        "4": "Ya, sangat"
+      }
+    },
+    "Q_R": {
+      "label": "Q_R. Secara umum apakah responden kesulitan memahami pertanyaan-pertanyaan yang diajukan?",
+      "section": "Kontrol mutu wawancara",
+      "values": {
+        "1": "Ya, hampir semua pertanyaan",
+        "2": "Ya, sebagian besar",
+        "3": "Ya, kira-kira separuhnya",
+        "4": "Ya, kira-kira seperempatnya",
+        "5": "Kira-kira 10 persen",
+        "6": "Ya, tapi di bawah 10 persen",
+        "7": "Hampir semuanya dapat dipahami dengan baik"
+      }
+    },
+    "Q_U": {
+      "label": "Q_U. Bagaimana keadaan tempat tinggal (rumah) responden?",
+      "section": "Kontrol mutu wawancara",
+      "values": {
+        "1": "Seluruhnya beton",
+        "2": "Kombinasi beton dan kayu",
+        "3": "Seluruhnya kayu tapi permanen",
+        "4": "Seluruhnya kayu tapi tidak permanen",
+        "5": "Bahan lainnya"
+      }
+    }
+  },
+  "multiple_answer_groups": {
+    "Q_34": {
+      "label": "Q_34. Dari mana bapak/ibu memperoleh informasi tentang Danantara? [boleh lebih dari satu]",
+      "helper_prefix": "Q_34C",
+      "selected_value": "1",
+      "unselected_value": "0",
+      "eligibility": "any_helper_not_blank",
+      "options": [
+        {
+          "index": 1,
+          "source_code": "A",
+          "column": "Q_34C(1)",
+          "label": "Televisi"
+        },
+        {
+          "index": 2,
+          "source_code": "B",
+          "column": "Q_34C(2)",
+          "label": "Media online"
+        },
+        {
+          "index": 3,
+          "source_code": "C",
+          "column": "Q_34C(3)",
+          "label": "Media sosial"
+        },
+        {
+          "index": 4,
+          "source_code": "D",
+          "column": "Q_34C(4)",
+          "label": "Sosialisasi pemerintah/institusi"
+        },
+        {
+          "index": 5,
+          "source_code": "E",
+          "column": "Q_34C(5)",
+          "label": "Teman/Keluarga"
+        },
+        {
+          "index": 6,
+          "source_code": "F",
+          "column": "Q_34C(6)",
+          "label": "Lainnya"
+        },
+        {
+          "index": 7,
+          "source_code": "G",
+          "column": "Q_34C(7)",
+          "label": "Tidak tahu/ Tidak jawab"
+        }
+      ],
+      "missing_columns": []
+    },
+    "Q_40_B": {
+      "label": "Q_40_B. Dalam pandangan Bapak/Ibu, program ini membantu dalam: [Boleh pilih lebih dari satu]",
+      "helper_prefix": "Q_40_BC",
+      "selected_value": "1",
+      "unselected_value": "0",
+      "eligibility": "any_helper_not_blank",
+      "options": [
+        {
+          "index": 1,
+          "source_code": "A",
+          "column": "Q_40_BC(1)",
+          "label": "Meningkatkan asupan gizi anak"
+        },
+        {
+          "index": 2,
+          "source_code": "B",
+          "column": "Q_40_BC(2)",
+          "label": "Mengurangi beban pengeluaran keluarga"
+        },
+        {
+          "index": 3,
+          "source_code": "C",
+          "column": "Q_40_BC(3)",
+          "label": "Meningkatkan kehadiran anak di sekolah"
+        },
+        {
+          "index": 4,
+          "source_code": "D",
+          "column": "Q_40_BC(4)",
+          "label": "Meningkatkan kesehatan ibu hamil/lansia"
+        },
+        {
+          "index": 5,
+          "source_code": "E",
+          "column": "Q_40_BC(5)",
+          "label": "Tidak melihat manfaat yang signifikan"
+        },
+        {
+          "index": 6,
+          "source_code": "F",
+          "column": "Q_40_BC(6)",
+          "label": "Lainnya"
+        },
+        {
+          "index": 7,
+          "source_code": "G",
+          "column": "Q_40_BC(7)",
+          "label": "Tidak tahu/Tidak jawab"
+        }
+      ],
+      "missing_columns": []
+    },
+    "Q_40_F": {
+      "label": "Q_40_F. Jika pernah, masalah apa yang terjadi? [Boleh pilih lebih dari satu]",
+      "helper_prefix": "Q_40_FC",
+      "selected_value": "1",
+      "unselected_value": "0",
+      "eligibility": "any_helper_not_blank",
+      "options": [
+        {
+          "index": 1,
+          "source_code": "A",
+          "column": "Q_40_FC(1)",
+          "label": "Kualitas makanan kurang baik"
+        },
+        {
+          "index": 2,
+          "source_code": "B",
+          "column": "Q_40_FC(2)",
+          "label": "Distribusi tidak merata"
+        },
+        {
+          "index": 3,
+          "source_code": "C",
+          "column": "Q_40_FC(3)",
+          "label": "Keterlambatan pengiriman"
+        },
+        {
+          "index": 4,
+          "source_code": "D",
+          "column": "Q_40_FC(4)",
+          "label": "Kurangnya pengawasan"
+        },
+        {
+          "index": 5,
+          "source_code": "E",
+          "column": "Q_40_FC(5)",
+          "label": "Lainnya"
+        },
+        {
+          "index": 6,
+          "source_code": "F",
+          "column": "Q_40_FC(6)",
+          "label": "Tidak tahu tidak jawab"
+        }
+      ],
+      "missing_columns": []
+    },
+    "Q_40_I": {
+      "label": "Q_40_I. Menurut Bapak/Ibu, apa yang perlu diperbaiki dari program MBG?. [Boleh pilih lebih dari satu]",
+      "helper_prefix": "Q_40_IC",
+      "selected_value": "1",
+      "unselected_value": "0",
+      "eligibility": "any_helper_not_blank",
+      "options": [
+        {
+          "index": 1,
+          "source_code": "A",
+          "column": "Q_40_IC(1)",
+          "label": "Kualitas makanan"
+        },
+        {
+          "index": 2,
+          "source_code": "B",
+          "column": "Q_40_IC(2)",
+          "label": "Standar keamanan pangan"
+        },
+        {
+          "index": 3,
+          "source_code": "C",
+          "column": "Q_40_IC(3)",
+          "label": "Pengawasan dan kontrol kualitas"
+        },
+        {
+          "index": 4,
+          "source_code": "D",
+          "column": "Q_40_IC(4)",
+          "label": "Distribusi dan ketepatan waktu"
+        },
+        {
+          "index": 5,
+          "source_code": "E",
+          "column": "Q_40_IC(5)",
+          "label": "Transparansi anggaran"
+        },
+        {
+          "index": 6,
+          "source_code": "F",
+          "column": "Q_40_IC(6)",
+          "label": "Sosialisasi program"
+        },
+        {
+          "index": 7,
+          "source_code": "G",
+          "column": "Q_40_IC(7)",
+          "label": "Tidak perlu perbaikan"
+        },
+        {
+          "index": 8,
+          "source_code": "H",
+          "column": "Q_40_IC(8)",
+          "label": "Lainnya"
+        },
+        {
+          "index": 9,
+          "source_code": "I",
+          "column": "Q_40_IC(9)",
+          "label": "Tidak tahu/Tidak jawab"
+        }
+      ],
+      "missing_columns": []
+    },
+    "Q_57": {
+      "label": "Q_57. Jika pernah, bansos apa saja yang pernah diterima? [bisa lebih dari satu]",
+      "helper_prefix": "Q_57C",
+      "selected_value": "1",
+      "unselected_value": "0",
+      "eligibility": "any_helper_not_blank",
+      "options": [
+        {
+          "index": 1,
+          "source_code": "A",
+          "column": "Q_57C(1)",
+          "label": "Bansos beras"
+        },
+        {
+          "index": 2,
+          "source_code": "B",
+          "column": "Q_57C(2)",
+          "label": "Program Keluarga Harapan (PKH)"
+        },
+        {
+          "index": 3,
+          "source_code": "C",
+          "column": "Q_57C(3)",
+          "label": "Bantuan Pangan Non Tunai (BPNT)"
+        },
+        {
+          "index": 4,
+          "source_code": "D",
+          "column": "Q_57C(4)",
+          "label": "Program Indonesia Pintar (PIP)"
+        },
+        {
+          "index": 5,
+          "source_code": "E",
+          "column": "Q_57C(5)",
+          "label": "Bantuan Subsidi Upah (BSU)"
+        },
+        {
+          "index": 6,
+          "source_code": "F",
+          "column": "Q_57C(6)",
+          "label": "Lainnya"
+        },
+        {
+          "index": 7,
+          "source_code": "G",
+          "column": "Q_57C(7)",
+          "label": "Tidak Tahu/Tidak Jawab"
+        }
+      ],
+      "missing_columns": []
+    },
+    "Q_63": {
+      "label": "Q_63. Jika ya, Jenis kejahatan apa yang Anda alami? [Bisa lebih dari satu]",
+      "helper_prefix": "Q_63C",
+      "selected_value": "1",
+      "unselected_value": "0",
+      "eligibility": "any_helper_not_blank",
+      "options": [
+        {
+          "index": 1,
+          "source_code": "A",
+          "column": "Q_63C(1)",
+          "label": "Pencurian di rumah"
+        },
+        {
+          "index": 2,
+          "source_code": "B",
+          "column": "Q_63C(2)",
+          "label": "Pencurian kendaraan"
+        },
+        {
+          "index": 3,
+          "source_code": "C",
+          "column": "Q_63C(3)",
+          "label": "Penipuan (online/offline)"
+        },
+        {
+          "index": 4,
+          "source_code": "D",
+          "column": "Q_63C(4)",
+          "label": "Penggelapan"
+        },
+        {
+          "index": 5,
+          "source_code": "E",
+          "column": "Q_63C(5)",
+          "label": "Perusakan properti"
+        },
+        {
+          "index": 6,
+          "source_code": "F",
+          "column": "Q_63C(6)",
+          "label": "Lainnya"
+        },
+        {
+          "index": 7,
+          "source_code": "G",
+          "column": "Q_63C(7)",
+          "label": "Tidak tahu / Tidak jawab"
+        }
+      ],
+      "missing_columns": []
+    },
+    "Q_130": {
+      "label": "Q_130. Menurut Bapak/Ibu, apa yang perlu diperbaiki dari institusi kepolisian? [Boleh pilih lebih dari satu]",
+      "helper_prefix": "Q_130C",
+      "selected_value": "1",
+      "unselected_value": "0",
+      "eligibility": "any_helper_not_blank",
+      "options": [
+        {
+          "index": 1,
+          "source_code": "A",
+          "column": "Q_130C(1)",
+          "label": "Kecepatan respon terhadap laporan"
+        },
+        {
+          "index": 2,
+          "source_code": "B",
+          "column": "Q_130C(2)",
+          "label": "Keramahan dan sikap pelayanan"
+        },
+        {
+          "index": 3,
+          "source_code": "C",
+          "column": "Q_130C(3)",
+          "label": "Ketegasan dalam penegakan hukum"
+        },
+        {
+          "index": 4,
+          "source_code": "D",
+          "column": "Q_130C(4)",
+          "label": "Keadilan dan tidak tebang pilih"
+        },
+        {
+          "index": 5,
+          "source_code": "E",
+          "column": "Q_130C(5)",
+          "label": "Transparansi proses penanganan kasus"
+        },
+        {
+          "index": 6,
+          "source_code": "F",
+          "column": "Q_130C(6)",
+          "label": "Profesionalitas anggota"
+        },
+        {
+          "index": 7,
+          "source_code": "G",
+          "column": "Q_130C(7)",
+          "label": "Pemberantasan oknum nakal"
+        },
+        {
+          "index": 8,
+          "source_code": "H",
+          "column": "Q_130C(8)",
+          "label": "Pendekatan humanis kepada masyarakat"
+        },
+        {
+          "index": 9,
+          "source_code": "I",
+          "column": "Q_130C(9)",
+          "label": "Lainnya"
+        }
+      ],
+      "missing_columns": []
+    }
+  },
+  "build_report": {
+    "dictionary_item_count": 372,
+    "schema_column_count": 418,
+    "categorical_variable_count": 299,
+    "multiple_answer_group_count": 7,
+    "excluded_counts": {
+      "non_numeric": 49,
+      "without_discrete_labels": 16,
+      "missing_schema": 1,
+      "occurrence_helper": 7
+    },
+    "excluded": {
+      "non_numeric": [
+        "Q_D",
+        "Q_D1",
+        "Q_E",
+        "Q_G",
+        "Q_H",
+        "Q_I",
+        "Q_L0L",
+        "Q_2L",
+        "Q_3L",
+        "Q_24",
+        "Q_26",
+        "Q_28",
+        "Q_29",
+        "Q_34",
+        "Q_34L",
+        "Q_40_B",
+        "Q_40_BL",
+        "Q_40_F",
+        "Q_40_FL",
+        "Q_40_I",
+        "Q_40_IL",
+        "Q_42",
+        "Q_43",
+        "Q_57",
+        "Q_57L",
+        "Q_63",
+        "Q_63L",
+        "Q_65L",
+        "Q_67L",
+        "Q_69L",
+        "Q_93",
+        "Q_110L",
+        "Q_130",
+        "Q_130L",
+        "Q_143L",
+        "Q_145",
+        "Q_149L",
+        "Q_152L",
+        "Q_156",
+        "Q_159L",
+        "Q_L1L",
+        "Q_S",
+        "Q_T",
+        "Q_UL",
+        "Q_V",
+        "HARI",
+        "WAKTU",
+        "HPID",
+        "USRNM"
+      ],
+      "without_discrete_labels": [
+        "Q_RT",
+        "Q_RW",
+        "Q_J",
+        "Q_K",
+        "Q_M_JAM",
+        "Q_M_MNT",
+        "Q_1",
+        "Q_W",
+        "Q_X_JAM",
+        "Q_X_MNT",
+        "Q_AC",
+        "DATE",
+        "MONTH",
+        "YEAR",
+        "HOUR",
+        "MINUTE"
+      ],
+      "missing_schema": [
+        "Q_A"
+      ],
+      "occurrence_helper": [
+        "Q_34C",
+        "Q_40_BC",
+        "Q_40_FC",
+        "Q_40_IC",
+        "Q_57C",
+        "Q_63C",
+        "Q_130C"
+      ]
+    },
+    "contains_respondent_rows": false
+  }
+}

@@ -1,0 +1,12 @@
+[project]
+name = "surnas-dashboard-secure"
+version = "1.0.0"
+requires-python = ">=3.11,<3.15"
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "S"]
+ignore = ["S101"]

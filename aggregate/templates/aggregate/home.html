@@ -1,0 +1,21 @@
+{% extends "aggregate/base.html" %}
+{% block title %}Daftar Survei{% endblock %}
+{% block content %}
+<h1>Daftar Survei</h1>
+{% if surveys %}
+  <div class="card-grid">
+  {% for survey in surveys %}
+    <section class="card">
+      <p class="eyebrow">{{ survey.code }}</p>
+      <h2>{{ survey.name }}</h2>
+      <div class="actions">
+        {% if survey.can_monitor %}<a class="button" href="{% url 'surveys:monitoring' survey_code=survey.code %}">Monitoring</a>{% endif %}
+        {% if survey.can_analyse %}<a class="button button-secondary" href="{% url 'surveys:analysis' survey_code=survey.code %}">Analisis</a>{% endif %}
+      </div>
+    </section>
+  {% endfor %}
+  </div>
+{% else %}
+  <div class="empty-state">Akun Anda belum memiliki akses ke survei.</div>
+{% endif %}
+{% endblock %}

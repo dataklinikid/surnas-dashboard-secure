@@ -1,0 +1,41 @@
+# LEGACY ONLY — JANGAN DIPASANG UNTUK DEPLOYMENT BARU.
+# Jalur production baru menggunakan deploy/nginx, deploy/gunicorn.conf.py,
+# dan deploy/systemd.
+
+<VirtualHost *:80>
+    ServerName dashboard.example.id
+    Redirect permanent / https://dashboard.example.id/
+</VirtualHost>
+
+<VirtualHost *:443>
+    ServerName dashboard.example.id
+
+    SSLEngine on
+    SSLCertificateFile /etc/letsencrypt/live/dashboard.example.id/fullchain.pem
+    SSLCertificateKeyFile /etc/letsencrypt/live/dashboard.example.id/privkey.pem
+
+    WSGIDaemonProcess surnas-dashboard \
+        python-home=/srv/surnas-dashboard/.venv \
+        python-path=/srv/surnas-dashboard \
+        processes=2 threads=5 display-name=%{GROUP}
+    WSGIProcessGroup surnas-dashboard
+    WSGIApplicationGroup %{GLOBAL}
+    WSGIScriptAlias / /srv/surnas-dashboard/config/wsgi.py
+
+    Alias /static/ /srv/surnas-dashboard/staticfiles/
+    <Directory /srv/surnas-dashboard/staticfiles>
+        Require all granted
+    </Directory>
+
+    <Directory /srv/surnas-dashboard/config>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/surnas-dashboard-error.log
+    CustomLog ${APACHE_LOG_DIR}/surnas-dashboard-access.log combined
+
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "same-origin"
+</VirtualHost>

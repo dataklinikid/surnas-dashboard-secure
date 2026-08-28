@@ -1,0 +1,48 @@
+{% extends "aggregate/base.html" %}
+{% block title %}Crosstab {{ survey.name }}{% endblock %}
+{% block content %}
+{% include "surnasdes26/navigation.html" %}
+<h1>Crosstab</h1>
+<form class="filter-form filter-grid" method="get">
+  <label for="row">Baris</label>
+  <select id="row" name="row">{% for group in choice_groups %}<optgroup label="{{ group.label }}">{% for value, label in group.choices %}<option value="{{ value }}"{% if value == row_variable %} selected{% endif %}>{{ label }}</option>{% endfor %}</optgroup>{% endfor %}</select>
+  <label for="column">Kolom</label>
+  <select id="column" name="column">{% for group in choice_groups %}<optgroup label="{{ group.label }}">{% for value, label in group.choices %}<option value="{{ value }}"{% if value == column_variable %} selected{% endif %}>{{ label }}</option>{% endfor %}</optgroup>{% endfor %}</select>
+  <label for="output_type">Keluaran</label>
+  <select id="output_type" name="output_type">
+    <option value="count"{% if output_type == 'count' %} selected{% endif %}>{% if weighting.mode == 'weighted' %}Frekuensi berbobot{% else %}Frekuensi{% endif %}</option>
+    <option value="row_percentage"{% if output_type == 'row_percentage' %} selected{% endif %}>{% if weighting.mode == 'weighted' %}% berbobot per baris{% else %}% per baris{% endif %}</option>
+    <option value="column_percentage"{% if output_type == 'column_percentage' %} selected{% endif %}>{% if weighting.mode == 'weighted' %}% berbobot per kolom{% else %}% per kolom{% endif %}</option>
+    <option value="total_percentage"{% if output_type == 'total_percentage' %} selected{% endif %}>{% if weighting.mode == 'weighted' %}% berbobot dari total valid{% else %}% dari total valid{% endif %}</option>
+  </select>
+  {% include "surnasdes26/weighting_select.html" %}
+  <button class="button" type="submit">Tampilkan</button>
+</form>
+<section class="card">
+  <h2>{{ row_label }} × {{ column_label }}</h2>
+  <p>Isi setiap sel: <strong>{{ result.output_label }}</strong>. Count dan persentase ditampilkan terpisah sesuai filter keluaran.</p>
+  {% include "surnasdes26/weighting_summary.html" %}
+  <div class="metric-grid">
+    <div class="metric"><span>Seluruh kasus</span><strong>{{ result.n_total }}</strong></div>
+    <div class="metric"><span>Kasus valid berpasangan</span><strong>{{ result.n_valid }}</strong></div>
+    <div class="metric"><span>Missing salah satu variabel</span><strong>{{ result.n_missing }}</strong></div>
+    {% if result.weighted %}<div class="metric"><span>Weighted base valid</span><strong>{{ result.weighted_grand_total }}</strong></div>{% endif %}
+  </div>
+  <p class="muted">Missing variabel baris: {{ result.n_missing_row }}; missing variabel kolom: {{ result.n_missing_column }}. Basis persentase hanya kasus yang valid pada kedua variabel.</p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>{{ row_label }}</th>{% for column in result.columns %}<th>{{ column.label }}</th>{% endfor %}{% if result.show_row_total %}<th>{{ result.display_total_label }}</th>{% endif %}</tr></thead>
+      <tbody>
+      {% for row in result.rows %}
+        <tr>
+          <th>{{ row.label }}</th>
+          {% for cell in row.cells %}<td>{{ cell.display }}{% if result.is_percentage %}%{% endif %}</td>{% endfor %}
+          {% if result.show_row_total %}<td><strong>{{ row.display_total }}{% if result.is_percentage %}%{% endif %}</strong></td>{% endif %}
+        </tr>
+      {% endfor %}
+      </tbody>
+      {% if result.show_column_total %}<tfoot><tr><th>{{ result.display_total_label }}</th>{% for total in result.display_column_totals %}<td><strong>{{ total }}{% if result.is_percentage %}%{% endif %}</strong></td>{% endfor %}{% if result.show_row_total %}<td><strong>{{ result.display_grand_total }}{% if result.is_percentage %}%{% endif %}</strong></td>{% endif %}</tr></tfoot>{% endif %}
+    </table>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,30 @@
+[Unit]
+Description=Surnas Dashboard Gunicorn
+After=network-online.target postgresql.service
+Wants=network-online.target
+
+[Service]
+Type=notify
+NotifyAccess=main
+User=surnas-dashboard
+Group=www-data
+WorkingDirectory=/srv/surnas-dashboard/current
+EnvironmentFile=/srv/surnas-dashboard/shared/.env
+RuntimeDirectory=surnas-dashboard
+RuntimeDirectoryMode=0750
+ExecStart=/srv/surnas-dashboard/venv/bin/gunicorn \
+    --config /srv/surnas-dashboard/current/deploy/gunicorn.conf.py \
+    config.wsgi:application
+ExecReload=/bin/kill -s HUP $MAINPID
+KillSignal=SIGQUIT
+TimeoutStopSec=45
+PrivateTmp=true
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/srv/surnas-dashboard/shared
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

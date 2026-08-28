@@ -1,0 +1,8 @@
+<nav class="subnav" aria-label="Navigasi {{ survey.name }}">
+  {% if capabilities.can_monitor %}<a href="{% url 'surveys:monitoring' survey_code=survey.code %}">Monitoring</a>{% endif %}
+  {% if capabilities.can_analyse %}
+    <a href="{% url 'surveys:analysis' survey_code=survey.code %}">Frekuensi</a>
+    <a href="{% url 'surveys:crosstab' survey_code=survey.code %}">Crosstab</a>
+    <a href="{% url 'surveys:multiple_answer' survey_code=survey.code %}">Jawaban Majemuk</a>
+  {% endif %}
+</nav>
