@@ -57,3 +57,15 @@ ke `main`:
 
 Workflow hanya diberi izin `contents: read`. Workflow tidak mempunyai credential VPS, database,
 atau hak deployment. Deployment otomatis belum diaktifkan.
+
+## Tahap 7B3 — release candidate
+
+Setelah CI pada branch `main` berstatus hijau, buat annotated tag untuk release candidate pertama:
+
+```powershell
+git tag -a v1.0.0-rc.1 -m "First production deployment candidate"
+git push origin v1.0.0-rc.1
+```
+
+Tag `v*` juga memicu workflow CI. VPS nantinya mengambil tag yang sudah lulus CI, bukan mengambil
+setiap perubahan terbaru pada branch `main`.
