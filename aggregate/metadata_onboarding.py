@@ -22,6 +22,44 @@ class MetadataOnboardingError(ValueError):
     pass
 
 
+def reporting_column_names(survey):
+    """Return every runtime column from h0, including free-text and technical fields."""
+    source = survey.data_source
+    config = get_data_source_config(source)
+    mysql = _mysql_driver()
+    try:
+        with closing(connect_database_config(config)) as connection, closing(
+            connection.cursor(mysql.cursors.DictCursor)
+        ) as cursor:
+            cursor.execute(
+                """
+                SELECT COLUMN_NAME
+                FROM information_schema.COLUMNS
+                WHERE TABLE_SCHEMA = %s AND TABLE_NAME = %s
+                ORDER BY ORDINAL_POSITION
+                """,
+                (config["NAME"], config["TABLE"]),
+            )
+            columns = [
+                SOURCE_COLUMN_ALIASES.get(
+                    str(row["COLUMN_NAME"]).strip().lower(),
+                    str(row["COLUMN_NAME"]).strip(),
+                ).upper()
+                for row in cursor.fetchall()
+                if row.get("COLUMN_NAME")
+            ]
+    except Exception as exc:
+        raise MetadataOnboardingError(
+            "Schema kolom monitoring tidak dapat dibaca dari database reporting. "
+            "Periksa profil koneksi dan hak SELECT information_schema."
+        ) from exc
+    if not columns:
+        raise MetadataOnboardingError(
+            "Tabel reporting tidak memiliki kolom yang dapat dipetakan."
+        )
+    return tuple(dict.fromkeys(columns))
+
+
 def monitoring_dashboard_config(payload, template_event=None):
     variables = {
         str(name).strip().upper(): definition
@@ -213,6 +251,10 @@ def _database_metadata_candidate(survey):
         read_only_queries=3,
         metadata_source=source_signature,
     )
+    if payload.get("build_report", {}).get("dictionary_identity_source") == "sha256":
+        report["warnings"].append(
+            "Dictionary tidak memiliki Name; identitas questionnaire dibentuk dari SHA-256 dictionary produksi."
+        )
     return payload, report, source_signature
 
 

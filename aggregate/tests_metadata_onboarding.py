@@ -9,7 +9,11 @@ from django.core.management import call_command
 from django.test import TestCase
 from django.urls import reverse
 
-from aggregate.metadata_onboarding import inspect_metadata_source, prepare_metadata_candidate
+from aggregate.metadata_onboarding import (
+    inspect_metadata_source,
+    prepare_metadata_candidate,
+    reporting_column_names,
+)
 from aggregate.models import (
     SurveyAccess,
     SurveyDataSource,
@@ -87,6 +91,34 @@ class MetadataOnboardingTests(TestCase):
 
     def metadata_url(self):
         return reverse("aggregate:event_metadata_setup", args=(self.survey.code,))
+
+    def test_reporting_columns_include_free_text_and_technical_fields(self):
+        cursor = MagicMock()
+        cursor.fetchall.return_value = [
+            {"COLUMN_NAME": "H0-ID"},
+            {"COLUMN_NAME": "Q_NM"},
+            {"COLUMN_NAME": "WAKTU"},
+            {"COLUMN_NAME": "Q_D"},
+        ]
+        connection = MagicMock()
+        connection.cursor.return_value = cursor
+        driver = SimpleNamespace(cursors=SimpleNamespace(DictCursor=object()))
+        with patch(
+            "aggregate.metadata_onboarding.get_data_source_config",
+            return_value={"NAME": "dbcs_metadata_uji27_report", "TABLE": "h0"},
+        ), patch(
+            "aggregate.metadata_onboarding._mysql_driver",
+            return_value=driver,
+        ), patch(
+            "aggregate.metadata_onboarding.connect_database_config",
+            return_value=connection,
+        ):
+            columns = reporting_column_names(self.survey)
+
+        self.assertEqual(columns, ("H0_ID", "Q_NM", "WAKTU", "Q_D"))
+        sql, params = cursor.execute.call_args.args
+        self.assertIn("information_schema.COLUMNS", sql)
+        self.assertEqual(params, ("dbcs_metadata_uji27_report", "h0"))
 
     def database_metadata(self, *, dictionary_name="METADATA_UJI27_DICT"):
         payload = json.loads(

@@ -40,6 +40,7 @@ from aggregate.metadata_onboarding import (
     MetadataOnboardingError,
     inspect_metadata_source,
     prepare_metadata_candidate,
+    reporting_column_names,
 )
 from aggregate.module_readiness import (
     event_module_readiness_rows,
@@ -677,10 +678,15 @@ def event_psu_frame_setup(request, survey_code):
     )
     metadata_rows = list(survey.metadata_versions.filter(is_active=True)[:2])
     variable_names = []
+    column_source_error = ""
     if len(metadata_rows) == 1:
-        variables = metadata_rows[0].payload.get("variables", {})
-        if isinstance(variables, dict):
-            variable_names = list(variables)
+        try:
+            variable_names = list(reporting_column_names(survey))
+        except MetadataOnboardingError as exc:
+            column_source_error = str(exc)
+            variables = metadata_rows[0].payload.get("variables", {})
+            if isinstance(variables, dict):
+                variable_names = list(variables)
     try:
         current_config = survey.monitoring_config
     except SurveyMonitoringConfig.DoesNotExist:
@@ -778,6 +784,7 @@ def event_psu_frame_setup(request, survey_code):
             "active_frame": active_frame,
             "preview_rows": preview_rows,
             "metadata_ready": len(metadata_rows) == 1,
+            "column_source_error": column_source_error,
         },
     )
 

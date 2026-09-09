@@ -1,3 +1,4 @@
+import hashlib
 import json
 import re
 import zipfile
@@ -99,6 +100,14 @@ def _clean_code(raw: str) -> str:
     return raw.strip().strip("'").strip('"').strip()
 
 
+def _dictionary_value(dictionary: dict, key: str) -> str:
+    wanted = key.casefold()
+    for candidate, value in dictionary.items():
+        if str(candidate).strip().casefold() == wanted:
+            return str(value).strip()
+    return ""
+
+
 def _value_pairs(item: dict) -> list[tuple[str, str]]:
     pairs = []
     seen = set()
@@ -146,6 +155,12 @@ def build_canonical_metadata_from_content(
         raise MetadataParseError("Nama survei wajib diisi.")
 
     dictionary, items = parse_dictionary(dictionary_text)
+    dictionary_sha256 = hashlib.sha256(dictionary_text.encode("utf-8")).hexdigest()
+    dictionary_name = _dictionary_value(dictionary, "Name")
+    dictionary_identity_source = "name"
+    if not dictionary_name:
+        dictionary_name = f"DICT_SHA256_{dictionary_sha256.upper()}"
+        dictionary_identity_source = "sha256"
     schema_items = schema.get("columns")
     if not isinstance(schema_items, list):
         raise MetadataParseError("h0_schema.json harus memiliki array 'columns'.")
@@ -235,9 +250,9 @@ def build_canonical_metadata_from_content(
         "survey": {
             "code": code,
             "name": name,
-            "dictionary_name": dictionary.get("Name", ""),
-            "dictionary_label": dictionary.get("Label", ""),
-            "dictionary_version": dictionary.get("Version", ""),
+            "dictionary_name": dictionary_name,
+            "dictionary_label": _dictionary_value(dictionary, "Label"),
+            "dictionary_version": _dictionary_value(dictionary, "Version"),
             "source_table": table,
             "aggregate_only": True,
         },
@@ -251,6 +266,8 @@ def build_canonical_metadata_from_content(
             "excluded_counts": {key: len(value) for key, value in excluded.items()},
             "excluded": excluded,
             "contains_respondent_rows": False,
+            "dictionary_identity_source": dictionary_identity_source,
+            "dictionary_sha256": dictionary_sha256,
         },
     }
 

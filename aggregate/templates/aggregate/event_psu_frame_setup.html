@@ -41,6 +41,7 @@
 <section class="wizard-card">
   <h2>3. Pemetaan kolom monitoring</h2>
   {% if metadata_ready %}
+    {% if column_source_error %}<div class="warning-box"><strong>Schema h0 belum dapat dimuat:</strong> {{ column_source_error }} Dropdown sementara hanya memuat variabel analisis berlabel.</div>{% else %}<div class="notice-inline">Dropdown bersumber dari seluruh schema aktual tabel <code>{{ survey.data_source.table_name }}</code>, termasuk kolom free text dan teknis yang tidak memiliki value label.</div>{% endif %}
     <form method="post">
       {% csrf_token %}<input type="hidden" name="action" value="save_monitoring">
       {% if config_form.non_field_errors %}<div class="error">{{ config_form.non_field_errors }}</div>{% endif %}
