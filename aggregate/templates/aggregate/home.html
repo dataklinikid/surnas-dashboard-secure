@@ -30,6 +30,7 @@
               <td>{{ event.region.name|default:"-" }}</td>
               <td>{{ event.get_status_display }}</td>
               <td>
+                <a class="button button-secondary" href="{% url 'aggregate:event_psu_frame_setup' survey_code=event.code %}">Frame PSU</a>
                 {% if event.status == "validation" %}
                   <a class="button button-secondary" href="{% url 'aggregate:event_final_validation' survey_code=event.code %}">Lanjutkan validasi</a>
                 {% else %}
@@ -53,6 +54,7 @@
       <div class="actions">
         {% if survey.can_monitor %}<a class="button" href="{% url 'surveys:monitoring' survey_code=survey.code %}">Monitoring</a>{% endif %}
         {% if survey.can_analyse %}<a class="button button-secondary" href="{% url 'surveys:analysis' survey_code=survey.code %}">Analisis</a>{% endif %}
+        {% if user.is_staff %}<a class="button button-secondary" href="{% url 'aggregate:event_psu_frame_setup' survey_code=survey.code %}">Kelola frame PSU</a>{% endif %}
       </div>
     </section>
   {% endfor %}

@@ -27,7 +27,7 @@ def metadata_sha256(payload: dict) -> str:
 def _postgres_manifest(code: str, fallback: dict | None) -> dict | None:
     if not settings.SURVEY_CONTROL_PLANE_ENABLED:
         return None
-    from aggregate.models import SurveyAccess, SurveyDataSource
+    from aggregate.models import SurveyAccess, SurveyDataSource, SurveyMonitoringConfig
 
     try:
         survey = (
@@ -44,6 +44,11 @@ def _postgres_manifest(code: str, fallback: dict | None) -> dict | None:
         if not source.active:
             return None
         metadata_rows = list(survey.metadata_versions.filter(is_active=True)[:2])
+        frame_rows = list(survey.psu_frames.filter(is_active=True).prefetch_related("psus")[:2])
+        try:
+            monitoring_config = survey.monitoring_config
+        except SurveyMonitoringConfig.DoesNotExist:
+            monitoring_config = None
     except DatabaseError:
         return None
 
@@ -60,8 +65,17 @@ def _postgres_manifest(code: str, fallback: dict | None) -> dict | None:
         return None
 
     fallback = fallback or {}
+    frame = frame_rows[0] if len(frame_rows) == 1 else None
+    frame_signature = (
+        f"{frame.pk}:{frame.file_sha256}:{frame.is_active}" if frame else "no-frame"
+    )
+    monitoring_signature = (
+        f"{monitoring_config.pk}:{monitoring_config.updated_at.isoformat()}"
+        if monitoring_config else "no-monitoring-config"
+    )
     configuration_fingerprint = hashlib.sha256(
-        f"{source.pk}:{source.updated_at.isoformat()}:{metadata.sha256}".encode("utf-8")
+        f"{source.pk}:{source.updated_at.isoformat()}:{metadata.sha256}:"
+        f"{frame_signature}:{monitoring_signature}".encode("utf-8")
     ).hexdigest()
     return {
         "schema_version": 2,
@@ -96,6 +110,41 @@ def _postgres_manifest(code: str, fallback: dict | None) -> dict | None:
             survey.dashboard_config
             or fallback.get("dashboard", {})
         ),
+        "monitoring": {
+            "columns": {
+                "questionnaire": monitoring_config.questionnaire_column,
+                "enumerator": monitoring_config.enumerator_column,
+                "submit_time": monitoring_config.submit_time_column,
+                "start_hour": monitoring_config.start_hour_column,
+                "start_minute": monitoring_config.start_minute_column,
+                "village": monitoring_config.village_column,
+                "district": monitoring_config.district_column,
+                "regency": monitoring_config.regency_column,
+            } if monitoring_config else {},
+            "refresh_seconds": monitoring_config.refresh_seconds if monitoring_config else 60,
+            "psu_frame": {
+                "version": frame.version,
+                "source_name": frame.source_name,
+                "file_sha256": frame.file_sha256,
+                "row_count": frame.row_count,
+                "target_total": frame.target_total,
+                "rows": [
+                    {
+                        "psu_number": row.psu_number,
+                        "village": row.village,
+                        "district": row.district,
+                        "regency": row.regency,
+                        "dpr_ri_constituency": row.dpr_ri_constituency,
+                        "province": row.province,
+                        "urban_rural": row.urban_rural,
+                        "target_n": row.target_n,
+                        "questionnaire_start": row.questionnaire_start,
+                        "questionnaire_end": row.questionnaire_end,
+                    }
+                    for row in frame.psus.all()
+                ],
+            } if frame else None,
+        },
         "program": {
             "code": survey.program.code,
             "name": survey.program.name,

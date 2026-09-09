@@ -95,6 +95,12 @@ Satu `SurveyConnectionProfile` merepresentasikan satu server/sistem sumber, sehi
 
 ## Batas MVP pertama
 
+### Stage 8B8I — frame PSU berversi dan monitoring operasional
+
+Frame PSU menjadi master data event berversi dengan checksum dan dua tahap: staging lalu aktivasi eksplisit. Target tidak diasumsikan sama pada setiap PSU. `target_n` dibaca dari kolom `RESPONDEN` setiap baris dan target event dihitung sebagai jumlah seluruh baris. Rentang `NO KUES` harus konsisten dengan target dan tidak boleh tumpang tindih.
+
+Linkage responden menggunakan nomor kuesioner yang dipetakan admin dari metadata aktif. Nama desa, kecamatan, dan kabupaten/kota yang bersifat free text hanya digunakan untuk label serta audit. Monitoring menghitung nomor kuesioner unik per PSU dan memperlihatkan nomor di luar frame, nomor kosong/tidak valid, serta duplikat. Hasil diagregasi ke PSU, kabupaten/kota, Dapil DPR RI, status kota/desa, dan enumerator bila kolomnya tersedia. Interval refresh dikonfigurasi per event dengan default 60 detik.
+
 MVP pertama hanya mencakup event **survei opini** dengan sumber CSWeb/MariaDB, monitoring, analisis, dan weighting. Quick count, report builder, sampling frame, serta monitoring personel tetap masuk desain, tetapi implementasinya dilakukan setelah alur onboarding survei opini berhasil dari awal sampai aktif.
 
 ## Aturan desain yang tidak boleh dilanggar

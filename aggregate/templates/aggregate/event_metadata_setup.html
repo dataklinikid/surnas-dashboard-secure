@@ -45,7 +45,8 @@
     {% endif %}
     <p>Event telah masuk status <strong>Validasi</strong>, tetapi tetap belum aktif.</p>
     <div class="actions">
-      <a class="button" href="{% url 'aggregate:event_final_validation' survey_code=survey.code %}">Lanjutkan validasi final</a>
+      <a class="button" href="{% url 'aggregate:event_psu_frame_setup' survey_code=survey.code %}">Konfigurasi frame PSU & monitoring</a>
+      <a class="button button-secondary" href="{% url 'aggregate:event_final_validation' survey_code=survey.code %}">Lanjutkan validasi final</a>
       <a class="button button-secondary" href="{% url 'aggregate:home' %}">Kembali ke dashboard</a>
       <a class="button button-secondary" href="{% url 'admin:aggregate_surveyaccess_change' survey.pk %}">Lihat event</a>
     </div>

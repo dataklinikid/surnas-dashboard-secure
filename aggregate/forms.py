@@ -268,6 +268,66 @@ class EventMetadataForm(forms.Form):
             raise ValidationError("Versi metadata sudah digunakan pada event ini.")
         return version
 
+
+class EventPSUFrameForm(forms.Form):
+    version = forms.SlugField(
+        label="Versi frame PSU",
+        max_length=80,
+        initial="psu_frame_v1",
+        help_text="Gunakan versi baru untuk setiap revisi frame; versi aktif tidak ditimpa.",
+    )
+    frame_file = forms.FileField(
+        label="File frame PSU (.xlsx)",
+        help_text="Sistem membaca sheet PSU. Target event dihitung dari jumlah RESPONDEN per baris.",
+    )
+
+    def __init__(self, *args, survey=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.survey = survey
+
+    def clean_version(self):
+        version = self.cleaned_data["version"].strip().lower()
+        if self.survey and self.survey.psu_frames.filter(version=version).exists():
+            raise ValidationError("Versi frame PSU sudah digunakan pada event ini.")
+        return version
+
+    def clean_frame_file(self):
+        uploaded = self.cleaned_data["frame_file"]
+        if not uploaded.name.lower().endswith(".xlsx"):
+            raise ValidationError("File frame PSU harus berformat .xlsx.")
+        if uploaded.size > 5 * 1024 * 1024:
+            raise ValidationError("Ukuran file frame PSU maksimal 5 MB.")
+        return uploaded
+
+
+class EventMonitoringConfigForm(forms.Form):
+    questionnaire_column = forms.ChoiceField(
+        label="Nomor kuesioner/responden",
+        help_text="Kunci utama yang dipetakan ke rentang NO KUES pada frame PSU.",
+    )
+    enumerator_column = forms.ChoiceField(label="Nama enumerator", required=False)
+    submit_time_column = forms.ChoiceField(label="Waktu submit", required=False)
+    start_hour_column = forms.ChoiceField(label="Jam mulai", required=False)
+    start_minute_column = forms.ChoiceField(label="Menit mulai", required=False)
+    village_column = forms.ChoiceField(label="Desa/kelurahan (audit)", required=False)
+    district_column = forms.ChoiceField(label="Kecamatan (audit)", required=False)
+    regency_column = forms.ChoiceField(label="Kabupaten/kota (audit)", required=False)
+    refresh_seconds = forms.IntegerField(
+        label="Interval refresh (detik)", min_value=30, max_value=3600, initial=60
+    )
+
+    def __init__(self, *args, variable_names=(), **kwargs):
+        super().__init__(*args, **kwargs)
+        choices = [("", "— Tidak digunakan —")]
+        choices.extend((name, name) for name in sorted(set(variable_names)))
+        for field_name in (
+            "questionnaire_column", "enumerator_column", "submit_time_column",
+            "start_hour_column", "start_minute_column", "village_column",
+            "district_column", "regency_column",
+        ):
+            self.fields[field_name].choices = choices
+        self.fields["questionnaire_column"].choices = choices[1:]
+
 class WeightModuleDecisionForm(forms.Form):
     REUSE = "reuse"
     DISABLE = "disable"

@@ -1,5 +1,7 @@
 from decimal import Decimal
 
+from django.core.exceptions import ObjectDoesNotExist
+
 from aggregate.models import SurveyAccess, SurveyEventModule
 
 
@@ -18,6 +20,13 @@ PENDING_REASONS = {
 
 
 def _fieldwork_monitoring_ready(survey):
+    active_frames = list(survey.psu_frames.filter(is_active=True)[:2])
+    if active_frames:
+        try:
+            config = survey.monitoring_config
+        except ObjectDoesNotExist:
+            return False
+        return bool(config.questionnaire_column)
     variable = str(
         (survey.dashboard_config or {}).get("monitoring_group_variable", "")
     ).strip().upper()
@@ -29,6 +38,16 @@ def _fieldwork_monitoring_ready(survey):
         for name in metadata_rows[0].payload.get("variables", {})
     }
     return variable in variables
+
+
+def _sampling_frame_ready(survey):
+    frames = list(survey.psu_frames.filter(is_active=True)[:2])
+    return (
+        len(frames) == 1
+        and frames[0].row_count > 0
+        and frames[0].target_total > 0
+        and frames[0].psus.count() == frames[0].row_count
+    )
 
 
 def _weighted_analysis_ready(survey):
@@ -56,6 +75,8 @@ def desired_module_state(survey, module_code):
             SurveyEventModule.Readiness.READY,
             "Dataset final, metadata, dan variabel monitoring telah dikonfigurasi.",
         )
+    if module_code == "sampling_frame" and _sampling_frame_ready(survey):
+        return SurveyEventModule.Readiness.READY, "Frame PSU aktif dan lolos pemeriksaan integritas."
     if module_code == "weighted_analysis" and _weighted_analysis_ready(survey):
         return SurveyEventModule.Readiness.READY, "Weight set aktif cocok dengan fingerprint dataset."
     return (

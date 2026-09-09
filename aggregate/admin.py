@@ -10,6 +10,9 @@ from .models import (
     SurveyEventModule,
     SurveyMembership,
     SurveyMetadataVersion,
+    SurveyMonitoringConfig,
+    SurveyPSU,
+    SurveyPSUFrame,
     SurveyProgram,
     SurveyWeightSet,
 )
@@ -29,6 +32,17 @@ class SurveyDataSourceInline(admin.StackedInline):
 class SurveyEventModuleInline(admin.TabularInline):
     model = SurveyEventModule
     extra = 0
+
+
+class SurveyPSUInline(admin.TabularInline):
+    model = SurveyPSU
+    extra = 0
+    can_delete = False
+    readonly_fields = (
+        "psu_number", "village", "district", "regency", "dpr_ri_constituency",
+        "province", "urban_rural", "target_n", "questionnaire_start",
+        "questionnaire_end", "normalized_location_key",
+    )
 
 
 @admin.register(Region)
@@ -146,6 +160,25 @@ class SurveyMetadataVersionAdmin(admin.ModelAdmin):
         "created_at",
         "created_by",
     )
+
+
+@admin.register(SurveyPSUFrame)
+class SurveyPSUFrameAdmin(admin.ModelAdmin):
+    list_display = ("survey", "version", "row_count", "target_total", "is_active", "created_at")
+    list_filter = ("survey", "is_active")
+    search_fields = ("survey__code", "version", "source_name", "file_sha256")
+    readonly_fields = (
+        "source_name", "file_sha256", "row_count", "target_total", "import_report",
+        "is_active", "created_at", "created_by",
+    )
+    inlines = (SurveyPSUInline,)
+
+
+@admin.register(SurveyMonitoringConfig)
+class SurveyMonitoringConfigAdmin(admin.ModelAdmin):
+    list_display = ("survey", "questionnaire_column", "enumerator_column", "refresh_seconds", "updated_at")
+    search_fields = ("survey__code", "survey__name", "questionnaire_column")
+    readonly_fields = ("updated_at", "updated_by")
 
 
 @admin.register(SurveyWeightSet)

@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.http import Http404, JsonResponse
 from django.shortcuts import render
+from django.utils import timezone
 from django.views.decorators.http import require_GET
 
 from .services.dataset import DatasetUnavailable, get_dataset
@@ -14,7 +15,7 @@ from .services.metadata import (
     variable_choices,
     variable_label,
 )
-from .services.monitoring import monitoring_target_progress
+from .services.monitoring import monitoring_target_progress, psu_monitoring_summary
 from .services.tabulation import (
     InvalidTabulation,
     crosstab_table,
@@ -52,6 +53,7 @@ def monitoring(request, survey_code):
         return _error_response(request, str(exc), 503)
 
     n = len(df)
+    operational = psu_monitoring_summary(df, survey.get("monitoring", {}))
     target, progress = monitoring_target_progress(
         n,
         survey["dataset"].get("target_n"),
@@ -75,6 +77,9 @@ def monitoring(request, survey_code):
             "progress": progress,
             "province_rows": province_rows,
             "monitoring_group_label": survey.get("dashboard", {}).get("monitoring_group_label", "Distribusi"),
+            "operational": operational,
+            "refresh_seconds": survey.get("monitoring", {}).get("refresh_seconds", 60),
+            "generated_at": timezone.localtime(),
         },
     )
 

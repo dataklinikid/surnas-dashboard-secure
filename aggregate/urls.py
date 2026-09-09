@@ -50,6 +50,11 @@ urlpatterns = [
         name="event_final_validation",
     ),
     path(
+        "manage/events/<slug:survey_code>/psu-frame/",
+        views.event_psu_frame_setup,
+        name="event_psu_frame_setup",
+    ),
+    path(
         "manage/events/<slug:survey_code>/weighting/",
         views.event_weighting_setup,
         name="event_weighting_setup",

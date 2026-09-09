@@ -335,6 +335,147 @@ class SurveyMetadataVersion(models.Model):
         return f"{self.survey.code} - {self.version}"
 
 
+class SurveyPSUFrame(models.Model):
+    survey = models.ForeignKey(
+        SurveyAccess,
+        on_delete=models.CASCADE,
+        related_name="psu_frames",
+    )
+    version = models.SlugField(max_length=80)
+    source_name = models.CharField(max_length=255)
+    file_sha256 = models.CharField(max_length=64, validators=[SHA256_VALIDATOR])
+    row_count = models.PositiveIntegerField()
+    target_total = models.PositiveIntegerField()
+    import_report = models.JSONField(default=dict, blank=True)
+    is_active = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="created_survey_psu_frames",
+    )
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=("survey", "version"),
+                name="unique_survey_psu_frame_version",
+            ),
+            models.UniqueConstraint(
+                fields=("survey",),
+                condition=models.Q(is_active=True),
+                name="unique_active_psu_frame_per_event",
+            ),
+        ]
+        indexes = [
+            models.Index(fields=("survey", "is_active"), name="psuframe_active_idx"),
+        ]
+        ordering = ("-created_at",)
+
+    def __str__(self):
+        return f"{self.survey.code} - {self.version}"
+
+
+class SurveyPSU(models.Model):
+    frame = models.ForeignKey(
+        SurveyPSUFrame,
+        on_delete=models.CASCADE,
+        related_name="psus",
+    )
+    psu_number = models.PositiveIntegerField()
+    village = models.CharField(max_length=255)
+    district = models.CharField(max_length=255)
+    regency = models.CharField(max_length=255)
+    dpr_ri_constituency = models.CharField(max_length=255, blank=True)
+    province = models.CharField(max_length=255)
+    urban_rural = models.CharField(max_length=40)
+    target_n = models.PositiveIntegerField()
+    questionnaire_start = models.PositiveIntegerField()
+    questionnaire_end = models.PositiveIntegerField()
+    normalized_location_key = models.CharField(max_length=800)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=("frame", "psu_number"),
+                name="unique_psu_number_per_frame",
+            ),
+            models.CheckConstraint(
+                condition=models.Q(questionnaire_end__gte=models.F("questionnaire_start")),
+                name="psu_questionnaire_range_valid",
+            ),
+        ]
+        indexes = [
+            models.Index(fields=("frame", "questionnaire_start"), name="psu_qstart_idx"),
+        ]
+        ordering = ("psu_number",)
+
+    def __str__(self):
+        return f"{self.frame} - PSU {self.psu_number}"
+
+
+class SurveyMonitoringConfig(models.Model):
+    survey = models.OneToOneField(
+        SurveyAccess,
+        on_delete=models.CASCADE,
+        related_name="monitoring_config",
+    )
+    questionnaire_column = models.CharField(
+        max_length=64,
+        blank=True,
+        validators=[SQL_IDENTIFIER_VALIDATOR],
+    )
+    enumerator_column = models.CharField(
+        max_length=64,
+        blank=True,
+        validators=[SQL_IDENTIFIER_VALIDATOR],
+    )
+    submit_time_column = models.CharField(
+        max_length=64,
+        blank=True,
+        validators=[SQL_IDENTIFIER_VALIDATOR],
+    )
+    start_hour_column = models.CharField(
+        max_length=64,
+        blank=True,
+        validators=[SQL_IDENTIFIER_VALIDATOR],
+    )
+    start_minute_column = models.CharField(
+        max_length=64,
+        blank=True,
+        validators=[SQL_IDENTIFIER_VALIDATOR],
+    )
+    village_column = models.CharField(
+        max_length=64,
+        blank=True,
+        validators=[SQL_IDENTIFIER_VALIDATOR],
+    )
+    district_column = models.CharField(
+        max_length=64,
+        blank=True,
+        validators=[SQL_IDENTIFIER_VALIDATOR],
+    )
+    regency_column = models.CharField(
+        max_length=64,
+        blank=True,
+        validators=[SQL_IDENTIFIER_VALIDATOR],
+    )
+    refresh_seconds = models.PositiveSmallIntegerField(default=60)
+    updated_at = models.DateTimeField(auto_now=True)
+    updated_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="updated_survey_monitoring_configs",
+    )
+
+    def __str__(self):
+        return f"{self.survey.code} monitoring"
+
+
 class SurveyMembership(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,

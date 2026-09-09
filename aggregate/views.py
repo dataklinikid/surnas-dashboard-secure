@@ -14,8 +14,10 @@ from aggregate.forms import (
     EventDataSourceForm,
     EventIdentityForm,
     EventMetadataForm,
+    EventMonitoringConfigForm,
     EventMembershipForm,
     EventModulesForm,
+    EventPSUFrameForm,
     EventReferencesForm,
     SourceCatalogScanForm,
     WeightModuleDecisionForm,
@@ -30,6 +32,8 @@ from aggregate.models import (
     SurveyEventModule,
     SurveyMetadataVersion,
     SurveyMembership,
+    SurveyMonitoringConfig,
+    SurveyPSUFrame,
     SurveyProgram,
 )
 from aggregate.metadata_onboarding import (
@@ -55,6 +59,7 @@ from aggregate.event_activation import (
     activate_event,
     evaluate_activation_gate,
 )
+from aggregate.psu_frames import PSUFrameError, activate_psu_frame, stage_psu_frame
 
 
 EVENT_ONBOARDING_SESSION_KEY = "event_onboarding_v2"
@@ -659,6 +664,121 @@ def event_metadata_setup(request, survey_code):
         request,
         "aggregate/event_metadata_setup.html",
         {"survey": survey, "form": form, "report": report},
+    )
+
+
+@staff_member_required(login_url="login")
+def event_psu_frame_setup(request, survey_code):
+    survey = get_object_or_404(
+        SurveyAccess.objects.select_related("data_source").prefetch_related(
+            "metadata_versions", "psu_frames__psus", "event_modules__module"
+        ),
+        code=survey_code,
+    )
+    metadata_rows = list(survey.metadata_versions.filter(is_active=True)[:2])
+    variable_names = []
+    if len(metadata_rows) == 1:
+        variables = metadata_rows[0].payload.get("variables", {})
+        if isinstance(variables, dict):
+            variable_names = list(variables)
+    try:
+        current_config = survey.monitoring_config
+    except SurveyMonitoringConfig.DoesNotExist:
+        current_config = None
+
+    frame_form = EventPSUFrameForm(survey=survey, prefix="frame")
+    config_initial = {
+        field: getattr(current_config, field)
+        for field in (
+            "questionnaire_column", "enumerator_column", "submit_time_column",
+            "start_hour_column", "start_minute_column", "village_column",
+            "district_column", "regency_column", "refresh_seconds",
+        )
+    } if current_config else {"refresh_seconds": 60}
+    config_form = EventMonitoringConfigForm(
+        variable_names=variable_names,
+        initial=config_initial,
+        prefix="monitoring",
+    )
+
+    if request.method == "POST":
+        action = request.POST.get("action", "")
+        if action == "stage_frame":
+            frame_form = EventPSUFrameForm(
+                request.POST, request.FILES, survey=survey, prefix="frame"
+            )
+            if frame_form.is_valid():
+                try:
+                    frame = stage_psu_frame(
+                        survey=survey,
+                        version=frame_form.cleaned_data["version"],
+                        uploaded_file=frame_form.cleaned_data["frame_file"],
+                        user=request.user,
+                    )
+                except PSUFrameError as exc:
+                    frame_form.add_error(None, str(exc))
+                else:
+                    messages.success(
+                        request,
+                        f"Frame {frame.version} lolos pemeriksaan dan disimpan sebagai staging.",
+                    )
+                    return redirect("aggregate:event_psu_frame_setup", survey_code=survey.code)
+        elif action == "activate_frame":
+            try:
+                frame = activate_psu_frame(
+                    survey=survey,
+                    frame_id=request.POST.get("frame_id"),
+                )
+            except (PSUFrameError, SurveyPSUFrame.DoesNotExist, ValueError, TypeError) as exc:
+                messages.error(request, str(exc) or "Frame PSU tidak ditemukan.")
+            else:
+                refresh_event_module_readiness(survey)
+                messages.success(
+                    request,
+                    f"Frame {frame.version} diaktifkan. Target event kini {frame.target_total}.",
+                )
+            return redirect("aggregate:event_psu_frame_setup", survey_code=survey.code)
+        elif action == "save_monitoring":
+            config_form = EventMonitoringConfigForm(
+                request.POST, variable_names=variable_names, prefix="monitoring"
+            )
+            if config_form.is_valid():
+                if not survey.psu_frames.filter(is_active=True).exists():
+                    config_form.add_error(
+                        None,
+                        "Aktifkan satu versi frame PSU sebelum menyimpan pemetaan monitoring.",
+                    )
+                else:
+                    values = {
+                        key: value
+                        for key, value in config_form.cleaned_data.items()
+                        if key != "refresh_seconds"
+                    }
+                    values["refresh_seconds"] = config_form.cleaned_data["refresh_seconds"]
+                    values["updated_by"] = request.user
+                    SurveyMonitoringConfig.objects.update_or_create(
+                        survey=survey,
+                        defaults=values,
+                    )
+                    refresh_event_module_readiness(survey)
+                    messages.success(request, "Pemetaan monitoring berhasil disimpan.")
+                    return redirect("aggregate:event_psu_frame_setup", survey_code=survey.code)
+
+    frames = survey.psu_frames.prefetch_related("psus").all()
+    active_frame = next((frame for frame in frames if frame.is_active), None)
+    preview_rows = list(active_frame.psus.all()[:100]) if active_frame else []
+    return render(
+        request,
+        "aggregate/event_psu_frame_setup.html",
+        {
+            "survey": survey,
+            "frame_form": frame_form,
+            "config_form": config_form,
+            "frames": frames,
+            "active_frame": active_frame,
+            "preview_rows": preview_rows,
+            "metadata_ready": len(metadata_rows) == 1,
+        },
     )
 
 

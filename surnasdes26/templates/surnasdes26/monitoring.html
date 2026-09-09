@@ -3,16 +3,24 @@
 {% block content %}
 {% include "surnasdes26/navigation.html" %}
 <h1>Monitoring {{ survey.name }}</h1>
+{% if operational %}
+<p class="muted-text">Frame aktif: {{ operational.frame_version }} · pembaruan terakhir {{ generated_at|date:"d M Y H:i:s" }} · refresh otomatis setiap {{ refresh_seconds }} detik. <a href="">Refresh sekarang</a></p>
+<div class="metric-grid">
+  <section class="metric"><span>Aktual terpetakan</span><strong>{{ operational.actual }}</strong></section>
+  <section class="metric"><span>Target frame</span><strong>{{ operational.target }}</strong></section>
+  <section class="metric"><span>Sisa</span><strong>{{ operational.remaining }}</strong></section>
+  <section class="metric"><span>Progres</span><strong>{{ operational.progress }}%</strong></section>
+</div>
+{% if operational.unmatched or operational.missing_questionnaire or operational.duplicate_rows %}<div class="warning-box"><strong>Audit linkage:</strong> {{ operational.unmatched }} nomor di luar frame; {{ operational.missing_questionnaire }} nomor kosong/tidak valid; {{ operational.duplicate_rows }} baris berada pada nomor yang duplikat.</div>{% endif %}
+<section class="card"><h2>Progres per PSU</h2><div class="table-scroll"><table><thead><tr><th>PSU</th><th>Lokasi</th><th>Kabupaten/kota</th><th>Target</th><th>Aktual</th><th>Sisa</th><th>Progres</th><th>Status</th></tr></thead><tbody>{% for row in operational.psu_rows %}<tr><td>{{ row.psu_number }}</td><td>{{ row.village }}<br><span class="muted-text">{{ row.district }}</span></td><td>{{ row.regency }}</td><td>{{ row.target_n }}</td><td>{{ row.actual }}</td><td>{{ row.remaining }}</td><td>{{ row.progress }}%</td><td>{{ row.status }}</td></tr>{% endfor %}</tbody></table></div></section>
+<section class="card"><h2>Progres per kabupaten/kota</h2><div class="table-scroll"><table><thead><tr><th>Wilayah</th><th>PSU</th><th>Target</th><th>Aktual</th><th>Sisa</th><th>Progres</th></tr></thead><tbody>{% for row in operational.regency_rows %}<tr><td>{{ row.label }}</td><td>{{ row.psu_count }}</td><td>{{ row.target }}</td><td>{{ row.actual }}</td><td>{{ row.remaining }}</td><td>{{ row.progress }}%</td></tr>{% endfor %}</tbody></table></div></section>
+{% if operational.enumerator_rows %}<section class="card"><h2>Realisasi per enumerator</h2><div class="table-scroll"><table><thead><tr><th>Enumerator aktual</th><th>Responden unik terpetakan</th></tr></thead><tbody>{% for row in operational.enumerator_rows %}<tr><td>{{ row.label }}</td><td>{{ row.actual }}</td></tr>{% endfor %}</tbody></table></div></section>{% endif %}
+<script>window.setTimeout(function () { window.location.reload(); }, {{ refresh_seconds }} * 1000);</script>
+{% else %}
 <div class="metric-grid">
   <section class="metric"><span>Kuesioner unik</span><strong>{{ n }}</strong></section>
-  <section class="metric">
-    <span>Target</span>
-    <strong>{% if target %}{{ target }}{% else %}Belum ditetapkan{% endif %}</strong>
-  </section>
-  <section class="metric">
-    <span>Progres</span>
-    <strong>{% if target %}{{ progress }}%{% else %}—{% endif %}</strong>
-  </section>
+  <section class="metric"><span>Target</span><strong>{% if target %}{{ target }}{% else %}Belum ditetapkan{% endif %}</strong></section>
+  <section class="metric"><span>Progres</span><strong>{% if target %}{{ progress }}%{% else %}—{% endif %}</strong></section>
 </div>
 <section class="card">
   <h2>{{ monitoring_group_label }}</h2>
@@ -27,4 +35,5 @@
     </table>
   </div>
 </section>
+{% endif %}
 {% endblock %}

@@ -92,6 +92,7 @@
 {% endif %}
 
 <div class="actions page-actions">
+  <a class="button" href="{% url 'aggregate:event_psu_frame_setup' survey_code=survey.code %}">Frame PSU & monitoring</a>
   <a class="button button-secondary" href="{% url 'aggregate:event_metadata_setup' survey_code=survey.code %}">Kembali ke metadata</a>
   <a class="button button-secondary" href="{% url 'aggregate:home' %}">Kembali ke dashboard</a>
 </div>

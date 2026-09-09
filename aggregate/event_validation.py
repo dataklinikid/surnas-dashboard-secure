@@ -1,10 +1,18 @@
 import hashlib
 import json
 
+from django.core.exceptions import ObjectDoesNotExist
+
 from surnasdes26.services.runtime import metadata_sha256
 
 
 def event_configuration_signature(survey, source, metadata) -> str:
+    frame_rows = list(survey.psu_frames.filter(is_active=True)[:2])
+    frame = frame_rows[0] if len(frame_rows) == 1 else None
+    try:
+        monitoring = survey.monitoring_config
+    except ObjectDoesNotExist:
+        monitoring = None
     payload = {
         "survey": {
             "code": survey.code,
@@ -50,6 +58,24 @@ def event_configuration_signature(survey, source, metadata) -> str:
             "calculated_sha256": metadata_sha256(metadata.payload),
             "is_active": metadata.is_active,
         },
+        "psu_frame": {
+            "version": frame.version,
+            "file_sha256": frame.file_sha256,
+            "row_count": frame.row_count,
+            "target_total": frame.target_total,
+            "is_active": frame.is_active,
+        } if frame else None,
+        "monitoring": {
+            "questionnaire_column": monitoring.questionnaire_column,
+            "enumerator_column": monitoring.enumerator_column,
+            "submit_time_column": monitoring.submit_time_column,
+            "start_hour_column": monitoring.start_hour_column,
+            "start_minute_column": monitoring.start_minute_column,
+            "village_column": monitoring.village_column,
+            "district_column": monitoring.district_column,
+            "regency_column": monitoring.regency_column,
+            "refresh_seconds": monitoring.refresh_seconds,
+        } if monitoring else None,
     }
     encoded = json.dumps(
         payload,
