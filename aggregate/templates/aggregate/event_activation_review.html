@@ -1,0 +1,103 @@
+{% extends "aggregate/base.html" %}
+{% block title %}Review Aktivasi Event{% endblock %}
+{% block content %}
+<div class="wizard-heading">
+  <div>
+    <p class="eyebrow">Event Onboarding · Review Aktivasi</p>
+    <h1>{{ survey.name }}</h1>
+  </div>
+  <span class="status-badge status-{% if gate.passed %}ready{% else %}pending{% endif %}">{% if gate.passed %}Siap diaktifkan{% else %}Belum siap{% endif %}</span>
+</div>
+
+<section class="wizard-card">
+  <h2>Ringkasan konfigurasi final</h2>
+  <dl class="review-grid">
+    <div><dt>Kode event</dt><dd>{{ survey.code }}</dd></div>
+    <div><dt>Jenis</dt><dd>{{ survey.event_type.name|default:"-" }}</dd></div>
+    <div><dt>Program</dt><dd>{{ survey.program.name|default:"-" }}</dd></div>
+    <div><dt>Wilayah</dt><dd>{{ survey.region.name|default:"-" }}</dd></div>
+    <div><dt>Database</dt><dd>{{ survey.data_source.database_name }}</dd></div>
+    <div><dt>Tabel</dt><dd>{{ survey.data_source.table_name }}</dd></div>
+    <div><dt>Kasus final</dt><dd>{{ survey.validation_report.final_rows }}</dd></div>
+    <div><dt>Metadata</dt><dd>{{ metadata.version }}</dd></div>
+    <div><dt>Weight set</dt><dd>{% if active_weight %}{{ active_weight.version }} · coverage {{ active_weight.coverage }}%{% else %}Tanpa bobot{% endif %}</dd></div>
+    <div><dt>Configuration unchanged</dt><dd>{% if gate.configuration_unchanged %}Ya{% else %}Tidak{% endif %}</dd></div>
+  </dl>
+</section>
+
+<section class="wizard-card">
+  <h2>Kesiapan modul</h2>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Modul</th><th>Digunakan</th><th>Status</th><th>Keterangan</th></tr></thead>
+      <tbody>
+      {% for item in module_rows %}
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{% if item.enabled %}Ya{% else %}Tidak{% endif %}</td>
+          <td><span class="status-badge status-{{ item.readiness }}">{{ item.readiness_label }}</span></td>
+          <td>{{ item.reason }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="wizard-card">
+  <h2>Akses pengguna</h2>
+  <p>Hak di bawah hanya berlaku pada event ini. <strong>Admin event</strong> bukan Django superuser dan tidak memperoleh akses administrasi server.</p>
+  {% if memberships %}
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Username</th><th>Peran</th><th>Monitoring</th><th>Analisis</th><th>Export</th><th>Tindakan</th></tr></thead>
+      <tbody>
+      {% for item in memberships %}
+        <tr>
+          <td>{{ item.row.user.username }}</td><td>{{ item.role }}</td>
+          <td>{% if item.row.can_monitor %}Ya{% else %}Tidak{% endif %}</td>
+          <td>{% if item.row.can_analyse %}Ya{% else %}Tidak{% endif %}</td>
+          <td>{% if item.row.can_export %}Ya{% else %}Tidak{% endif %}</td>
+          <td>
+            <form method="post">
+              {% csrf_token %}<input type="hidden" name="action" value="remove_membership">
+              <input type="hidden" name="membership_id" value="{{ item.row.pk }}">
+              <button class="button button-secondary" type="submit">Hapus</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+    <div class="warning-box">Belum ada pengguna operasional. Event tidak dapat diaktifkan.</div>
+  {% endif %}
+  <form method="post" class="wizard-form">
+    {% csrf_token %}<input type="hidden" name="action" value="save_membership">
+    {{ membership_form.non_field_errors }}
+    {% for field in membership_form %}<div class="form-row">{{ field.label_tag }}{{ field }}{{ field.errors }}</div>{% endfor %}
+    <button type="submit">Tambah atau perbarui akses</button>
+  </form>
+</section>
+
+<section class="wizard-card">
+  <h2>Activation gate</h2>
+  {% if gate.errors %}
+    <div class="error"><strong>Event belum dapat diaktifkan:</strong><ul>{% for error in gate.errors %}<li>{{ error }}</li>{% endfor %}</ul></div>
+  {% else %}
+    <p class="success">Seluruh pemeriksaan lulus. Aktivasi akan mengubah status event menjadi aktif dan membuatnya tersedia sesuai membership.</p>
+    <form method="post" class="wizard-form">
+      {% csrf_token %}<input type="hidden" name="action" value="activate">
+      {{ activation_form.non_field_errors }}
+      {% for field in activation_form %}<div class="form-row">{{ field.label_tag }}{{ field }}{{ field.errors }}</div>{% endfor %}
+      <button type="submit">Aktifkan event</button>
+    </form>
+  {% endif %}
+</section>
+
+<div class="actions page-actions">
+  <a class="button button-secondary" href="{% url 'aggregate:event_final_validation' survey_code=survey.code %}">Kembali ke validasi final</a>
+  <a class="button button-secondary" href="{% url 'aggregate:home' %}">Kembali ke dashboard</a>
+</div>
+{% endblock %}

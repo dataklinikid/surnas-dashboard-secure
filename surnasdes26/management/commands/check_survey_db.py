@@ -2,11 +2,11 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
 from surnasdes26.services.legacy_db import count_h0, get_database_config
-from surnasdes26.services.registry import get_survey
+from surnasdes26.services.runtime import resolve_survey
 
 
 class Command(BaseCommand):
-    help = "Memeriksa koneksi read-only ke database reporting berdasarkan Survey Registry."
+    help = "Memeriksa koneksi read-only ke database reporting berdasarkan konfigurasi runtime."
 
     def add_arguments(self, parser):
         parser.add_argument("--survey", help="Survey code; default ACTIVE_SURVEY_CODE.")
@@ -16,7 +16,7 @@ class Command(BaseCommand):
             self.stdout.write(self.style.WARNING("Mode demo aktif; koneksi MariaDB tidak diperiksa."))
             return
         try:
-            survey = get_survey(options.get("survey"))
+            survey = resolve_survey(options.get("survey"))
             config = get_database_config(survey["code"])
             count = count_h0(survey["code"])
         except Exception as exc:

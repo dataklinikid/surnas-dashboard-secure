@@ -126,8 +126,18 @@ def _occurrences(item: dict) -> int:
     return max(value, 1)
 
 
-def build_canonical_metadata(source: str | Path, survey_code: str, survey_name: str) -> dict:
-    source_path = Path(source).expanduser().resolve()
+def _is_binary_occurrence_helper(pairs: list[tuple[str, str]]) -> bool:
+    """Recognize CSPro yes/no occurrence helpers without relying on label wording."""
+    return {code for code, _label in pairs} == {"0", "1"}
+
+
+def build_canonical_metadata_from_content(
+    dictionary_text: str,
+    schema: dict,
+    survey_code: str,
+    survey_name: str,
+) -> dict:
+    """Build canonical metadata from an in-memory production snapshot."""
     code = survey_code.strip().lower()
     name = survey_name.strip()
     if not re.fullmatch(r"[a-z][a-z0-9_]{2,63}", code):
@@ -135,7 +145,6 @@ def build_canonical_metadata(source: str | Path, survey_code: str, survey_name: 
     if not name:
         raise MetadataParseError("Nama survei wajib diisi.")
 
-    dictionary_text, schema = _read_bundle(source_path)
     dictionary, items = parse_dictionary(dictionary_text)
     schema_items = schema.get("columns")
     if not isinstance(schema_items, list):
@@ -172,7 +181,14 @@ def build_canonical_metadata(source: str | Path, survey_code: str, survey_name: 
             parent = items[index - 1] if index else {}
             parent_name = str(parent.get("Name", "")).strip().upper()
             parent_pairs = _value_pairs(parent)
-            is_multiple = "MULTIPLE ANSWER" in str(item.get("Label", "")).upper()
+            # Older dictionaries do not consistently include the literal
+            # "Multiple Answer" in the helper label. A repeated numeric item
+            # with 0/1 values, preceded by an option-bearing parent item, is
+            # the equivalent CSPro representation.
+            is_multiple = (
+                "MULTIPLE ANSWER" in str(item.get("Label", "")).upper()
+                or _is_binary_occurrence_helper(pairs)
+            )
             if is_multiple and parent_name and parent_pairs and available_columns:
                 options = []
                 for position, (option_code, option_label) in enumerate(parent_pairs, start=1):
@@ -237,3 +253,15 @@ def build_canonical_metadata(source: str | Path, survey_code: str, survey_name: 
             "contains_respondent_rows": False,
         },
     }
+
+
+def build_canonical_metadata(source: str | Path, survey_code: str, survey_name: str) -> dict:
+    """Build canonical metadata from the legacy ZIP/folder interchange format."""
+    source_path = Path(source).expanduser().resolve()
+    dictionary_text, schema = _read_bundle(source_path)
+    return build_canonical_metadata_from_content(
+        dictionary_text,
+        schema,
+        survey_code,
+        survey_name,
+    )

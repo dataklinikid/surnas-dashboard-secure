@@ -1,0 +1,85 @@
+{% extends "aggregate/base.html" %}
+{% block title %}Metadata Event{% endblock %}
+{% block content %}
+<div class="wizard-heading">
+  <div>
+    <p class="eyebrow">Event Onboarding · Metadata</p>
+    <h1>{{ survey.name }}</h1>
+  </div>
+  <span class="step-indicator">{{ survey.get_status_display }}</span>
+</div>
+
+<section class="wizard-card metadata-summary">
+  <dl class="review-grid">
+    <div><dt>Kode event</dt><dd>{{ survey.code }}</dd></div>
+    <div><dt>Profil koneksi</dt><dd>{{ survey.data_source.connection_profile.name }}</dd></div>
+    <div><dt>Database</dt><dd>{{ survey.data_source.database_name }}</dd></div>
+    <div><dt>Tabel</dt><dd>{{ survey.data_source.table_name }}</dd></div>
+    <div><dt>Aturan metadata</dt><dd>Khusus untuk event dan kuesioner ini</dd></div>
+  </dl>
+</section>
+
+{% if metadata %}
+  <section class="wizard-card result-card">
+    <div class="success-mark" aria-hidden="true">✓</div>
+    <h2>Metadata dan pemeriksaan koneksi tersimpan</h2>
+    <dl class="review-grid">
+      <div><dt>Versi</dt><dd>{{ metadata.version }}</dd></div>
+      <div><dt>Sumber</dt><dd>{{ metadata.source_name }}</dd></div>
+      <div><dt>Identitas kuesioner</dt><dd>{{ metadata.questionnaire_key }}</dd></div>
+      <div><dt>Database terikat</dt><dd>{{ metadata.source_database }}</dd></div>
+      <div><dt>SHA-256</dt><dd class="hash-value">{{ metadata.sha256 }}</dd></div>
+      <div><dt>Variabel</dt><dd>{{ metadata.payload.variables|length }}</dd></div>
+      <div><dt>Baris mentah</dt><dd>{{ report.raw_rows }}</dd></div>
+      <div><dt>Kolom tersedia</dt><dd>{{ report.available_column_count }}</dd></div>
+      <div><dt>Kolom hilang</dt><dd>{{ report.missing_column_count }}</dd></div>
+      <div><dt>Read-only queries</dt><dd>{{ report.read_only_queries }}</dd></div>
+      {% if report.metadata_source %}
+        <div><dt>Versi CSPro</dt><dd>{{ report.metadata_source.cspro_version }}</dd></div>
+        <div><dt>Modifikasi dictionary</dt><dd>{{ report.metadata_source.source_modified_time }}</dd></div>
+        <div><dt>SHA-256 dictionary</dt><dd class="hash-value">{{ report.metadata_source.dictionary_sha256 }}</dd></div>
+      {% endif %}
+    </dl>
+    {% if report.warnings %}
+      <div class="warning-box"><strong>Peringatan:</strong><ul>{% for item in report.warnings %}<li>{{ item }}</li>{% endfor %}</ul></div>
+    {% endif %}
+    <p>Event telah masuk status <strong>Validasi</strong>, tetapi tetap belum aktif.</p>
+    <div class="actions">
+      <a class="button" href="{% url 'aggregate:event_final_validation' survey_code=survey.code %}">Lanjutkan validasi final</a>
+      <a class="button button-secondary" href="{% url 'aggregate:home' %}">Kembali ke dashboard</a>
+      <a class="button button-secondary" href="{% url 'admin:aggregate_surveyaccess_change' survey.pk %}">Lihat event</a>
+    </div>
+  </section>
+{% else %}
+  <form method="post" class="wizard-card">
+    {% csrf_token %}
+    <div class="notice-inline"><strong>Sumber metadata produksi:</strong> sistem mengambil dictionary terbaru langsung dari <code>{{ survey.data_source.database_name }}.cspro_meta</code>, mencocokkannya dengan schema <code>{{ survey.data_source.table_name }}</code>, dan hanya menjalankan tiga query <code>SELECT</code>. Tidak diperlukan file DCF atau JSON dari komputer operator.</div>
+    {% if form.non_field_errors %}<div class="error">{{ form.non_field_errors }}</div>{% endif %}
+    {% for field in form %}
+      <div class="form-row{% if field.errors %} has-error{% endif %}">
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}
+        {% for error in field.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+      </div>
+    {% endfor %}
+    {% if report %}
+      <section class="check-report failed-report">
+        <h2>Hasil pemeriksaan: belum lulus</h2>
+        <dl class="review-grid">
+          <div><dt>Baris mentah</dt><dd>{{ report.raw_rows }}</dd></div>
+          <div><dt>Kolom tersedia</dt><dd>{{ report.available_column_count }}</dd></div>
+          <div><dt>Kolom dibutuhkan</dt><dd>{{ report.required_column_count }}</dd></div>
+          <div><dt>Kolom hilang</dt><dd>{{ report.missing_column_count }}</dd></div>
+        </dl>
+        {% if report.missing_columns %}<p>Kolom hilang: <code>{{ report.missing_columns|join:", " }}</code></p>{% endif %}
+        {% for item in report.errors %}<div class="field-error">{{ item }}</div>{% endfor %}
+      </section>
+    {% endif %}
+    <div class="actions">
+      <a class="button button-secondary" href="{% url 'aggregate:event_onboarding_done' survey_code=survey.code %}">Kembali</a>
+      <button type="submit">Ambil dari database, periksa, dan simpan</button>
+    </div>
+  </form>
+{% endif %}
+{% endblock %}

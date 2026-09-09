@@ -258,54 +258,103 @@ def multiple_answer_table(
     options = specification.get("options", [])
     if not isinstance(options, list) or not options:
         raise InvalidTabulation(f"Opsi multiple-answer {group_name} tidak tersedia.")
-    columns = [str(option.get("column", "")) for option in options]
-    missing = [column for column in columns if not column or column not in df.columns]
-    if missing:
-        raise InvalidTabulation(
-            f"Kolom helper multiple-answer tidak tersedia: {', '.join(missing)}"
-        )
-    if specification.get("eligibility") != "any_helper_not_blank":
-        raise InvalidTabulation("Aturan denominator multiple-answer tidak didukung.")
     if weight_variable and weight_variable not in df.columns:
         raise InvalidTabulation(f"Variabel bobot {weight_variable} tidak tersedia.")
 
-    selected_value = str(specification.get("selected_value", "1"))
-    helper = pd.DataFrame(
-        {column: df[column].map(canonical_code) for column in columns},
-        index=df.index,
-    )
-    eligible_mask = helper.ne("").any(axis=1)
-    eligible = helper.loc[eligible_mask]
-    eligible_n = int(len(eligible))
+    storage = str(specification.get("storage", "binary_helpers"))
+    eligibility = str(specification.get("eligibility", "any_helper_not_blank"))
+    helper = None
+    source = None
+    columns = []
+
+    if storage == "compact_codes":
+        source_column = str(specification.get("source_column", group_name))
+        if not source_column or source_column not in df.columns:
+            raise InvalidTabulation(
+                f"Kolom sumber multiple-answer {source_column or group_name} tidak tersedia."
+            )
+        option_codes = [str(option.get("source_code", "")) for option in options]
+        if any(len(code) != 1 for code in option_codes) or len(set(option_codes)) != len(option_codes):
+            raise InvalidTabulation(
+                "compact_codes memerlukan source_code satu karakter dan unik."
+            )
+        source = df[source_column].map(canonical_code)
+        if eligibility == "all_respondents":
+            eligible_mask = pd.Series(True, index=df.index)
+        elif eligibility == "source_not_blank":
+            eligible_mask = source.ne("")
+        else:
+            raise InvalidTabulation("Aturan denominator compact_codes tidak didukung.")
+    elif storage == "binary_helpers":
+        columns = [str(option.get("column", "")) for option in options]
+        missing = [column for column in columns if not column or column not in df.columns]
+        if missing:
+            raise InvalidTabulation(
+                f"Kolom helper multiple-answer tidak tersedia: {', '.join(missing)}"
+            )
+        if eligibility != "any_helper_not_blank":
+            raise InvalidTabulation("Aturan denominator multiple-answer tidak didukung.")
+        helper = pd.DataFrame(
+            {column: df[column].map(canonical_code) for column in columns},
+            index=df.index,
+        )
+        eligible_mask = helper.ne("").any(axis=1)
+    else:
+        raise InvalidTabulation(f"Mode penyimpanan multiple-answer {storage} tidak didukung.")
+
+    eligible_index = df.index[eligible_mask]
+    eligible_n = int(len(eligible_index))
     if weight_variable:
-        weights = pd.to_numeric(df.loc[eligible.index, weight_variable], errors="coerce")
+        weights = pd.to_numeric(df.loc[eligible_index, weight_variable], errors="coerce")
         if weights.isna().any() or weights.le(0).any():
             raise InvalidTabulation("Bobot multiple-answer harus numerik dan lebih besar dari nol.")
     else:
-        weights = pd.Series(1.0, index=eligible.index)
+        weights = pd.Series(1.0, index=eligible_index)
     weighted_eligible = float(weights.sum())
 
-    rows = []
+    row_values = []
     selection_total = 0
     weighted_selection_total = 0.0
-    for option, column in zip(options, columns):
-        selected_mask = eligible[column].eq(selected_value)
+    selected_value = str(specification.get("selected_value", "1"))
+    for position, option in enumerate(options):
+        if storage == "compact_codes":
+            column = str(specification.get("source_column", group_name))
+            option_code = str(option.get("source_code", ""))
+            selected_mask = source.loc[eligible_index].map(lambda value: option_code in value)
+        else:
+            column = columns[position]
+            selected_mask = helper.loc[eligible_index, column].eq(selected_value)
         count = int(selected_mask.sum())
         weighted_count = float(weights[selected_mask].sum())
         selection_total += count
         weighted_selection_total += weighted_count
-        percentage = (
-            weighted_count / weighted_eligible * 100 if weighted_eligible else 0.0
-        )
-        rows.append(
+        row_values.append(
             {
-                "index": int(option.get("index", len(rows) + 1)),
+                "index": int(option.get("index", len(row_values) + 1)),
                 "code": str(option.get("source_code", option.get("index", ""))),
                 "column": column,
                 "label": str(option.get("label", column)),
                 "count": count,
                 "weighted_count": round(weighted_count, 3),
-                "percentage": round(percentage, 1),
+            }
+        )
+
+    rows = []
+    for row in row_values:
+        case_percentage = (
+            row["weighted_count"] / weighted_eligible * 100 if weighted_eligible else 0.0
+        )
+        response_percentage = (
+            row["weighted_count"] / weighted_selection_total * 100
+            if weighted_selection_total
+            else 0.0
+        )
+        rows.append(
+            {
+                **row,
+                "percentage": round(case_percentage, 1),
+                "case_percentage": round(case_percentage, 1),
+                "response_percentage": round(response_percentage, 1),
             }
         )
 
@@ -323,7 +372,9 @@ def multiple_answer_table(
             if weighted_eligible
             else 0.0
         ),
-        "denominator_rule": "any_helper_not_blank",
+        "denominator_rule": eligibility,
+        "storage": storage,
         "percentages_sum_to_100": False,
+        "response_percentages_sum_to_100": True,
         "weighted": bool(weight_variable),
     }

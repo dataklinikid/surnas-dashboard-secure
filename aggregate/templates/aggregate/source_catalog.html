@@ -1,0 +1,69 @@
+{% extends "aggregate/base.html" %}
+{% block title %}Catalog Sumber CSWeb{% endblock %}
+{% block content %}
+<div class="wizard-heading">
+  <div>
+    <p class="eyebrow">Administrasi event · Discovery read-only</p>
+    <h1>Catalog sumber CSWeb</h1>
+  </div>
+</div>
+
+<section class="wizard-card">
+  <h2>Pindai database reporting</h2>
+  <p>Hanya database dengan pola <code>dbcs..._report</code> atau <code>csdb..._report</code> yang ditampilkan. Database operasional CSWeb diabaikan.</p>
+  <form method="post" class="wizard-form">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for field in form %}
+      <div class="form-row">{{ field.label_tag }}{{ field }}{% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}{{ field.errors }}</div>
+    {% endfor %}
+    <button type="submit">Pindai sumber tersedia</button>
+  </form>
+</section>
+
+{% if selected_profile %}
+<section class="wizard-card">
+  <h2>Database reporting yang terlihat</h2>
+  <p><strong>Profil:</strong> {{ selected_profile.name }} · <strong>Discovery prefix:</strong> {{ selected_profile.discovery_environment_prefix|default:selected_profile.environment_prefix }} · <strong>Ditemukan:</strong> {{ catalog_rows|length }}</p>
+  <div class="warning-box">Jumlah baris pada catalog merupakan estimasi metadata database. Pemeriksaan jumlah kasus secara tepat dilakukan saat validasi event.</div>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Database</th><th>Tabel</th><th>Estimasi baris</th><th>Kolom</th><th>cspro_meta</th><th>Q_AC</th><th>H0_ID</th><th>Saran kode</th><th>Status</th><th>Event/Tindakan</th></tr></thead>
+      <tbody>
+      {% for row in catalog_rows %}
+        <tr>
+          <td><code>{{ row.database_name }}</code></td>
+          <td>{{ row.table_name|default:"-" }}</td>
+          <td>{{ row.estimated_rows|default_if_none:"-" }}</td>
+          <td>{{ row.column_count }}</td>
+          <td>{% if row.has_cspro_meta %}Ada{% else %}Tidak{% endif %}</td>
+          <td>{% if row.has_identity %}Ada{% else %}Tidak{% endif %}</td>
+          <td>{% if row.has_latest_id %}Ada{% else %}Tidak{% endif %}</td>
+          <td><code>{{ row.suggested_code|default:"-" }}</code></td>
+          <td><span class="status-badge status-{{ row.catalog_status }}">{{ row.catalog_status_label }}</span></td>
+          <td>
+            {% for event in row.linked_events %}
+              <strong>{{ event.name }}</strong><br><span class="muted-text">{{ event.code }} · {{ event.get_status_display }}</span>{% if not forloop.last %}<hr>{% endif %}
+            {% empty %}
+              {% if row.catalog_status == "available" %}
+                <form method="post" action="{% url 'aggregate:source_catalog_link' %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="connection_profile" value="{{ selected_profile.pk }}">
+                  <input type="hidden" name="database_name" value="{{ row.database_name }}">
+                  <button type="submit">Tautkan sebagai event</button>
+                </form>
+              {% else %}-{% endif %}
+            {% endfor %}
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="10">Tidak ada database reporting yang terlihat oleh profil ini.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endif %}
+
+<div class="actions page-actions"><a class="button button-secondary" href="{% url 'aggregate:home' %}">Kembali ke dashboard</a></div>
+{% endblock %}

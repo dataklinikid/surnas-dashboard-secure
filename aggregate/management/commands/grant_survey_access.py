@@ -1,14 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand, CommandError
 
+from aggregate.access_roles import ROLE_CAPABILITIES
 from aggregate.models import SurveyAccess, SurveyMembership
-
-
-ROLES = {
-    "monitor": {"can_monitor": True, "can_analyse": False, "can_export": False},
-    "analyst": {"can_monitor": True, "can_analyse": True, "can_export": False},
-    "admin": {"can_monitor": True, "can_analyse": True, "can_export": True},
-}
 
 
 class Command(BaseCommand):
@@ -17,7 +11,7 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("--username", required=True)
         parser.add_argument("--survey", required=True)
-        parser.add_argument("--role", required=True, choices=sorted(ROLES))
+        parser.add_argument("--role", required=True, choices=sorted(ROLE_CAPABILITIES))
 
     def handle(self, *args, **options):
         User = get_user_model()
@@ -35,7 +29,7 @@ class Command(BaseCommand):
         membership, created = SurveyMembership.objects.update_or_create(
             user=user,
             survey=survey,
-            defaults=ROLES[options["role"]],
+            defaults=ROLE_CAPABILITIES[options["role"]],
         )
         action = "dibuat" if created else "diperbarui"
         self.stdout.write(self.style.SUCCESS("Pemberian akses survei: OK"))

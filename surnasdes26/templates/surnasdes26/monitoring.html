@@ -5,8 +5,14 @@
 <h1>Monitoring {{ survey.name }}</h1>
 <div class="metric-grid">
   <section class="metric"><span>Kuesioner unik</span><strong>{{ n }}</strong></section>
-  <section class="metric"><span>Target</span><strong>{{ target }}</strong></section>
-  <section class="metric"><span>Progres</span><strong>{{ progress }}%</strong></section>
+  <section class="metric">
+    <span>Target</span>
+    <strong>{% if target %}{{ target }}{% else %}Belum ditetapkan{% endif %}</strong>
+  </section>
+  <section class="metric">
+    <span>Progres</span>
+    <strong>{% if target %}{{ progress }}%{% else %}—{% endif %}</strong>
+  </section>
 </div>
 <section class="card">
   <h2>{{ monitoring_group_label }}</h2>

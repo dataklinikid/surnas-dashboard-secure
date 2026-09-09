@@ -1,0 +1,74 @@
+{% extends "aggregate/base.html" %}
+{% block title %}Keputusan Bobot Event{% endblock %}
+{% block content %}
+<div class="wizard-heading">
+  <div>
+    <p class="eyebrow">Event Onboarding · Keputusan Bobot</p>
+    <h1>{{ survey.name }}</h1>
+  </div>
+  <span class="status-badge status-{{ assignment.readiness }}">{{ assignment.get_readiness_display }}</span>
+</div>
+
+<section class="wizard-card">
+  <h2>Identitas dataset tervalidasi</h2>
+  <dl class="review-grid">
+    <div><dt>Kode event</dt><dd>{{ survey.code }}</dd></div>
+    <div><dt>Kasus final</dt><dd>{{ survey.validation_report.final_rows }}</dd></div>
+    <div><dt>Key responden</dt><dd>{{ survey.data_source.identity_column }}</dd></div>
+    <div><dt>Status event</dt><dd>{{ survey.get_status_display }} · belum aktif</dd></div>
+  </dl>
+  <div class="fingerprint-box">
+    <span>Dataset fingerprint</span>
+    <code>{{ survey.validation_report.dataset_fingerprint }}</code>
+  </div>
+</section>
+
+{% if active_weight %}
+<section class="wizard-card">
+  <h2>Weight set event ini</h2>
+  <dl class="review-grid">
+    <div><dt>Versi</dt><dd>{{ active_weight.version }}</dd></div>
+    <div><dt>Sumber lineage</dt><dd>{% if active_weight.parent_weight_set %}{{ active_weight.parent_weight_set.survey.code }} · {{ active_weight.parent_weight_set.version }}{% else %}Import langsung{% endif %}</dd></div>
+    <div><dt>Baris bobot</dt><dd>{{ active_weight.matched_count }}</dd></div>
+    <div><dt>Coverage</dt><dd>{{ active_weight.coverage }}%</dd></div>
+    <div><dt>Sum weight</dt><dd>{{ active_weight.weight_sum }}</dd></div>
+    <div><dt>Effective sample size</dt><dd>{{ active_weight.effective_sample_size }}</dd></div>
+  </dl>
+  <p class="success">Weight set aktif cocok dengan fingerprint event. Modul analisis berbobot siap.</p>
+  <div class="actions">
+    <a class="button" href="{% url 'aggregate:event_activation_review' survey_code=survey.code %}">Lanjut ke review aktivasi</a>
+  </div>
+</section>
+{% else %}
+<section class="wizard-card">
+  <h2>Pilih keputusan operasional</h2>
+  <div class="warning-box">
+    Weight set hanya ditawarkan jika fingerprint dataset, jumlah kasus, coverage, dan key responden cocok. Nama database atau urutan baris tidak digunakan sebagai bukti kecocokan.
+  </div>
+  {% if compatible_count == 0 %}
+    <p class="error">Belum ada weight set aktif yang kompatibel. Event dapat dilanjutkan tanpa bobot, atau bobot baru diimpor pada tahap pengelolaan bobot berikutnya.</p>
+  {% endif %}
+  <form method="post" class="wizard-form">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for field in form %}
+      <div class="form-row">
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}
+        {{ field.errors }}
+      </div>
+    {% endfor %}
+    <div class="warning-box">
+      Jika memilih tanpa bobot, validasi final akan direset karena konfigurasi modul berubah. Anda harus menjalankan validasi final sekali lagi.
+    </div>
+    <button type="submit">Simpan keputusan bobot</button>
+  </form>
+</section>
+{% endif %}
+
+<div class="actions page-actions">
+  <a class="button button-secondary" href="{% url 'aggregate:event_final_validation' survey_code=survey.code %}">Kembali ke validasi final</a>
+  <a class="button button-secondary" href="{% url 'aggregate:home' %}">Kembali ke dashboard</a>
+</div>
+{% endblock %}
