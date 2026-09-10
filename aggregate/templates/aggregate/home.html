@@ -2,6 +2,49 @@
 {% block title %}Daftar Survei{% endblock %}
 {% block content %}
 <h1>Daftar Survei</h1>
+{% if user.is_staff %}
+  <section class="admin-action">
+    <div>
+      <p class="eyebrow">Administrasi event</p>
+      <strong>Tambahkan event melalui proses terpandu.</strong>
+    </div>
+    <div class="actions">
+      <a class="button" href="{% url 'aggregate:source_catalog' %}">Catalog sumber CSWeb</a>
+      <a class="button button-secondary" href="{% url 'aggregate:event_onboarding_identity' %}">Buat event manual</a>
+    </div>
+  </section>
+  {% if setup_events %}
+    <section class="setup-panel">
+      <div>
+        <p class="eyebrow">Event dalam penyiapan</p>
+        <h2>Lanjutkan konfigurasi</h2>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Event</th><th>Jenis</th><th>Wilayah</th><th>Status</th><th>Tindakan</th></tr></thead>
+          <tbody>
+          {% for event in setup_events %}
+            <tr>
+              <td><strong>{{ event.name }}</strong><br><span class="muted-text">{{ event.code }}</span></td>
+              <td>{{ event.event_type.name|default:"-" }}</td>
+              <td>{{ event.region.name|default:"-" }}</td>
+              <td>{{ event.get_status_display }}</td>
+              <td>
+                <a class="button button-secondary" href="{% url 'aggregate:event_psu_frame_setup' survey_code=event.code %}">Frame PSU</a>
+                {% if event.status == "validation" %}
+                  <a class="button button-secondary" href="{% url 'aggregate:event_final_validation' survey_code=event.code %}">Lanjutkan validasi</a>
+                {% else %}
+                  <a class="button button-secondary" href="{% url 'aggregate:event_metadata_setup' survey_code=event.code %}">Metadata & koneksi</a>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  {% endif %}
+{% endif %}
 {% if surveys %}
   <div class="card-grid">
   {% for survey in surveys %}
@@ -11,6 +54,7 @@
       <div class="actions">
         {% if survey.can_monitor %}<a class="button" href="{% url 'surveys:monitoring' survey_code=survey.code %}">Monitoring</a>{% endif %}
         {% if survey.can_analyse %}<a class="button button-secondary" href="{% url 'surveys:analysis' survey_code=survey.code %}">Analisis</a>{% endif %}
+        {% if user.is_staff %}<a class="button button-secondary" href="{% url 'aggregate:event_psu_frame_setup' survey_code=survey.code %}">Kelola frame PSU</a>{% endif %}
       </div>
     </section>
   {% endfor %}

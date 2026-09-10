@@ -5,7 +5,8 @@ import re
 from aggregate.models import SurveyWeightSet
 from aggregate.weighting import canonical_respondent_key, fingerprint_dataset
 from surnasdes26.services.dataset import DatasetUnavailable, get_dataset
-from surnasdes26.services.registry import SurveyRegistryError, get_survey
+from surnasdes26.services.registry import SurveyRegistryError
+from surnasdes26.services.runtime import resolve_survey
 
 
 class Command(BaseCommand):
@@ -25,7 +26,7 @@ class Command(BaseCommand):
                 survey__code=survey_code,
                 version=version,
             )
-            manifest = get_survey(survey_code)
+            manifest = resolve_survey(survey_code)
             dataset = get_dataset(force_refresh=True, survey_code=survey_code)
         except SurveyWeightSet.DoesNotExist as exc:
             raise CommandError("Versi bobot tidak ditemukan.") from exc

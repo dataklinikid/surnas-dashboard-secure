@@ -1,3 +1,4 @@
+import hashlib
 import json
 import tempfile
 from pathlib import Path
@@ -66,3 +67,83 @@ class CsproMetadataTests(SimpleTestCase):
         self.assertEqual(group["options"][1]["label"], "Media sosial")
         self.assertEqual(group["eligibility"], "any_helper_not_blank")
         self.assertFalse(payload["build_report"]["contains_respondent_rows"])
+
+    def test_dictionary_without_name_uses_stable_content_fingerprint(self):
+        dictionary = DICTIONARY.replace("Name=CONTOH_DICT\n", "")
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory)
+            (source / "cspro_dictionary.txt").write_text(dictionary, encoding="utf-8")
+            schema = {
+                "table": "h0",
+                "columns": [
+                    {"COLUMN_NAME": "q_1"},
+                    {"COLUMN_NAME": "q_2c(1)"},
+                    {"COLUMN_NAME": "q_2c(2)"},
+                ],
+            }
+            (source / "h0_schema.json").write_text(json.dumps(schema), encoding="utf-8")
+            payload = build_canonical_metadata(source, "contoh26", "Survei Contoh")
+
+        expected_hash = hashlib.sha256(dictionary.encode("utf-8")).hexdigest()
+        self.assertEqual(
+            payload["survey"]["dictionary_name"],
+            f"DICT_SHA256_{expected_hash.upper()}",
+        )
+        self.assertEqual(payload["build_report"]["dictionary_identity_source"], "sha256")
+
+    def test_binary_occurrence_helper_without_multiple_answer_label_becomes_group(self):
+        dictionary = """[Dictionary]
+Version=CSPro 7.7
+Label=Survei NTT
+Name=SURVEI_PROV_NTT_NOV_2024_DICT
+
+[Record]
+Label=Media dan kampanye
+Name=H0
+
+[Item]
+Label=Media sosial untuk calon pertama
+Name=Q_61_1
+DataType=Alpha
+
+[ValueSet]
+Value='1     ';Facebook
+Value='2     ';Instagram
+Value='3     ';Twitter (X)
+Value='4     ';Tiktok
+Value='5     ';Youtube
+Value='6     ';Whatsapp
+
+[Item]
+Label=Q_61_1C. Media sosial untuk calon pertama
+Name=Q_61_1C
+DataType=Numeric
+Occurrences=6
+
+[ValueSet]
+Value=1;Ya
+Value=0;Tidak
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory)
+            (source / "cspro_dictionary.txt").write_text(dictionary, encoding="utf-8")
+            schema = {
+                "table": "h0",
+                "columns": [
+                    {"COLUMN_NAME": "q_61_1"},
+                    *[
+                        {"COLUMN_NAME": f"q_61_1c({position})"}
+                        for position in range(1, 7)
+                    ],
+                ],
+            }
+            (source / "h0_schema.json").write_text(json.dumps(schema), encoding="utf-8")
+
+            payload = build_canonical_metadata(source, "provntt_nov24", "Survei NTT")
+
+        group = payload["multiple_answer_groups"]["Q_61_1"]
+        self.assertEqual(group["helper_prefix"], "Q_61_1C")
+        self.assertEqual(len(group["options"]), 6)
+        self.assertEqual(group["options"][0]["label"], "Facebook")
+        self.assertEqual(group["options"][5]["column"], "Q_61_1C(6)")
+        self.assertEqual(payload["build_report"]["multiple_answer_group_count"], 1)

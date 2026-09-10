@@ -162,9 +162,9 @@ def decimal_weight(value) -> Decimal:
 
 def active_weight_status(dataset: pd.DataFrame, survey_code: str) -> dict:
     from aggregate.models import SurveyWeightSet
-    from surnasdes26.services.registry import get_survey
+    from surnasdes26.services.runtime import resolve_survey
 
-    manifest = get_survey(survey_code)
+    manifest = resolve_survey(survey_code)
     weight_set = (
         SurveyWeightSet.objects.select_related("survey")
         .filter(survey__code=survey_code, is_active=True)

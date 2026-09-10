@@ -93,6 +93,28 @@ class TabulationTests(SimpleTestCase):
         with self.assertRaises(InvalidTabulation):
             multiple_answer_table(self.df, "Q_MISSING", specification)
 
+    def test_compact_codes_use_all_respondents_and_report_two_percentages(self):
+        frame = pd.DataFrame({"Q_61_1": ["16", "", "245", "1"]})
+        specification = {
+            "label": "Paparan media sosial",
+            "storage": "compact_codes",
+            "source_column": "Q_61_1",
+            "eligibility": "all_respondents",
+            "options": [
+                {"index": 1, "source_code": str(code), "label": f"Media {code}"}
+                for code in range(1, 7)
+            ],
+        }
+
+        result = multiple_answer_table(frame, "Q_61_1", specification)
+
+        self.assertEqual(result["n_eligible"], 4)
+        self.assertEqual(result["selection_total"], 6)
+        self.assertEqual(result["rows"][0]["count"], 2)
+        self.assertEqual(result["rows"][0]["case_percentage"], 50.0)
+        self.assertEqual(result["rows"][0]["response_percentage"], 33.3)
+        self.assertEqual(result["storage"], "compact_codes")
+
     def test_weighted_frequency_keeps_unweighted_count(self):
         frame = self.df.copy()
         frame["W"] = [0.5, 1.5, 2.0, 1.0]

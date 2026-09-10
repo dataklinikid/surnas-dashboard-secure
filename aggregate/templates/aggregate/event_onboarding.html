@@ -1,0 +1,153 @@
+{% extends "aggregate/base.html" %}
+{% block title %}Event Onboarding{% endblock %}
+{% block content %}
+<div class="wizard-heading">
+  <div>
+    <p class="eyebrow">Event Onboarding Wizard</p>
+    <h1>
+      {% if step == "identity" %}Identitas event
+      {% elif step == "references" %}Program dan wilayah
+      {% elif step == "modules" %}Pilih modul
+      {% elif step == "source" %}Sumber data
+      {% elif step == "review" %}Tinjau draft
+      {% else %}Draft event dibuat{% endif %}
+    </h1>
+  </div>
+  <span class="step-indicator">Langkah {{ step_number }} dari 6</span>
+</div>
+
+<ol class="wizard-steps wizard-steps-six" aria-label="Tahapan onboarding">
+  <li{% if step_number >= 1 %} class="active"{% endif %}>Identitas</li>
+  <li{% if step_number >= 2 %} class="active"{% endif %}>Referensi</li>
+  <li{% if step_number >= 3 %} class="active"{% endif %}>Modul</li>
+  <li{% if step_number >= 4 %} class="active"{% endif %}>Sumber</li>
+  <li{% if step_number >= 5 %} class="active"{% endif %}>Review</li>
+  <li{% if step_number >= 6 %} class="active"{% endif %}>Selesai</li>
+</ol>
+
+{% if catalog_source %}
+  <div class="notice-inline">
+    <strong>Sumber dari CSWeb Catalog:</strong>
+    <code>{{ catalog_source.database_name }}.{{ catalog_source.table_name }}</code>.
+    Field teknis sumber dikunci; identitas bisnis, program, wilayah, periode, dan modul tetap dapat ditentukan admin.
+  </div>
+{% endif %}
+
+{% if step == "identity" or step == "modules" or step == "source" %}
+  <form method="post" class="wizard-card">
+    {% csrf_token %}
+    {% if step == "modules" %}
+      <p class="form-context">Jenis event: <strong>{{ event_type.name }}</strong></p>
+    {% elif step == "source" %}
+      <div class="notice-inline"><strong>Kredensial tetap aman.</strong> Form ini tidak meminta host, username, atau password database.</div>
+    {% endif %}
+    {% if form.non_field_errors %}<div class="error">{{ form.non_field_errors }}</div>{% endif %}
+    {% for field in form %}
+      <div class="form-row{% if field.errors %} has-error{% endif %}">
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}
+        {% for error in field.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+      </div>
+    {% endfor %}
+    <div class="actions">
+      {% if step == "modules" %}
+        <a class="button button-secondary" href="{% url 'aggregate:event_onboarding_references' %}">Kembali</a>
+      {% elif step == "source" %}
+        <a class="button button-secondary" href="{% url 'aggregate:event_onboarding_modules' %}">Kembali</a>
+      {% endif %}
+      <button type="submit">Lanjutkan</button>
+    </div>
+  </form>
+{% elif step == "references" %}
+  <form method="post" class="wizard-card">
+    {% csrf_token %}
+    {% if form.non_field_errors %}<div class="error">{{ form.non_field_errors }}</div>{% endif %}
+    <fieldset class="form-section">
+      <legend>Program survei</legend>
+      <p>Pilih program lama. Jika belum tersedia, biarkan pilihan kosong lalu isi dua kolom program baru.</p>
+      {% for field in form %}
+        {% if field.name == "program_existing" or field.name == "program_code" or field.name == "program_name" %}
+          <div class="form-row{% if field.errors %} has-error{% endif %}">
+            {{ field.label_tag }}{{ field }}
+            {% for error in field.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </fieldset>
+    <fieldset class="form-section">
+      <legend>Wilayah utama event</legend>
+      <p>Pilih wilayah lama. Untuk wilayah baru, biarkan pilihan kosong lalu isi kode, nama, dan tingkat wilayah.</p>
+      {% for field in form %}
+        {% if field.name == "region_existing" or field.name == "region_code" or field.name == "region_name" or field.name == "region_level" or field.name == "region_parent" %}
+          <div class="form-row{% if field.errors %} has-error{% endif %}">
+            {{ field.label_tag }}{{ field }}
+            {% for error in field.errors %}<div class="field-error">{{ error }}</div>{% endfor %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </fieldset>
+    <div class="actions">
+      <a class="button button-secondary" href="{% url 'aggregate:event_onboarding_identity' %}">Kembali</a>
+      <button type="submit">Lanjutkan</button>
+    </div>
+  </form>
+{% elif step == "review" %}
+  <section class="wizard-card">
+    <p>Konfirmasi akan membuat event, referensi baru bila diperlukan, modul, dan kontrak data source dalam satu transaksi.</p>
+    <dl class="review-grid">
+      <div><dt>Kode</dt><dd>{{ identity.code }}</dd></div>
+      <div><dt>Nama</dt><dd>{{ identity.name }}</dd></div>
+      <div><dt>Jenis</dt><dd>{{ event_type.name }}</dd></div>
+      <div><dt>Program</dt><dd>{{ program_name }}</dd></div>
+      <div><dt>Wilayah</dt><dd>{{ region_name }}</dd></div>
+      <div><dt>Periode</dt><dd>{{ identity.period_start|default:"-" }} sampai {{ identity.period_end|default:"-" }}</dd></div>
+    </dl>
+    <h2>Kontrak sumber data</h2>
+    <dl class="review-grid">
+      <div><dt>Profil koneksi</dt><dd>{{ connection_profile.name }}</dd></div>
+      <div><dt>Environment prefix sumber</dt><dd>{{ source_environment_prefix }}</dd></div>
+      <div><dt>Database</dt><dd>{{ data_source.database_name }}</dd></div>
+      <div><dt>Tabel</dt><dd>{{ data_source.table_name }}</dd></div>
+      <div><dt>Identity/latest</dt><dd>{{ data_source.identity_column }} / {{ data_source.latest_id_column|default:"-" }}</dd></div>
+      <div><dt>Target n</dt><dd>{{ data_source.target_n|default:"-" }}</dd></div>
+    </dl>
+    <p class="privacy-note">Host, username, dan password tidak ditampilkan serta tidak disimpan dalam konfigurasi event.</p>
+    <h2>Modul dipilih</h2>
+    <ul class="module-review">
+      {% for module in modules %}<li><strong>{{ module.name }}</strong><br><span>{{ module.description|default:"Konfigurasi dilanjutkan pada tahap berikutnya." }}</span></li>{% endfor %}
+    </ul>
+    <div class="actions">
+      <a class="button button-secondary" href="{% url 'aggregate:event_onboarding_source' %}">Kembali</a>
+      <form method="post">{% csrf_token %}<button type="submit">Buat draft event</button></form>
+    </div>
+  </section>
+{% else %}
+  <section class="wizard-card">
+    <div class="success-mark" aria-hidden="true">✓</div>
+    <h2>{{ survey.name }}</h2>
+    <p>Event <code>{{ survey.code }}</code> telah dibuat sebagai <strong>Draft</strong> dan belum terlihat oleh pengguna biasa.</p>
+    <dl class="review-grid">
+      <div><dt>Jenis</dt><dd>{{ survey.event_type.name }}</dd></div>
+      <div><dt>Status</dt><dd>{{ survey.get_status_display }}</dd></div>
+      <div><dt>Aktif</dt><dd>Tidak</dd></div>
+      <div><dt>Profil koneksi</dt><dd>{{ survey.data_source.connection_profile.name }}</dd></div>
+      <div><dt>Database</dt><dd>{{ survey.data_source.database_name }}</dd></div>
+      <div><dt>Metadata</dt><dd>Belum dikonfigurasi</dd></div>
+    </dl>
+    <div class="notice-inline">Langkah berikutnya adalah memasukkan metadata dan memeriksa koneksi. Event belum dapat diaktifkan sekarang.</div>
+    <div class="actions">
+      <a class="button" href="{% url 'aggregate:event_metadata_setup' survey_code=survey.code %}">Lanjutkan metadata</a>
+      <a class="button button-secondary" href="{% url 'aggregate:home' %}">Kembali ke dashboard</a>
+      <a class="button button-secondary" href="{% url 'admin:aggregate_surveyaccess_change' survey.pk %}">Lihat di Django Admin</a>
+    </div>
+  </section>
+{% endif %}
+
+{% if step != "done" %}
+  <form method="post" action="{% url 'aggregate:event_onboarding_cancel' %}" class="cancel-form">
+    {% csrf_token %}
+    <button class="link-button danger-link" type="submit">Batalkan onboarding</button>
+  </form>
+{% endif %}
+{% endblock %}

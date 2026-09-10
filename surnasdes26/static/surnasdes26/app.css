@@ -15,6 +15,63 @@ a { color: var(--brand); }
 .button, button { display: inline-block; padding: .65rem 1rem; border: 0; border-radius: 8px; color: white; background: var(--brand); font: inherit; font-weight: 650; text-decoration: none; cursor: pointer; }
 .button-secondary { color: var(--brand); background: var(--brand-2); }
 .link-button { padding: 0; color: var(--brand); background: transparent; }
+.admin-action { margin: 1rem 0 1.5rem; padding: 1rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; background: var(--brand-2); border: 1px solid #b9dcc5; border-radius: 12px; }
+.setup-panel { margin: 0 0 1.5rem; padding: 1rem 1.25rem; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; }
+.setup-panel h2 { margin-top: .2rem; }
+.muted-text { color: var(--muted); font-size: .88rem; }
+.wizard-heading { display: flex; align-items: start; justify-content: space-between; gap: 1rem; }
+.wizard-heading h1 { margin-top: .25rem; }
+.step-indicator { padding: .4rem .7rem; color: var(--brand); background: var(--brand-2); border-radius: 999px; white-space: nowrap; font-weight: 650; }
+.wizard-steps { margin: 0 0 1.25rem; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; list-style: none; counter-reset: wizard-step; }
+.wizard-steps li { padding: .55rem .7rem; color: var(--muted); background: #e8ecef; border-radius: 7px; font-size: .9rem; }
+.wizard-steps li.active { color: var(--brand); background: var(--brand-2); font-weight: 700; }
+.wizard-steps-six { grid-template-columns: repeat(6, 1fr); }
+.wizard-card { padding: 1.4rem; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; }
+.form-section { margin: 0 0 1.25rem; padding: 1rem; border: 1px solid var(--line); border-radius: 9px; }
+.form-section legend { padding: 0 .4rem; font-size: 1.05rem; font-weight: 750; }
+.form-section > p { margin-top: 0; color: var(--muted); }
+.form-row { margin-bottom: 1.15rem; }
+.form-row > label { display: block; margin-bottom: .35rem; font-weight: 700; }
+.form-row input[type="text"], .form-row input[type="date"], .form-row select { width: min(620px, 100%); min-height: 42px; padding: .55rem; border: 1px solid #aeb8c2; border-radius: 7px; background: white; }
+.form-row ul { margin: .4rem 0; padding: 0; list-style: none; }
+.form-row ul label { display: block; padding: .65rem; border-bottom: 1px solid var(--line); font-weight: 600; }
+.form-row small, .module-review span { display: block; color: var(--muted); }
+.field-error, .danger-link { color: var(--danger); }
+.has-error input, .has-error select { border-color: var(--danger); }
+.form-context { padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
+.notice-inline, .privacy-note { margin: 0 0 1rem; padding: .8rem 1rem; color: #365140; background: var(--brand-2); border-left: 4px solid var(--brand); border-radius: 6px; }
+.review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+.review-grid div { padding: .85rem; background: var(--page); border-radius: 8px; }
+.review-grid dt { color: var(--muted); font-size: .85rem; }
+.review-grid dd { margin: .2rem 0 0; font-weight: 650; }
+.module-review { padding-left: 1.2rem; }
+.module-review li { margin-bottom: .65rem; }
+.wizard-card .actions { margin-top: 1.25rem; }
+.wizard-card .actions form { margin: 0; }
+.cancel-form { margin-top: 1rem; }
+.success-mark { width: 48px; height: 48px; display: grid; place-items: center; color: white; background: var(--brand); border-radius: 50%; font-size: 1.5rem; font-weight: 800; }
+.metadata-summary { margin-bottom: 1rem; }
+.result-card { border-color: #9ccaaa; }
+.hash-value { overflow-wrap: anywhere; font-family: ui-monospace, "Cascadia Code", monospace; font-size: .82rem; }
+.warning-box { margin: 1rem 0; padding: .8rem 1rem; color: #6b4f00; background: #fff7d6; border-left: 4px solid #c49300; border-radius: 6px; }
+.check-report { margin: 1rem 0; padding: 1rem; border-radius: 8px; }
+.failed-report { background: #fff2f2; border: 1px solid #e3b5b5; }
+.status-badge { display: inline-block; padding: .35rem .65rem; border-radius: 999px; font-size: .86rem; font-weight: 750; white-space: nowrap; }
+.status-not_run, .status-pending { color: #6b4f00; background: #fff2b5; }
+.status-passed, .status-ready { color: var(--brand); background: var(--brand-2); }
+.status-failed, .status-blocked { color: var(--danger); background: #ffe0e0; }
+.status-linked { color: #1d4ed8; background: #dbeafe; }
+.status-available { color: var(--brand); background: var(--brand-2); }
+.status-invalid { color: var(--danger); background: #ffe0e0; }
+.fingerprint-box { margin: 1rem 0; padding: .8rem 1rem; background: var(--page); border-radius: 7px; }
+.fingerprint-box span, .fingerprint-box code { display: block; }
+.fingerprint-box span { color: var(--muted); font-size: .85rem; }
+.fingerprint-box code { margin-top: .25rem; overflow-wrap: anywhere; }
+.validation-action { margin-top: 1rem; }
+.module-readiness-card { margin-top: 1rem; }
+.technical-log { margin-top: 1rem; padding: 1rem; background: #20262d; color: #edf2f4; border-radius: 8px; }
+.technical-log pre { overflow-x: auto; white-space: pre-wrap; }
+.page-actions { margin-top: 1rem; }
 .filter-form { margin: 1rem 0; padding: 1rem; display: flex; align-items: end; flex-wrap: wrap; gap: .75rem; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; }
 .filter-form label { font-weight: 650; }
 .filter-form select, .login-card input { min-height: 42px; padding: .5rem; border: 1px solid #aeb8c2; border-radius: 7px; background: white; }
@@ -25,4 +82,4 @@ table { width: 100%; border-collapse: collapse; background: var(--paper); }
 th, td { padding: .65rem; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
 thead th { background: #eef2f4; }
 .error { color: var(--danger); }
-@media (max-width: 640px) { .topbar { padding: .75rem 4vw; flex-wrap: wrap; } .container { margin-top: 1rem; } }
+@media (max-width: 760px) { .topbar { padding: .75rem 4vw; flex-wrap: wrap; } .container { margin-top: 1rem; } .admin-action, .wizard-heading { align-items: stretch; flex-direction: column; } .wizard-steps, .wizard-steps-six { grid-template-columns: 1fr 1fr; } }

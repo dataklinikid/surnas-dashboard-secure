@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 from aggregate.models import SurveyAccess, SurveyMembership
-from surnasdes26.services.registry import enabled_surveys
+from surnasdes26.services.runtime import enabled_runtime_surveys
 
 
 @dataclass(frozen=True)
@@ -51,7 +51,7 @@ def visible_surveys_for(user) -> list[dict]:
         row.code: row
         for row in SurveyAccess.objects.filter(active=True)
     }
-    for manifest in enabled_surveys():
+    for manifest in enabled_runtime_surveys():
         if manifest["code"] not in access_rows:
             continue
         capabilities = capabilities_for(user, manifest["code"])

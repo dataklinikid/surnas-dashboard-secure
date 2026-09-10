@@ -1,15 +1,20 @@
 import json
+import copy
 from functools import lru_cache
 
-from surnasdes26.services.registry import get_survey
+from surnasdes26.services.runtime import resolve_survey
 
 
 @lru_cache(maxsize=16)
 def load_metadata(survey_code: str | None = None) -> dict:
-    survey = get_survey(survey_code)
-    metadata_path = survey["metadata"]["resolved_path"]
-    with metadata_path.open(encoding="utf-8") as stream:
-        payload = json.load(stream)
+    survey = resolve_survey(survey_code)
+    embedded = survey["metadata"].get("payload")
+    if embedded is not None:
+        payload = copy.deepcopy(embedded)
+    else:
+        metadata_path = survey["metadata"]["resolved_path"]
+        with metadata_path.open(encoding="utf-8") as stream:
+            payload = json.load(stream)
     variables = payload.get("variables", {})
     if not isinstance(variables, dict):
         raise ValueError("metadata.json harus memiliki object 'variables'.")

@@ -1,0 +1,63 @@
+{% extends "aggregate/base.html" %}
+{% block title %}Frame PSU {{ survey.name }}{% endblock %}
+{% block content %}
+<div class="wizard-heading">
+  <div><p class="eyebrow">Administrasi event</p><h1>Frame PSU dan monitoring</h1></div>
+  <span class="step-indicator">{{ survey.code }}</span>
+</div>
+
+<section class="wizard-card">
+  <h2>Kontrak operasional</h2>
+  <p>Setiap baris adalah satu PSU. Target dibaca dari kolom <strong>RESPONDEN</strong>, kemudian target event dihitung sebagai jumlah seluruh target PSU. Sistem tidak mengasumsikan setiap PSU berisi 10 responden.</p>
+  <p>Nomor responden dipetakan secara deterministik melalui rentang <strong>NO KUES</strong>. Nama lokasi bebas hanya digunakan untuk label dan audit.</p>
+</section>
+
+<section class="wizard-card">
+  <h2>1. Unggah dan periksa versi baru</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}<input type="hidden" name="action" value="stage_frame">
+    {% if frame_form.non_field_errors %}<div class="error">{{ frame_form.non_field_errors }}</div>{% endif %}
+    {% for field in frame_form %}
+      <div class="form-row{% if field.errors %} has-error{% endif %}">{{ field.label_tag }}{{ field }}{% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}{% for error in field.errors %}<div class="field-error">{{ error }}</div>{% endfor %}</div>
+    {% endfor %}
+    <button type="submit">Periksa dan simpan sebagai staging</button>
+  </form>
+</section>
+
+<section class="wizard-card">
+  <h2>2. Versi frame</h2>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Versi</th><th>Status</th><th>PSU</th><th>Target</th><th>Rentang kuesioner</th><th>Sumber</th><th>Tindakan</th></tr></thead>
+    <tbody>{% for frame in frames %}<tr>
+      <td><strong>{{ frame.version }}</strong></td><td>{% if frame.is_active %}Aktif{% else %}Staging{% endif %}</td>
+      <td>{{ frame.row_count }}</td><td>{{ frame.target_total }}</td>
+      <td>{{ frame.import_report.questionnaire_start }}–{{ frame.import_report.questionnaire_end }}</td>
+      <td>{{ frame.source_name }}</td>
+      <td>{% if not frame.is_active %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="activate_frame"><input type="hidden" name="frame_id" value="{{ frame.pk }}"><button type="submit">Aktifkan versi ini</button></form>{% else %}Target event tersinkron{% endif %}</td>
+    </tr>{% empty %}<tr><td colspan="7">Belum ada frame PSU.</td></tr>{% endfor %}</tbody>
+  </table></div>
+</section>
+
+<section class="wizard-card">
+  <h2>3. Pemetaan kolom monitoring</h2>
+  {% if metadata_ready %}
+    {% if column_source_error %}<div class="warning-box"><strong>Schema h0 belum dapat dimuat:</strong> {{ column_source_error }} Dropdown sementara hanya memuat variabel analisis berlabel.</div>{% else %}<div class="notice-inline">Dropdown bersumber dari seluruh schema aktual tabel <code>{{ survey.data_source.table_name }}</code>, termasuk kolom free text dan teknis yang tidak memiliki value label.</div>{% endif %}
+    <form method="post">
+      {% csrf_token %}<input type="hidden" name="action" value="save_monitoring">
+      {% if config_form.non_field_errors %}<div class="error">{{ config_form.non_field_errors }}</div>{% endif %}
+      {% for field in config_form %}<div class="form-row{% if field.errors %} has-error{% endif %}">{{ field.label_tag }}{{ field }}{% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}{% for error in field.errors %}<div class="field-error">{{ error }}</div>{% endfor %}</div>{% endfor %}
+      <button type="submit">Simpan pemetaan monitoring</button>
+    </form>
+  {% else %}<div class="warning-box">Metadata aktif belum tersedia. Selesaikan metadata sebelum memetakan kolom.</div>{% endif %}
+</section>
+
+{% if active_frame %}<section class="wizard-card">
+  <h2>Cuplikan frame aktif: {{ active_frame.version }}</h2>
+  <dl class="review-grid"><div><dt>Jumlah PSU</dt><dd>{{ active_frame.row_count }}</dd></div><div><dt>Total target</dt><dd>{{ active_frame.target_total }}</dd></div><div><dt>SHA-256</dt><dd class="hash-value">{{ active_frame.file_sha256 }}</dd></div></dl>
+  <div class="table-scroll"><table><thead><tr><th>PSU</th><th>Desa/kelurahan</th><th>Kecamatan</th><th>Kabupaten/kota</th><th>Status</th><th>Target</th><th>NO KUES</th></tr></thead><tbody>
+    {% for row in preview_rows %}<tr><td>{{ row.psu_number }}</td><td>{{ row.village }}</td><td>{{ row.district }}</td><td>{{ row.regency }}</td><td>{{ row.urban_rural }}</td><td>{{ row.target_n }}</td><td>{{ row.questionnaire_start }}–{{ row.questionnaire_end }}</td></tr>{% endfor %}
+  </tbody></table></div>
+</section>{% endif %}
+
+<div class="actions"><a class="button button-secondary" href="{% url 'aggregate:home' %}">Kembali ke dashboard</a>{% if not survey.active and survey.status == "validation" %}<a class="button" href="{% url 'aggregate:event_final_validation' survey_code=survey.code %}">Validasi event</a>{% endif %}</div>
+{% endblock %}

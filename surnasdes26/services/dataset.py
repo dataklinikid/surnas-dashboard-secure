@@ -7,7 +7,7 @@ from django.db import DatabaseError
 
 from surnasdes26.models import H0
 from surnasdes26.services.legacy_db import read_h0
-from surnasdes26.services.registry import get_survey
+from surnasdes26.services.runtime import resolve_survey
 
 
 DEMO_PATH = Path(__file__).resolve().parents[1] / "data" / "demo.csv"
@@ -18,7 +18,7 @@ class DatasetUnavailable(RuntimeError):
 
 
 def _load_raw(survey_code: str | None = None) -> pd.DataFrame:
-    survey = get_survey(survey_code)
+    survey = resolve_survey(survey_code)
     if settings.SURNAS_DEMO_MODE:
         return pd.read_csv(DEMO_PATH)
     if survey["database"].get("legacy_source", True):
@@ -36,7 +36,7 @@ def _load_raw(survey_code: str | None = None) -> pd.DataFrame:
 
 
 def prepare_dataset(raw: pd.DataFrame, survey_code: str | None = None) -> pd.DataFrame:
-    survey = get_survey(survey_code)
+    survey = resolve_survey(survey_code)
     dataset_config = survey["dataset"]
     identity_column = dataset_config["identity_column"]
     latest_id_column = dataset_config["latest_id_column"]
@@ -53,8 +53,8 @@ def prepare_dataset(raw: pd.DataFrame, survey_code: str | None = None) -> pd.Dat
         df = df.sort_values(sort_columns, kind="stable")
     df = df.drop_duplicates(subset=[identity_column], keep="last")
 
-    valid_column = settings.SURNAS_VALID_COLUMN
-    valid_value = settings.SURNAS_VALID_VALUE
+    valid_column = dataset_config.get("valid_column", settings.SURNAS_VALID_COLUMN)
+    valid_value = dataset_config.get("valid_value", settings.SURNAS_VALID_VALUE)
     if valid_column and valid_value:
         if valid_column not in df.columns:
             raise DatasetUnavailable(f"Kolom filter validasi {valid_column} tidak ditemukan.")
@@ -64,8 +64,11 @@ def prepare_dataset(raw: pd.DataFrame, survey_code: str | None = None) -> pd.Dat
 
 
 def get_dataset(force_refresh: bool = False, survey_code: str | None = None) -> pd.DataFrame:
-    survey = get_survey(survey_code)
-    cache_key = f"survey:{survey['code']}:dataset:v1"
+    survey = resolve_survey(survey_code)
+    cache_key = (
+        f"survey:{survey['code']}:dataset:"
+        f"{survey['configuration_fingerprint']}:v2"
+    )
     if not force_refresh:
         cached = cache.get(cache_key)
         if cached is not None:

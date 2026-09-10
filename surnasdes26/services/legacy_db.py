@@ -4,7 +4,7 @@ import re
 
 import pandas as pd
 
-from surnasdes26.services.registry import get_survey
+from surnasdes26.services.runtime import resolve_survey
 
 
 SOURCE_COLUMN_ALIASES = {
@@ -32,12 +32,49 @@ def _mysql_driver():
 
 
 def get_database_config(survey_code: str | None = None) -> dict:
-    survey = get_survey(survey_code)
+    survey = resolve_survey(survey_code)
     database = survey["database"]
-    prefix = str(database.get("env_prefix", "")).strip().upper()
+    return _database_config(
+        survey_code=survey["code"],
+        prefix=str(database.get("env_prefix", "")).strip().upper(),
+        database_name=str(database.get("name", "")).strip(),
+        table=str(database.get("table", "h0")).strip(),
+    )
+
+
+def get_data_source_config(source) -> dict:
+    return _database_config(
+        survey_code=source.survey.code,
+        prefix=source.environment_prefix.strip().upper(),
+        database_name=source.database_name.strip(),
+        table=source.table_name.strip(),
+    )
+
+
+def get_connection_profile_config(profile) -> dict:
+    prefix = (
+        profile.discovery_environment_prefix or profile.environment_prefix
+    ).strip().upper()
+    return _database_config(
+        survey_code=f"catalog:{profile.code}",
+        prefix=prefix,
+        database_name="",
+        table="h0",
+        require_database=False,
+    )
+
+
+def _database_config(
+    *,
+    survey_code: str,
+    prefix: str,
+    database_name: str,
+    table: str,
+    require_database: bool = True,
+) -> dict:
     if not prefix:
         raise SurveyDatabaseConfigurationError(
-            f"env_prefix belum ditentukan untuk survei {survey['code']}."
+            f"env_prefix belum ditentukan untuk survei {survey_code}."
         )
 
     def required(suffix: str) -> str:
@@ -45,11 +82,10 @@ def get_database_config(survey_code: str | None = None) -> dict:
         value = os.getenv(key, "").strip()
         if not value:
             raise SurveyDatabaseConfigurationError(
-                f"Environment variable {key} wajib diisi untuk survei {survey['code']}."
+                f"Environment variable {key} wajib diisi untuk survei {survey_code}."
             )
         return value
 
-    table = str(database.get("table", "h0")).strip()
     if not SQL_IDENTIFIER_PATTERN.fullmatch(table):
         raise SurveyDatabaseConfigurationError(f"Nama tabel tidak aman: {table!r}.")
 
@@ -62,8 +98,8 @@ def get_database_config(survey_code: str | None = None) -> dict:
         ) from exc
 
     return {
-        "SURVEY_CODE": survey["code"],
-        "NAME": required("NAME"),
+        "SURVEY_CODE": survey_code,
+        "NAME": database_name or (required("NAME") if require_database else ""),
         "USER": required("USER"),
         "PASSWORD": required("PASSWORD"),
         "HOST": os.getenv(f"{prefix}_HOST", "127.0.0.1").strip() or "127.0.0.1",
@@ -75,17 +111,22 @@ def get_database_config(survey_code: str | None = None) -> dict:
 
 
 def connect_legacy(survey_code: str | None = None):
-    mysql = _mysql_driver()
     config = get_database_config(survey_code)
+    return connect_database_config(config)
+
+
+def connect_database_config(config: dict):
+    mysql = _mysql_driver()
     options = {
         "host": config["HOST"],
         "port": config["PORT"],
         "user": config["USER"],
         "passwd": config["PASSWORD"],
-        "db": config["NAME"],
         "charset": "utf8mb4",
         "connect_timeout": config["CONNECT_TIMEOUT"],
     }
+    if config.get("NAME"):
+        options["db"] = config["NAME"]
     if config["SSL_CA"]:
         options["ssl"] = {"ca": config["SSL_CA"]}
     return mysql.connect(
@@ -95,7 +136,7 @@ def connect_legacy(survey_code: str | None = None):
 
 def count_h0(survey_code: str | None = None) -> int:
     config = get_database_config(survey_code)
-    with closing(connect_legacy(config["SURVEY_CODE"])) as connection, closing(
+    with closing(connect_database_config(config)) as connection, closing(
         connection.cursor()
     ) as cursor:
         cursor.execute(f"SELECT COUNT(*) FROM `{config['TABLE']}`")
@@ -103,9 +144,17 @@ def count_h0(survey_code: str | None = None) -> int:
 
 
 def read_h0(survey_code: str | None = None) -> pd.DataFrame:
-    mysql = _mysql_driver()
     config = get_database_config(survey_code)
-    with closing(connect_legacy(config["SURVEY_CODE"])) as connection, closing(
+    return read_database_config(config)
+
+
+def read_data_source(source) -> pd.DataFrame:
+    return read_database_config(get_data_source_config(source))
+
+
+def read_database_config(config: dict) -> pd.DataFrame:
+    mysql = _mysql_driver()
+    with closing(connect_database_config(config)) as connection, closing(
         connection.cursor(mysql.cursors.DictCursor)
     ) as cursor:
         cursor.execute(f"SELECT * FROM `{config['TABLE']}`")

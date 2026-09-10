@@ -105,6 +105,7 @@ SURNAS_TARGET_N = int(os.getenv("SURNAS_TARGET_N", "1260"))
 SURNAS_VALID_COLUMN = os.getenv("SURNAS_VALID_COLUMN", "").strip().upper()
 SURNAS_VALID_VALUE = os.getenv("SURNAS_VALID_VALUE", "").strip()
 SURNAS_CACHE_SECONDS = int(os.getenv("SURNAS_CACHE_SECONDS", "60"))
+SURVEY_CONTROL_PLANE_ENABLED = env_bool("SURVEY_CONTROL_PLANE_ENABLED", True)
 
 CACHES = {
     "default": {

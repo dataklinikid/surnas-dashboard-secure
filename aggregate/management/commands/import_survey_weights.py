@@ -14,7 +14,8 @@ from aggregate.weighting import (
     decimal_weight,
 )
 from surnasdes26.services.dataset import DatasetUnavailable, get_dataset
-from surnasdes26.services.registry import SurveyRegistryError, get_survey
+from surnasdes26.services.registry import SurveyRegistryError
+from surnasdes26.services.runtime import resolve_survey
 
 
 class Command(BaseCommand):
@@ -44,7 +45,7 @@ class Command(BaseCommand):
         if source.stat().st_size > MAX_WEIGHT_FILE_BYTES:
             raise CommandError("Ukuran file bobot melebihi batas 20 MB.")
         try:
-            manifest = get_survey(survey_code)
+            manifest = resolve_survey(survey_code)
             key_column = str(options.get("key_column") or manifest["dataset"]["identity_column"]).upper()
             weight_column = options["weight_column"].strip().upper()
             frame = pd.read_csv(source, dtype=str, keep_default_na=False, encoding="utf-8-sig")

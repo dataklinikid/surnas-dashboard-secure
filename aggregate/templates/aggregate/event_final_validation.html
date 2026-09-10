@@ -1,0 +1,99 @@
+{% extends "aggregate/base.html" %}
+{% block title %}Validasi Final Event{% endblock %}
+{% block content %}
+<div class="wizard-heading">
+  <div>
+    <p class="eyebrow">Event Onboarding · Validasi Final</p>
+    <h1>{{ survey.name }}</h1>
+  </div>
+  <span class="status-badge status-{{ survey.validation_state }}">{{ survey.get_validation_state_display }}</span>
+</div>
+
+<section class="wizard-card metadata-summary">
+  <dl class="review-grid">
+    <div><dt>Kode event</dt><dd>{{ survey.code }}</dd></div>
+    <div><dt>Database</dt><dd>{{ survey.data_source.database_name }}</dd></div>
+    <div><dt>Metadata</dt><dd>{{ metadata.version }}</dd></div>
+    <div><dt>Aktif</dt><dd>Tidak</dd></div>
+  </dl>
+</section>
+
+<section class="wizard-card">
+  <h2>Pemeriksaan dataset final</h2>
+  <div class="warning-box"><strong>Perhatian:</strong> validasi membaca tabel reporting secara penuh dengan akun SELECT-only. Tidak ada data yang ditulis ke CSWeb.</div>
+  {% if report %}
+    <dl class="review-grid">
+      <div><dt>Baris mentah</dt><dd>{{ report.raw_rows }}</dd></div>
+      <div><dt>Kasus final</dt><dd>{{ report.final_rows }}</dd></div>
+      <div><dt>Target n</dt><dd>{{ report.target_n|default:"-" }}</dd></div>
+      <div><dt>Key kosong</dt><dd>{{ report.blank_identity }}</dd></div>
+      <div><dt>Duplikat sebelum deduplikasi</dt><dd>{{ report.duplicate_before }}</dd></div>
+      <div><dt>Duplikat setelah deduplikasi</dt><dd>{{ report.duplicate_after }}</dd></div>
+      <div><dt>Variabel metadata</dt><dd>{{ report.metadata_variables }}</dd></div>
+      <div><dt>Variabel hilang</dt><dd>{{ report.missing_metadata_count }}</dd></div>
+    </dl>
+    <div class="fingerprint-box">
+      <span>Dataset fingerprint</span>
+      <code>{{ report.dataset_fingerprint|default:"Belum tersedia" }}</code>
+    </div>
+    {% if report.errors %}
+      <div class="error"><strong>Error:</strong><ul>{% for item in report.errors %}<li>{{ item }}</li>{% endfor %}</ul></div>
+    {% endif %}
+    {% if report.warnings %}
+      <div class="warning-box"><strong>Peringatan:</strong><ul>{% for item in report.warnings %}<li>{{ item }}</li>{% endfor %}</ul></div>
+    {% endif %}
+  {% else %}
+    <p>Validasi final belum dijalankan. Proses akan memeriksa blank key, deduplikasi berdasarkan latest ID, filter kasus valid, target final, metadata, dan fingerprint dataset.</p>
+  {% endif %}
+
+  <form method="post" class="validation-action">
+    {% csrf_token %}
+    <button type="submit">{% if report %}Jalankan ulang validasi final{% else %}Jalankan validasi final{% endif %}</button>
+  </form>
+</section>
+
+<section class="wizard-card module-readiness-card">
+  <h2>Kesiapan modul</h2>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Modul</th><th>Dipilih</th><th>Status</th><th>Keterangan</th></tr></thead>
+      <tbody>
+      {% for row in module_rows %}
+        <tr>
+          <td><strong>{{ row.name }}</strong><br><span class="muted-text">{{ row.code }}</span></td>
+          <td>{% if row.enabled %}Ya{% else %}Tidak{% endif %}</td>
+          <td><span class="status-badge status-{{ row.readiness }}">{{ row.readiness_label }}</span></td>
+          <td>{{ row.reason }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <p class="privacy-note">Validasi dataset yang lulus belum otomatis berarti seluruh modul siap. Modul berbobot memerlukan weight set aktif yang cocok dengan fingerprint dataset.</p>
+  {% if survey.validation_state == "passed" and weighted_assignment %}
+    <div class="actions">
+      <a class="button" href="{% url 'aggregate:event_weighting_setup' survey_code=survey.code %}">
+        {% if weighted_assignment.readiness == "ready" %}Periksa konfigurasi bobot{% else %}Selesaikan modul berbobot{% endif %}
+      </a>
+    </div>
+  {% endif %}
+  {% if survey.validation_state == "passed" and activation_ready %}
+    <div class="actions">
+      <a class="button" href="{% url 'aggregate:event_activation_review' survey_code=survey.code %}">Review aktivasi dan akses</a>
+    </div>
+  {% endif %}
+</section>
+
+{% if command_output %}
+  <details class="technical-log">
+    <summary>Log teknis validasi</summary>
+    <pre>{{ command_output }}</pre>
+  </details>
+{% endif %}
+
+<div class="actions page-actions">
+  <a class="button" href="{% url 'aggregate:event_psu_frame_setup' survey_code=survey.code %}">Frame PSU & monitoring</a>
+  <a class="button button-secondary" href="{% url 'aggregate:event_metadata_setup' survey_code=survey.code %}">Kembali ke metadata</a>
+  <a class="button button-secondary" href="{% url 'aggregate:home' %}">Kembali ke dashboard</a>
+</div>
+{% endblock %}

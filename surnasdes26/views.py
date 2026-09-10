@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.http import Http404, JsonResponse
 from django.shortcuts import render
+from django.utils import timezone
 from django.views.decorators.http import require_GET
 
 from .services.dataset import DatasetUnavailable, get_dataset
@@ -14,13 +15,15 @@ from .services.metadata import (
     variable_choices,
     variable_label,
 )
+from .services.monitoring import monitoring_target_progress, psu_monitoring_summary
 from .services.tabulation import (
     InvalidTabulation,
     crosstab_table,
     frequency_table,
     multiple_answer_table,
 )
-from .services.registry import SurveyRegistryError, get_survey
+from .services.registry import SurveyRegistryError
+from .services.runtime import resolve_survey
 from aggregate.services import capabilities_for
 from aggregate.weighting import ActiveWeightUnavailable, resolve_weighting
 
@@ -33,7 +36,7 @@ def _error_response(request, message: str, status: int):
 
 def _survey_or_404(survey_code: str) -> dict:
     try:
-        return get_survey(survey_code)
+        return resolve_survey(survey_code)
     except SurveyRegistryError as exc:
         raise Http404("Survei tidak ditemukan.") from exc
 
@@ -50,8 +53,11 @@ def monitoring(request, survey_code):
         return _error_response(request, str(exc), 503)
 
     n = len(df)
-    target = int(survey["dataset"].get("target_n", 0))
-    progress = round((n / target) * 100, 1) if target else 0
+    operational = psu_monitoring_summary(df, survey.get("monitoring", {}))
+    target, progress = monitoring_target_progress(
+        n,
+        survey["dataset"].get("target_n"),
+    )
     province_rows = []
     group_variable = survey.get("dashboard", {}).get("monitoring_group_variable", "")
     if group_variable and group_variable in df.columns:
@@ -71,6 +77,9 @@ def monitoring(request, survey_code):
             "progress": progress,
             "province_rows": province_rows,
             "monitoring_group_label": survey.get("dashboard", {}).get("monitoring_group_label", "Distribusi"),
+            "operational": operational,
+            "refresh_seconds": survey.get("monitoring", {}).get("refresh_seconds", 60),
+            "generated_at": timezone.localtime(),
         },
     )
 
